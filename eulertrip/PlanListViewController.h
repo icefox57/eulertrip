@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PlanListViewController.h
 //  eulertrip
 //
 //  Created by ice.hu on 16/7/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface PlanListViewController : UIViewController
 
 @end
-

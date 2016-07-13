@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+//#import "MobClick.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+//    [MobClick startWithAppkey:@"" reportPolicy:SENDWIFIONLY channelId:@""];
+    
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"jizGrMwN41Lz66iAAL3hc4At"  generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    
     // Override point for customization after application launch.
     return YES;
 }

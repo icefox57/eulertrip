@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A8DFE0E1D36243600002AE7 /* trip.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A8DFE0D1D36243600002AE7 /* trip.jpg */; };
+		9A8DFE151D36253E00002AE7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE141D36253E00002AE7 /* SearchViewController.m */; };
+		9A8DFE181D362E7100002AE7 /* PlanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE171D362E7100002AE7 /* PlanListViewController.m */; };
+		9A8DFE1B1D362FAF00002AE7 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE1A1D362FAF00002AE7 /* MainTabController.m */; };
 		9AE7810D1D36142C00CA40A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7810C1D36142C00CA40A5 /* main.m */; };
 		9AE781101D36142C00CA40A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7810F1D36142C00CA40A5 /* AppDelegate.m */; };
-		9AE781131D36142C00CA40A5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE781121D36142C00CA40A5 /* ViewController.m */; };
 		9AE781161D36142C00CA40A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE781141D36142C00CA40A5 /* Main.storyboard */; };
 		9AE781181D36142C00CA40A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AE781171D36142C00CA40A5 /* Assets.xcassets */; };
 		9AE7811B1D36142C00CA40A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE781191D36142C00CA40A5 /* LaunchScreen.storyboard */; };
 		9AE781261D36142C00CA40A5 /* eulertripTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE781251D36142C00CA40A5 /* eulertripTests.m */; };
 		9AE781311D36142C00CA40A5 /* eulertripUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE781301D36142C00CA40A5 /* eulertripUITests.m */; };
+		C5A9CC02AF6304C37661D8B5 /* Pods_eulertrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01672FF9FA9CFA834AF0475 /* Pods_eulertrip.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +39,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03E25CBC9BB2CF4F7EA55363 /* Pods-eulertrip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eulertrip.release.xcconfig"; path = "Pods/Target Support Files/Pods-eulertrip/Pods-eulertrip.release.xcconfig"; sourceTree = "<group>"; };
+		9A8DFE0D1D36243600002AE7 /* trip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trip.jpg; sourceTree = "<group>"; };
+		9A8DFE131D36253E00002AE7 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		9A8DFE141D36253E00002AE7 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		9A8DFE161D362E7100002AE7 /* PlanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewController.h; sourceTree = "<group>"; };
+		9A8DFE171D362E7100002AE7 /* PlanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanListViewController.m; sourceTree = "<group>"; };
+		9A8DFE191D362FAF00002AE7 /* MainTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabController.h; sourceTree = "<group>"; };
+		9A8DFE1A1D362FAF00002AE7 /* MainTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabController.m; sourceTree = "<group>"; };
 		9AE781081D36142C00CA40A5 /* eulertrip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eulertrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE7810C1D36142C00CA40A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9AE7810E1D36142C00CA40A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9AE7810F1D36142C00CA40A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9AE781111D36142C00CA40A5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9AE781121D36142C00CA40A5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9AE781151D36142C00CA40A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AE781171D36142C00CA40A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9AE7811A1D36142C00CA40A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +61,8 @@
 		9AE7812C1D36142C00CA40A5 /* eulertripUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eulertripUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE781301D36142C00CA40A5 /* eulertripUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eulertripUITests.m; sourceTree = "<group>"; };
 		9AE781321D36142C00CA40A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A01672FF9FA9CFA834AF0475 /* Pods_eulertrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eulertrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD123FF977C7F23D3AFCAD5A /* Pods-eulertrip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eulertrip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eulertrip/Pods-eulertrip.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A9CC02AF6304C37661D8B5 /* Pods_eulertrip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +91,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		447E3A6D1F5CB32385593A77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A01672FF9FA9CFA834AF0475 /* Pods_eulertrip.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8054455B7B8F3050DC185676 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD123FF977C7F23D3AFCAD5A /* Pods-eulertrip.debug.xcconfig */,
+				03E25CBC9BB2CF4F7EA55363 /* Pods-eulertrip.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9A8DFE0F1D3624D700002AE7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9A8DFE131D36253E00002AE7 /* SearchViewController.h */,
+				9A8DFE141D36253E00002AE7 /* SearchViewController.m */,
+				9A8DFE161D362E7100002AE7 /* PlanListViewController.h */,
+				9A8DFE171D362E7100002AE7 /* PlanListViewController.m */,
+				9A8DFE191D362FAF00002AE7 /* MainTabController.h */,
+				9A8DFE1A1D362FAF00002AE7 /* MainTabController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		9AE780FF1D36142C00CA40A5 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +128,8 @@
 				9AE781241D36142C00CA40A5 /* eulertripTests */,
 				9AE7812F1D36142C00CA40A5 /* eulertripUITests */,
 				9AE781091D36142C00CA40A5 /* Products */,
+				8054455B7B8F3050DC185676 /* Pods */,
+				447E3A6D1F5CB32385593A77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +146,11 @@
 		9AE7810A1D36142C00CA40A5 /* eulertrip */ = {
 			isa = PBXGroup;
 			children = (
+				9AE7813F1D36148900CA40A5 /* Resource */,
+				9AE7813E1D36147600CA40A5 /* Common */,
+				9A8DFE0F1D3624D700002AE7 /* ViewController */,
 				9AE7810E1D36142C00CA40A5 /* AppDelegate.h */,
 				9AE7810F1D36142C00CA40A5 /* AppDelegate.m */,
-				9AE781111D36142C00CA40A5 /* ViewController.h */,
-				9AE781121D36142C00CA40A5 /* ViewController.m */,
 				9AE781141D36142C00CA40A5 /* Main.storyboard */,
 				9AE781171D36142C00CA40A5 /* Assets.xcassets */,
 				9AE781191D36142C00CA40A5 /* LaunchScreen.storyboard */,
@@ -140,6 +186,21 @@
 			path = eulertripUITests;
 			sourceTree = "<group>";
 		};
+		9AE7813E1D36147600CA40A5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		9AE7813F1D36148900CA40A5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9A8DFE0D1D36243600002AE7 /* trip.jpg */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AE781351D36142C00CA40A5 /* Build configuration list for PBXNativeTarget "eulertrip" */;
 			buildPhases = (
+				47FA73AC299BD972EDE85512 /* [CP] Check Pods Manifest.lock */,
 				9AE781041D36142C00CA40A5 /* Sources */,
 				9AE781051D36142C00CA40A5 /* Frameworks */,
 				9AE781061D36142C00CA40A5 /* Resources */,
+				300A12937E70B869E71E092D /* [CP] Embed Pods Frameworks */,
+				2212F355C77A6C0893D2816E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,6 +309,7 @@
 			files = (
 				9AE7811B1D36142C00CA40A5 /* LaunchScreen.storyboard in Resources */,
 				9AE781181D36142C00CA40A5 /* Assets.xcassets in Resources */,
+				9A8DFE0E1D36243600002AE7 /* trip.jpg in Resources */,
 				9AE781161D36142C00CA40A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,13 +330,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2212F355C77A6C0893D2816E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-eulertrip/Pods-eulertrip-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		300A12937E70B869E71E092D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-eulertrip/Pods-eulertrip-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47FA73AC299BD972EDE85512 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9AE781041D36142C00CA40A5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE781131D36142C00CA40A5 /* ViewController.m in Sources */,
+				9A8DFE1B1D362FAF00002AE7 /* MainTabController.m in Sources */,
 				9AE781101D36142C00CA40A5 /* AppDelegate.m in Sources */,
+				9A8DFE181D362E7100002AE7 /* PlanListViewController.m in Sources */,
+				9A8DFE151D36253E00002AE7 /* SearchViewController.m in Sources */,
 				9AE7810D1D36142C00CA40A5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,8 +526,10 @@
 		};
 		9AE781361D36142C00CA40A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD123FF977C7F23D3AFCAD5A /* Pods-eulertrip.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = eulertrip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eulertrip;
@@ -422,8 +539,10 @@
 		};
 		9AE781371D36142C00CA40A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E25CBC9BB2CF4F7EA55363 /* Pods-eulertrip.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = eulertrip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eulertrip;
@@ -496,6 +615,7 @@
 				9AE781371D36142C00CA40A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AE781381D36142C00CA40A5 /* Build configuration list for PBXNativeTarget "eulertripTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +624,7 @@
 				9AE7813A1D36142C00CA40A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AE7813B1D36142C00CA40A5 /* Build configuration list for PBXNativeTarget "eulertripUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +633,7 @@
 				9AE7813D1D36142C00CA40A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
