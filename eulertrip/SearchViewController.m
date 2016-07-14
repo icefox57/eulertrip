@@ -7,8 +7,10 @@
 //
 
 #import "SearchViewController.h"
+#import "GlobalVariables.h"
+#import <BaiduMapAPI/BMapKit.h>
 
-@interface SearchViewController ()<UITextFieldDelegate>
+@interface SearchViewController ()<UITextFieldDelegate,BMKLocationServiceDelegate>
 {
     UITapGestureRecognizer *tapGesture;
 }
@@ -22,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -36,11 +37,31 @@
     tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard:)];
     [self.view addGestureRecognizer:tapGesture];
     tapGesture.enabled = NO;
+    
+    
+    
+    
+    //设置定位精确度，默认：kCLLocationAccuracyBest
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    //指定最小距离更新(米)，默认：kCLDistanceFilterNone
+    [BMKLocationService setLocationDistanceFilter:100.f];
+    //初始化BMKLocationService
+    //    _locService = [[BMKLocationService alloc]init];
+    [GlobalVariables locService].delegate = self;
+    
+    //启动LocationService
+    [[GlobalVariables locService] startUserLocationService];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+    
+    [super viewWillAppear:animated];
 }
 
 /*
@@ -52,6 +73,24 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)searchClicked:(id)sender {
+    [self performSegueWithIdentifier:@"seguePlan" sender:self];
+}
+
+#pragma mark - GPS
+#pragma mark - User Location
+- (void)didUpdateUserHeading:(BMKUserLocation *)userLocation
+{
+    //NSLog(@"heading is %@",userLocation.heading);
+}
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    [GlobalVariables shareGlobalVariables].userLocation = userLocation;
+    [GlobalVariables shareGlobalVariables].location = [NSString stringWithFormat:@"%f,%f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+}
+
 
 #pragma mark - DB
 -(void)startSearchPlan{

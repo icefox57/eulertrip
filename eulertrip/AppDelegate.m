@@ -53,4 +53,22 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD hides
+    [_HUD removeFromSuperview];
+    _HUD = nil;
+}
+
+-(void)showLoadingHUD:(NSString *)text view:(UIView *)view
+{
+    //Loading HUD
+    _HUD = [[MBProgressHUD alloc] initWithView:view];
+    [view addSubview:_HUD];
+    _HUD.delegate = self;
+    _HUD.labelText = text;
+    [_HUD show:YES];
+}
+
 @end

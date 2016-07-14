@@ -1,22 +1,29 @@
 //
-//  PlanListViewController.m
+//  UserViewController.m
 //  eulertrip
 //
-//  Created by ice.hu on 16/7/13.
+//  Created by ice.hu on 16/7/14.
 //  Copyright © 2016年 eulertrip. All rights reserved.
 //
 
-#import "PlanListViewController.h"
+#import "UserViewController.h"
+#import "GlobalVariables.h"
 
-@interface PlanListViewController ()
+@interface UserViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgHead;
 
 @end
 
-@implementation PlanListViewController
+@implementation UserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _imgHead.layer.masksToBounds = YES;
+    _imgHead.layer.cornerRadius = _imgHead.bounds.size.width * 0.5;
+    _imgHead.layer.borderWidth = 5.0;
+    _imgHead.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,7 +36,6 @@
     
     [super viewWillAppear:animated];
 }
-
 /*
 #pragma mark - Navigation
 
