@@ -9,7 +9,7 @@
 #import "UserViewController.h"
 #import "GlobalVariables.h"
 
-@interface UserViewController ()
+@interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imgHead;
 
 @end
@@ -45,5 +45,61 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)editUserHeadClicked:(id)sender {
+    UIAlertController* sheet = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:@"选择图像"
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* actCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * action) {}];
+    
+    UIAlertAction* actTakePhoto = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              // 判断是否支持相机
+                                                              if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                                                                  // 跳转到相机
+                                                                  UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                                                                  imagePickerController.delegate = self;
+                                                                  imagePickerController.allowsEditing = YES;
+                                                                  imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                  
+                                                                  [self presentViewController:imagePickerController animated:YES completion:^{}];
+                                                              
+                                                              }
+                                                              
+                                                          }];
+    
+    UIAlertAction* actSelectPhoto = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                             
+                                                             // 跳转到相册页面
+                                                             UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init]; 
+                                                             imagePickerController.delegate = self; 
+                                                             imagePickerController.allowsEditing = YES; 
+                                                             imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                             
+                                                             [self presentViewController:imagePickerController animated:YES completion:^{}];
+                                
+                                                         }];
+    
+    [sheet addAction:actCancel];
+    [sheet addAction:actTakePhoto];
+    [sheet addAction:actSelectPhoto];
+    
+    
+    [self presentViewController:sheet animated:YES completion:nil];
+
+}
+
+
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
+    
+    _imgHead.image = image;
+}
 
 @end

@@ -12,42 +12,41 @@
 
 @implementation GlobalVariables
 
-static BMKLocationService *_locService = nil;
-static GlobalVariables *_instance = nil;
-static CLLocationManager *_locationManager = nil;
+static GlobalVariables *_instance            = nil;
+static AMapLocationManager *_locationManager = nil;
 
-+ (BMKLocationService *)locService
-{
-    if (_locService != nil) {
-        return _locService;
-    }
-    
-    //初始化BMKLocationService
-    _locService = [[BMKLocationService alloc]init];
+#define DefaultLocationTimeout  10
+#define DefaultReGeocodeTimeout 5
 
-    return _locService;
-}
-
-+ (CLLocationManager *)locationManager 
++ (AMapLocationManager *)locationManager
 {
     if (_locationManager != nil) {
-		return _locationManager;
-	}
-	
-	_locationManager = [[CLLocationManager alloc] init];
-	[_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-	
-	return _locationManager;
+        return _locationManager;
+    }
+    
+    _locationManager = [[AMapLocationManager alloc] init];
+    
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    
+    [_locationManager setPausesLocationUpdatesAutomatically:NO];
+    
+    [_locationManager setAllowsBackgroundLocationUpdates:YES];
+    
+    [_locationManager setLocationTimeout:DefaultLocationTimeout];
+    
+    [_locationManager setReGeocodeTimeout:DefaultReGeocodeTimeout];
+    
+    return _locationManager;
 }
 
-+ (GlobalVariables *)shareGlobalVariables 
++ (GlobalVariables *)shareGlobalVariables
 {
-	if (_instance == nil) 
+    if (_instance == nil)
     {
-		_instance = [[GlobalVariables alloc] init];
-	}
+        _instance = [[GlobalVariables alloc] init];
+    }
     
-	return _instance;
+    return _instance;
 }
 
 + (UIImage*)imageWithImageSimple:(UIImage*)image
@@ -61,6 +60,15 @@ static CLLocationManager *_locationManager = nil;
 }
 
 #pragma mark - DB
++ (NSString *)stringToBase64String:(NSString *)str{
+    
+    NSData* sampleData = [str dataUsingEncoding:NSASCIIStringEncoding];
+    
+    NSString * base64String = [sampleData base64EncodedStringWithOptions:0];
+    //    NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    //    NSLog(@"decode String is %@",[NSString stringWithUTF8String:[dataFromString bytes]]);
+    return base64String;
+}
 
 + (NSString *)stringFromDate:(NSDate *)date format:(NSString *)format
 {
@@ -74,18 +82,19 @@ static CLLocationManager *_locationManager = nil;
     return [self stringFromDate:date format:@"yyyy-MM-dd"];
 }
 
-#pragma mark - Error handle
+#pragma mark - Alert
 
-+(void)handleErrorByError:(NSError *)error
++(UIAlertController *)addAlertBy:(NSString *)alertString
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[[error userInfo] objectForKey:@"error"] message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alertView show];
-}
-
-+(void)handleErrorByString:(NSString *)errorString
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:errorString message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alertView show];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:alertString
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+    
+    return alert;
 }
 
 

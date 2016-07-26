@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
-//#import "MobClick.h"
+#import "UMMobClick/MobClick.h"
+#import "AFAppDotNetAPIClient.h"
+#import "AFNetworking/AFNetworking.h"
 
 @interface AppDelegate ()
 
@@ -18,13 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    [MobClick startWithAppkey:@"" reportPolicy:SENDWIFIONLY channelId:@""];
+    //友盟统计初始化
+    UMConfigInstance.appKey    = UMAppKey;
+    UMConfigInstance.channelId = AppDownloadSource;
     
-    _mapManager = [[BMKMapManager alloc]init];
-    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"jizGrMwN41Lz66iAAL3hc4At"  generalDelegate:self];
-    if (!ret) {
-        NSLog(@"manager start failed!");
+    [MobClick startWithConfigure:UMConfigInstance];
+    
+    //高德定位初始化
+    [AMapServices sharedServices].apiKey = AmapAppKey;
+    
+    //获取accesstoken
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:UD_TempAccessToken]) {
+        [self getAccesstoken];
     }
     
     // Override point for customization after application launch.
@@ -66,9 +73,32 @@
     //Loading HUD
     _HUD = [[MBProgressHUD alloc] initWithView:view];
     [view addSubview:_HUD];
-    _HUD.delegate = self;
-    _HUD.labelText = text;
-    [_HUD show:YES];
+    _HUD.delegate   = self;
+    _HUD.label.text = text;
+    [_HUD showAnimated:YES];
+}
+
+#pragma mark DB Token
+-(void)getAccesstoken{
+    //-----调用接口-------
+    NSDictionary *parameters = @{@"grant_type":@"client_credentials",API_OAuth_deviceID:[DLUDID value]};
+    
+    [[AFAppDotNetAPIClient sharedClient].requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
+//    [[AFAppDotNetAPIClient sharedClient] setClientForType:CRequestAccessToken];
+    [[AFAppDotNetAPIClient sharedClient] POST:@"OAuth/Token" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"JSON: %@ , P:%@ , head:%@", responseObject,parameters,task.currentRequest.allHTTPHeaderFields);
+
+        [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_OAuth_accesstoken] forKey:UD_TempAccessToken];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        NSString* errorStr = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
+        NSLog(@"error:%@ , body:%@,head:%@",errorStr,task.currentRequest.HTTPBody,task.currentRequest.allHTTPHeaderFields);
+    }];
+    
 }
 
 @end

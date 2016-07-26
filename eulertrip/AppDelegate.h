@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <BaiduMapAPI/BMapKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 #import "MBProgressHUD.h"
+#import "GlobalVariables.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,MBProgressHUDDelegate,BMKGeneralDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,MBProgressHUDDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (nonatomic,retain) MBProgressHUD *HUD;
-@property (strong, nonatomic) BMKMapManager* mapManager;
+@property (strong, nonatomic) UIWindow      *window;
+@property (nonatomic,retain ) MBProgressHUD *HUD;
 
 -(void)showLoadingHUD:(NSString *)text view:(UIView *)view;
 @end

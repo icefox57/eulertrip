@@ -11,27 +11,27 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AppDelegate.h"
 #import "Foundation.h"
-#import <BaiduMapAPI/BMapKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+#import "DLUDID.h"
 
 @interface GlobalVariables : NSObject
 
-@property (nonatomic,retain) NSString *location;
-@property (nonatomic,retain) NSArray *eventArray;
-@property (nonatomic,retain) BMKUserLocation *userLocation;
+@property (nonatomic,retain) NSString   *location;
+@property (nonatomic,retain) NSArray    *eventArray;
+@property (nonatomic,retain) CLLocation *userLocation;
 //@property (nonatomic,retain) NSMutableArray *disNewCountArray;
 
-+ (BMKLocationService *) locService;
-+ (CLLocationManager *)locationManager;
++ (AMapLocationManager *)locationManager;
 + (GlobalVariables *)shareGlobalVariables;
 
 + (UIImage*)imageWithImageSimple:(UIImage*)image;
 
 //DB
++ (NSString *)stringToBase64String:(NSString *)str;
 + (NSString *)stringFromDate:(NSDate *)date format:(NSString *)format;
 + (NSString *)stringFromDate:(NSDate *)date;
 
-//异常处理
-+(void)handleErrorByError:(NSError *)error;
-+(void)handleErrorByString:(NSString *)errorString;
+//alert
++(UIAlertController *)addAlertBy:(NSString *)alertString;
 
 @end

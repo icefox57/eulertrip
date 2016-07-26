@@ -1,38 +1,38 @@
 //
-//  LoginViewController.m
+//  SignupViewController.m
 //  eulertrip
 //
-//  Created by ice.hu on 16/7/14.
+//  Created by ice.hu on 16/7/15.
 //  Copyright © 2016年 eulertrip. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "GlobalVariables.h"
-#import "MD5Util.h"
 #import "SignupViewController.h"
+#import "GlobalVariables.h"
 #import "AFAppDotNetAPIClient.h"
 
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface SignupViewController ()
 {
     UITapGestureRecognizer *tapGesture;
     NSTimer *getCodeReactiveTimer;
     int reactiveSec;
 }
-@property (weak, nonatomic) IBOutlet UITextField *txtUserName;
+@property (weak, nonatomic) IBOutlet UITextField *txtPhone;
+@property (weak, nonatomic) IBOutlet UITextField *txtCode;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UIView      *viewLogin;
-@property (weak, nonatomic) IBOutlet UIButton    *btnLogin;
-@property (weak, nonatomic) IBOutlet UIButton    *btnCode;
+@property (weak, nonatomic) IBOutlet UITextField *txtCfPassword;
+@property (weak, nonatomic) IBOutlet UIButton *buttonNext;
+@property (weak, nonatomic) IBOutlet UIButton *btnGetCode;
 
 @end
 
-@implementation LoginViewController
+@implementation SignupViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _viewLogin.layer.cornerRadius = 10.0f;
-    _btnLogin.layer.cornerRadius  = 30.0f;
+    _buttonNext.layer.cornerRadius  = 25.0f;
+    
+    [_txtPhone setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -55,22 +55,29 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden                   = YES;
-    self.navigationController.navigationBar.hidden        = YES;
-//    self.navigationController.navigationBar.topItem.title = LoginTitleString;
+    self.tabBarController.tabBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
     [super viewWillAppear:animated];
 }
 
-- (IBAction)returnClicked:(id)sender {
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+- (IBAction)backClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)codeClicked:(id)sender {
-    
+- (IBAction)getCodeClicked:(id)sender {
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{@"Mobile":_txtUserName.text,@"Smstype":@2,API_OAuth_deviceID:[DLUDID value]};
+    NSDictionary *parameters = @{@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
     NSLog(@"param:%@",parameters);
     
@@ -83,10 +90,9 @@
         [ApplicationDelegate HUD].hidden = YES;
         
         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
-            _btnCode.enabled         = NO;
+            _btnGetCode.enabled         = NO;
             reactiveSec              = 60;
-            getCodeReactiveTimer     = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkGetCodeReactive) userInfo:nil repeats:YES];
-            _txtPassword.placeholder = @"请输入密码或动态密码";
+            getCodeReactiveTimer  = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkGetCodeReactive) userInfo:nil repeats:YES];
         }
         else{
             [self presentViewController:[GlobalVariables addAlertBy:@"动态密码发送失败"] animated:YES completion:nil];
@@ -102,61 +108,53 @@
     }];
 }
 
-- (IBAction)loginClicked:(id)sender {
-    
+
+- (IBAction)nextClicked:(id)sender {
     //-----验证输入------
-    if (!_txtUserName.text || [_txtUserName.text isEqualToString:@""]) {
+    if (!_txtPhone.text || [_txtPhone.text isEqualToString:@""]) {
         [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
         return;
     }
-    
+    if (!_txtCode.text || [_txtCode.text isEqualToString:@""]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"请输入验证码!"] animated:YES completion:nil];
+        return;
+    }
     if (!_txtPassword.text || [_txtPassword.text isEqualToString:@""]) {
         [self presentViewController:[GlobalVariables addAlertBy:@"请输入密码!"] animated:YES completion:nil];
         return;
     }
-    
-    [_txtUserName resignFirstResponder];
-    [_txtPassword resignFirstResponder];
+    if (!_txtCfPassword.text || [_txtCfPassword.text isEqualToString:@""]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"请输入确认密码!"] animated:YES completion:nil];
+        return;
+    }
+    if (![_txtCfPassword.text isEqualToString:_txtPassword.text]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"2次密码输入不相同!"] animated:YES completion:nil];
+        return;
+    }
     
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{@"grant_type":@"password",
-                                 @"username":_txtUserName.text,
-                                 @"password":[MD5Util md5:_txtPassword.text],
-                                 API_OAuth_deviceID:[DLUDID value]};
+    NSDictionary *parameters = @{@"Code":_txtCode.text,@"Password":_txtPassword.text,@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
     NSLog(@"param:%@",parameters);
     
-    [[AFAppDotNetAPIClient sharedClient].requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
-    [[AFAppDotNetAPIClient sharedClient] POST:@"OAuth/Token" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [[NSUserDefaults standardUserDefaults]objectForKey:UD_TempAccessToken]] forHTTPHeaderField:@"Authorization"];
+    [[AFAppDotNetAPIClient sharedClient] POST:@"v1/User/Register" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
         
-        
         [ApplicationDelegate HUD].hidden = YES;
         
-//        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
-            //            NSDictionary *dic = [(NSArray *)responseObject firstObject];
-            //            [GlobalVariables shareGlobalVariables].currentUser = [[User alloc] initWithAttributes:dic];
-            //            [[NSUserDefaults standardUserDefaults] setObject:dic forKey:UserInfo];
-            //            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            //            [self.delegate didLoginSuccess];
-            
-            _txtUserName.text = @"";
-            _txtPassword.text = @"";
-            
-            //更新新token
-            [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_OAuth_accesstoken] forKey:UD_UserAccessToken];
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
+            //存储用户信息
+            [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_ReturnData] forKey:UD_UserInfo];
             [[NSUserDefaults standardUserDefaults]synchronize];
-            
-            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//        else{
-//            [self presentViewController:[GlobalVariables addAlertBy:@"登入失败!请确认用户名密码!"] animated:YES completion:nil];
-//        }
+        }
+        else{
+            [self presentViewController:[GlobalVariables addAlertBy:[NSString stringWithFormat:@"注册失败:%@",[responseObject objectForKey:@"Code"]]] animated:YES completion:nil];
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [ApplicationDelegate HUD].hidden = YES;
@@ -164,26 +162,19 @@
         NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
         NSString* errorStr = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
         NSLog(@"error:%@ , body:%@,head:%@",errorStr,task.currentRequest.HTTPBody,task.currentRequest.allHTTPHeaderFields);
-        NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
-        
-        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:errorStr] animated:YES completion:nil];
     }];
-    
-}
 
-- (IBAction)siginClicked:(id)sender {
-    [self.navigationController pushViewController:[[SignupViewController alloc] init] animated:YES];
 }
-
 
 -(void)checkGetCodeReactive
 {
     reactiveSec--;
     if (reactiveSec>0) {
-        [_btnCode setTitle:[NSString stringWithFormat:@"已发送(%d)",reactiveSec] forState:UIControlStateDisabled];
+        [_btnGetCode setTitle:[NSString stringWithFormat:@"已发送(%d)",reactiveSec] forState:UIControlStateDisabled];
     }
     else{
-        _btnCode.enabled = YES;
+        _btnGetCode.enabled = YES;
         [getCodeReactiveTimer invalidate];
         getCodeReactiveTimer = nil;
     }
@@ -195,7 +186,7 @@
         [_txtPassword becomeFirstResponder];
     }
     else{
-        [self loginClicked:nil];
+        [self nextClicked:nil];
     }
     return YES;
 }
@@ -227,4 +218,5 @@
         [self.view setFrame:rect];
     }];
 }
+
 @end
