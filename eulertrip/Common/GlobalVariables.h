@@ -34,4 +34,6 @@
 //alert
 +(UIAlertController *)addAlertBy:(NSString *)alertString;
 
+//common
++ (UIImage *) createImageWithColor: (UIColor *) color;
 @end

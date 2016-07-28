@@ -9,44 +9,25 @@
 
 //API字段
 #define API_ReturnData @"Data"
-#define API_ErrorMessage @"message"
+#define API_ErrorMessage @"Message"
 #define API_Head @"Basic"
 
 #define API_OAuth_accesstoken @"access_token"
+#define API_OAuth_refreshtoken @"refresh_token"
+#define API_OAuth_token_type @"token_type"
+#define API_OAuth_expires_in @"expires_in"
+#define API_OAuth_expires_date @"expires_date"
+
 #define API_OAuth_deviceID    @"device_id"
 
+//Error Code
+#define SESSION_EXPIRED_CODE 401
 
 typedef enum
 {
     CRequestAccessToken = 0,
     CRequestAPI
 } HttpRequestTypes;//模块类型
-
-
-typedef enum
-{
-    MessageTypeNone   = 0,
-    MessageTypeDL     = 1,//收货问题
-    MessageTypeAG     = 2,//投诉建议
-    MessageTypeQR     = 3,//二维码系统问题
-    MessageTypeAdvice = 4,//活动政策问询
-    MessageTypeOther  = 5,//其他
-    MessageTypeLvUp   = 6//申请升级
-} MessageTypes;//MessageTypes
-
-typedef enum
-{
-    ChatTypeDisToDealer = 1,//分销商发给经销商
-    ChatTypeDealerToDis = 2//经销商发给分销商
-} ChatTypes;//ChatTypes
-
-typedef enum
-{
-    StaticTypePointMBM   = 1,//逐月积分
-    StaticTypePointMAM   = 2,//累月积分
-    StaticTypeProductMBM = 3,//逐月机器
-    StaticTypeProductMAM = 4//累月机器
-} StaticTypes;//统计类型
 
 
 #ifndef Debug_DbInterface_Status
@@ -111,7 +92,7 @@ typedef enum
 #define UD_UserInfo                                       @"currentUserDic"
 #define UD_TempAccessToken                                @"temp_accesstoken"
 #define UD_UserAccessToken                                @"user_accesstoken"
-#define UD_refreshToken                                   @"refreshtoken "
+#define UD_UserCredentialDic                                   @"credentialDic"
 
 
 //-----------------------  系统字符串 ------------------------------

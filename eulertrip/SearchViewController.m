@@ -74,11 +74,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
-    if (![[NSUserDefaults standardUserDefaults]objectForKey:UD_UserAccessToken]) {
-        [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:NO];
-    }
-    
     self.navigationController.navigationBar.hidden = YES;
     
     [super viewWillAppear:animated];
@@ -94,7 +89,8 @@
  }
  */
 - (IBAction)searchClicked:(id)sender {
-    [self performSegueWithIdentifier:@"seguePlan" sender:self];
+    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:NO];
+//    [self performSegueWithIdentifier:@"seguePlan" sender:self];
 }
 
 

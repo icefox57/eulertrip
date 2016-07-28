@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4C983F3AF10AF5389A907A29 /* libPods-eulertrip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E50F2116586916FE0C01045 /* libPods-eulertrip.a */; };
+		9A12D1BC1D476A3300A2BCDE /* AddUserInfoStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A12D1BB1D476A3300A2BCDE /* AddUserInfoStep1ViewController.m */; };
+		9A12D1BE1D476A5F00A2BCDE /* AddUserInfoStep1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A12D1BD1D476A5F00A2BCDE /* AddUserInfoStep1ViewController.xib */; };
+		9A12D1C01D4897CE00A2BCDE /* login_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A12D1BF1D4897CE00A2BCDE /* login_line@2x.png */; };
+		9A12D1C31D48AE1700A2BCDE /* IceOAuthCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A12D1C21D48AE1700A2BCDE /* IceOAuthCredential.m */; };
 		9A2D9B401D41DCB400A2CB96 /* DLUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D9B3F1D41DCB400A2CB96 /* DLUDID.m */; };
 		9A2D9B461D41DD1B00A2CB96 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D9B431D41DD1B00A2CB96 /* SSKeychain.m */; };
 		9A2D9B471D41DD1B00A2CB96 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D9B451D41DD1B00A2CB96 /* SSKeychainQuery.m */; };
@@ -62,6 +66,12 @@
 /* Begin PBXFileReference section */
 		03E25CBC9BB2CF4F7EA55363 /* Pods-eulertrip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eulertrip.release.xcconfig"; path = "Pods/Target Support Files/Pods-eulertrip/Pods-eulertrip.release.xcconfig"; sourceTree = "<group>"; };
 		2E50F2116586916FE0C01045 /* libPods-eulertrip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eulertrip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A12D1BA1D476A3300A2BCDE /* AddUserInfoStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserInfoStep1ViewController.h; sourceTree = "<group>"; };
+		9A12D1BB1D476A3300A2BCDE /* AddUserInfoStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUserInfoStep1ViewController.m; sourceTree = "<group>"; };
+		9A12D1BD1D476A5F00A2BCDE /* AddUserInfoStep1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUserInfoStep1ViewController.xib; sourceTree = "<group>"; };
+		9A12D1BF1D4897CE00A2BCDE /* login_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_line@2x.png"; sourceTree = "<group>"; };
+		9A12D1C11D48AE1700A2BCDE /* IceOAuthCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IceOAuthCredential.h; sourceTree = "<group>"; };
+		9A12D1C21D48AE1700A2BCDE /* IceOAuthCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IceOAuthCredential.m; sourceTree = "<group>"; };
 		9A2D9B3E1D41DCB400A2CB96 /* DLUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLUDID.h; sourceTree = "<group>"; };
 		9A2D9B3F1D41DCB400A2CB96 /* DLUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLUDID.m; sourceTree = "<group>"; };
 		9A2D9B421D41DD1B00A2CB96 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
@@ -205,6 +215,9 @@
 				9A8DFEAC1D38C80F00002AE7 /* SignupViewController.h */,
 				9A8DFEAD1D38C80F00002AE7 /* SignupViewController.m */,
 				9A8DFEAE1D38C80F00002AE7 /* SignupViewController.xib */,
+				9A12D1BA1D476A3300A2BCDE /* AddUserInfoStep1ViewController.h */,
+				9A12D1BB1D476A3300A2BCDE /* AddUserInfoStep1ViewController.m */,
+				9A12D1BD1D476A5F00A2BCDE /* AddUserInfoStep1ViewController.xib */,
 			);
 			name = ToolViewControll;
 			path = Common;
@@ -288,6 +301,8 @@
 				9A2D9B3F1D41DCB400A2CB96 /* DLUDID.m */,
 				9AFC383C1D405DE60057DF9C /* MD5Util.h */,
 				9AFC383A1D405DDD0057DF9C /* MD5Util.m */,
+				9A12D1C11D48AE1700A2BCDE /* IceOAuthCredential.h */,
+				9A12D1C21D48AE1700A2BCDE /* IceOAuthCredential.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -295,6 +310,7 @@
 		9AE7813F1D36148900CA40A5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9A12D1BF1D4897CE00A2BCDE /* login_line@2x.png */,
 				9AC16C831D461B4900FE95C6 /* login_btn_return@2x.png */,
 				9AC7775A1D3F49BE0041CA1D /* login_bg@2x.png */,
 				9AC7775B1D3F49BE0041CA1D /* login_btn_code@2x.png */,
@@ -422,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AC777601D3F49BE0041CA1D /* login_btn_code@2x.png in Resources */,
+				9A12D1BE1D476A5F00A2BCDE /* AddUserInfoStep1ViewController.xib in Resources */,
 				9AE7811B1D36142C00CA40A5 /* LaunchScreen.storyboard in Resources */,
 				9A8DFE291D375A0200002AE7 /* CalendarViewController.xib in Resources */,
 				9AC16C871D47019100FE95C6 /* login_icon_lock@2x.png in Resources */,
@@ -430,6 +447,7 @@
 				9AC16C841D461B4900FE95C6 /* login_btn_return@2x.png in Resources */,
 				9A8DFEAB1D378BF400002AE7 /* LoginViewController.xib in Resources */,
 				9AC777621D3F49BE0041CA1D /* login_txtpass@2x.png in Resources */,
+				9A12D1C01D4897CE00A2BCDE /* login_line@2x.png in Resources */,
 				9AC16C881D47019100FE95C6 /* login_icon_phone@2x.png in Resources */,
 				9A8DFEB01D38C80F00002AE7 /* SignupViewController.xib in Resources */,
 				9AC777611D3F49BE0041CA1D /* login_btn_code2@2x.png in Resources */,
@@ -510,6 +528,7 @@
 				9A8DFEAA1D378BF400002AE7 /* LoginViewController.m in Sources */,
 				9AFC383B1D405DDD0057DF9C /* MD5Util.m in Sources */,
 				9A2D9B401D41DCB400A2CB96 /* DLUDID.m in Sources */,
+				9A12D1C31D48AE1700A2BCDE /* IceOAuthCredential.m in Sources */,
 				9A2D9B471D41DD1B00A2CB96 /* SSKeychainQuery.m in Sources */,
 				9A8DFEAF1D38C80F00002AE7 /* SignupViewController.m in Sources */,
 				9A8DFE241D372A5200002AE7 /* PlanViewController.m in Sources */,
@@ -517,6 +536,7 @@
 				9A8DFE1B1D362FAF00002AE7 /* MainTabController.m in Sources */,
 				9AE781101D36142C00CA40A5 /* AppDelegate.m in Sources */,
 				9A8DFE281D375A0200002AE7 /* CalendarViewController.m in Sources */,
+				9A12D1BC1D476A3300A2BCDE /* AddUserInfoStep1ViewController.m in Sources */,
 				9A8DFE181D362E7100002AE7 /* PlanListViewController.m in Sources */,
 				9A8DFEA61D3784D800002AE7 /* UserViewController.m in Sources */,
 				9A8DFE151D36253E00002AE7 /* SearchViewController.m in Sources */,

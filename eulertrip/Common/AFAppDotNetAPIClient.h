@@ -25,7 +25,11 @@
 #import "GlobalVariables.h"
 
 @interface AFAppDotNetAPIClient : AFHTTPSessionManager
++ (instancetype _Nullable)sharedClient;
 
-+ (instancetype)sharedClient;
-- (void)setClientForType:(HttpRequestTypes)type;
+- (NSURLSessionTask* _Nullable)performPOSTRequestToURL:(NSString* _Nullable)postURL
+                               andParameters:(NSDictionary* _Nullable)parameters
+                                     success:(nullable void (^)(id _Nullable responseObject))success
+                                     failure:(nullable void (^)(id _Nonnull errorDic))failure;
+
 @end

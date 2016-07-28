@@ -11,6 +11,7 @@
 #import "MD5Util.h"
 #import "SignupViewController.h"
 #import "AFAppDotNetAPIClient.h"
+#import "IceOAuthCredential.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView      *viewLogin;
 @property (weak, nonatomic) IBOutlet UIButton    *btnLogin;
 @property (weak, nonatomic) IBOutlet UIButton    *btnCode;
+@property (weak, nonatomic) IBOutlet UIButton *btnForgetPass;
 
 @end
 
@@ -31,8 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _viewLogin.layer.cornerRadius = 10.0f;
-    _btnLogin.layer.cornerRadius  = 30.0f;
+    _btnCode.layer.cornerRadius = 15.0f;    
+    _btnLogin.layer.cornerRadius  = 25.0f;
+    [_txtUserName setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtPassword setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -64,41 +68,30 @@
 - (IBAction)returnClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)forgetPassClicked:(id)sender {
+    
+    [UIView animateWithDuration:1 animations:^{
+        _btnForgetPass.alpha = 0;
+        _btnCode.alpha = 1;
+    } completion:^(BOOL finished) {
+    }];
+}
 
 - (IBAction)codeClicked:(id)sender {
-    
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Mobile":_txtUserName.text,@"Smstype":@2,API_OAuth_deviceID:[DLUDID value]};
     
-    NSLog(@"param:%@",parameters);
-    
-    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [[NSUserDefaults standardUserDefaults]objectForKey:UD_TempAccessToken]] forHTTPHeaderField:@"Authorization"];
-    [[AFAppDotNetAPIClient sharedClient] POST:@"v1/Sms/GetSms" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/Sms/GetSms" andParameters:parameters success:^(id _Nullable responseObject) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
+        _btnCode.enabled         = NO;
+        reactiveSec              = 60;
+        getCodeReactiveTimer     = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkGetCodeReactive) userInfo:nil repeats:YES];
+        _txtPassword.placeholder = @"请输入密码或动态密码";
         
-        [ApplicationDelegate HUD].hidden = YES;
-        
-        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
-            _btnCode.enabled         = NO;
-            reactiveSec              = 60;
-            getCodeReactiveTimer     = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkGetCodeReactive) userInfo:nil repeats:YES];
-            _txtPassword.placeholder = @"请输入密码或动态密码";
-        }
-        else{
-            [self presentViewController:[GlobalVariables addAlertBy:@"动态密码发送失败"] animated:YES completion:nil];
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [ApplicationDelegate HUD].hidden = YES;
-        
-        NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-        NSString* errorStr = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-        NSLog(@"error:%@ , body:%@,head:%@",errorStr,task.currentRequest.HTTPBody,task.currentRequest.allHTTPHeaderFields);
-        [self presentViewController:[GlobalVariables addAlertBy:errorStr] animated:YES completion:nil];
+    } failure:^(id _Nonnull errorDic) {
+        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
     }];
 }
 
@@ -121,54 +114,15 @@
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{@"grant_type":@"password",
-                                 @"username":_txtUserName.text,
-                                 @"password":[MD5Util md5:_txtPassword.text],
-                                 API_OAuth_deviceID:[DLUDID value]};
     
-    NSLog(@"param:%@",parameters);
-    
-    [[AFAppDotNetAPIClient sharedClient].requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
-    [[AFAppDotNetAPIClient sharedClient] POST:@"OAuth/Token" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
-        
-        
+    [IceOAuthCredential getUserAccessToekn:_txtUserName.text password:_txtPassword.text success:^(id _Nullable responseObject) {
         [ApplicationDelegate HUD].hidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
         
-//        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
-            //            NSDictionary *dic = [(NSArray *)responseObject firstObject];
-            //            [GlobalVariables shareGlobalVariables].currentUser = [[User alloc] initWithAttributes:dic];
-            //            [[NSUserDefaults standardUserDefaults] setObject:dic forKey:UserInfo];
-            //            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            //            [self.delegate didLoginSuccess];
-            
-            _txtUserName.text = @"";
-            _txtPassword.text = @"";
-            
-            //更新新token
-            [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_OAuth_accesstoken] forKey:UD_UserAccessToken];
-            [[NSUserDefaults standardUserDefaults]synchronize];
-            
-            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//        else{
-//            [self presentViewController:[GlobalVariables addAlertBy:@"登入失败!请确认用户名密码!"] animated:YES completion:nil];
-//        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(id  _Nonnull errorDic) {
         [ApplicationDelegate HUD].hidden = YES;
-        
-        NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-        NSString* errorStr = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-        NSLog(@"error:%@ , body:%@,head:%@",errorStr,task.currentRequest.HTTPBody,task.currentRequest.allHTTPHeaderFields);
-        NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
-        
-        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:@"error_description"]] animated:YES completion:nil];
     }];
-    
 }
 
 - (IBAction)siginClicked:(id)sender {
@@ -180,7 +134,7 @@
 {
     reactiveSec--;
     if (reactiveSec>0) {
-        [_btnCode setTitle:[NSString stringWithFormat:@"已发送(%d)",reactiveSec] forState:UIControlStateDisabled];
+        [_btnCode setTitle:[NSString stringWithFormat:@"%d秒后重发",reactiveSec] forState:UIControlStateDisabled];
     }
     else{
         _btnCode.enabled = YES;
