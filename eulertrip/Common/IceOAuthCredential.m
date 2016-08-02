@@ -89,7 +89,7 @@ static IceOAuthCredential *_instance            = nil;
         [[NSUserDefaults standardUserDefaults]synchronize];
         
 #if Debug_DbInterface_Status
-        NSLog(@"JSON: %@ , P:%@ , head:%@", responseObject,parameters,task.currentRequest.allHTTPHeaderFields);
+        NSLog(@"getTempAccesstoken--------JSON: %@ , P:%@ , head:%@", responseObject,parameters,task.currentRequest.allHTTPHeaderFields);
         NSLog(@"-----token:%@",[IceOAuthCredential shareCredential].accessToken);
 #endif
         success(responseObject);
@@ -98,7 +98,7 @@ static IceOAuthCredential *_instance            = nil;
         NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
 #if Debug_DbInterface_Status
-        NSLog(@"~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+        NSLog(@"getTempAccesstoken~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
         NSLog(@"errorDic: %@", errorDic);
 #endif
         
@@ -122,7 +122,7 @@ static IceOAuthCredential *_instance            = nil;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 #if Debug_DbInterface_Status
-        NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
+        NSLog(@"getUserAccessToekn----------JSON: %@ , P:%@", responseObject,parameters);
 #endif
 
         //转换过期时间
@@ -148,8 +148,8 @@ static IceOAuthCredential *_instance            = nil;
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
         
 #if Debug_DbInterface_Status
-        NSLog(@"~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
-        NSLog(@"errorDic: %@", errorDic);
+        NSLog(@"getUserAccessToekn~~~~~~error~~~~~~Code:%ld~~~~~",(long)[error code]);
+        NSLog(@"parament:%@ -- errorDic: %@",parameters, errorDic);
 #endif
         failure(errorDic);
     }];
@@ -168,7 +168,7 @@ static IceOAuthCredential *_instance            = nil;
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 #if Debug_DbInterface_Status
-        NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
+        NSLog(@"refreshAccessToekn------JSON: %@ , P:%@", responseObject,parameters);
 #endif
         
         //转换过期时间
@@ -194,7 +194,7 @@ static IceOAuthCredential *_instance            = nil;
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
         
 #if Debug_DbInterface_Status
-        NSLog(@"~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+        NSLog(@"refreshAccessToekn~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
         NSLog(@"errorDic: %@", errorDic);
 #endif
         failure(errorDic);

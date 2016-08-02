@@ -7,6 +7,7 @@
 //
 
 #import "MainTabController.h"
+#import "GlobalVariables.h"
 
 @interface MainTabController ()
 
@@ -18,8 +19,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.selectedIndex = 1;
-    UIImage *bgImg = [[UIImage alloc] init];
-    [self.tabBar setBackgroundImage:bgImg];
+    
+    self.tabBarController.tabBar.tintColor = color_common_red;
+//    UIImage *bgImg = [[UIImage alloc] init];
+//    [self.tabBar setBackgroundImage:bgImg];
+
 }
 
 - (void)didReceiveMemoryWarning {

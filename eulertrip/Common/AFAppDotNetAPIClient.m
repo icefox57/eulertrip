@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 #import "AFAppDotNetAPIClient.h"
-#import "IceOAuthCredential.h"
+
 
 static NSString * const AFAppDotNetAPIBaseURLString = @"http://api.eulertrip.com/";
 static AFAppDotNetAPIClient *_sharedClient = nil;
@@ -42,7 +42,7 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
 }
 
 
-- (NSURLSessionTask*)performPOSTRequestToURL:(NSString*)postURL
+- (void)performPOSTRequestToURL:(NSString*)postURL
                                andParameters:(NSDictionary*)parameters
                                      success:(void (^)(id _Nullable responseObject))success
                                      failure:(void (^)(id _Nonnull errorDic))failure
@@ -50,10 +50,10 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
     [self.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [IceOAuthCredential shareCredential].accessToken] forHTTPHeaderField:@"Authorization"];
     
     
-    __block NSURLSessionDataTask *task = [self POST:postURL parameters:parameters progress:nil
+    [self POST:postURL parameters:parameters progress:nil
        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 #if Debug_DbInterface_Status
-        NSLog(@"~~~~~~~~~~~~responseObject~~~~~~~~~");
+        NSLog(@"performPOSTRequestToURL~~~~~~~~~~~~responseObject~~~~~~~~~");
         NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
 #endif
         success(responseObject);
@@ -65,7 +65,7 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
         
 #if Debug_DbInterface_Status
-        NSLog(@"~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+        NSLog(@"performPOSTRequestToURL~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
         NSLog(@"errorDic: %@", errorDic);
 #endif
         
@@ -73,20 +73,30 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
         if ([error code] == SESSION_EXPIRED_CODE) {
             
             [[IceOAuthCredential shareCredential]refreshToken:^(id  _Nullable responseObject) {
+#if Debug_DbInterface_Status
+                NSLog(@"------------------重新执行原请求--------------------");
+#endif
                 //成功重新执行原请求
                 [self performPOSTRequestToURL:postURL andParameters:parameters success:^(id  _Nullable responseObject) {
                     success(responseObject);
                 } failure:^(id  _Nonnull errorDic) {
+                    //重新请求报错
                     failure(errorDic);
                 }];
             } failure:^(id  _Nonnull errorDic) {
-                failure(errorDic);
+                //删除token
+                [[NSUserDefaults standardUserDefaults]removeObjectForKey:UD_UserCredentialDic];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                //$$$$$$$$$
+                
+                NSDictionary *dic = @{API_ErrorMessage:@"验证过期请重新登入!"};
+                //获取token报错
+                failure(dic);
             }];
         }
+        //请求失败报错
         failure(errorDic);
     }];
-    [task resume];
-    return task;
 }
 
 

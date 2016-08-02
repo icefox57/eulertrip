@@ -9,8 +9,9 @@
 #import "SignupViewController.h"
 #import "GlobalVariables.h"
 #import "AFAppDotNetAPIClient.h"
+#import "AddUserInfoStep1ViewController.h"
 
-@interface SignupViewController ()
+@interface SignupViewController ()<UITextFieldDelegate>
 {
     UITapGestureRecognizer *tapGesture;
     NSTimer *getCodeReactiveTimer;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtCfPassword;
 @property (weak, nonatomic) IBOutlet UIButton *buttonNext;
 @property (weak, nonatomic) IBOutlet UIButton *btnGetCode;
+@property (weak, nonatomic) IBOutlet UIButton *btnArg;
 
 @end
 
@@ -31,8 +33,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     _buttonNext.layer.cornerRadius  = 25.0f;
+    _btnGetCode.layer.cornerRadius = 15.0f; 
     
     [_txtPhone setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtPhone setValue:[UIFont systemFontOfSize:16.f] forKeyPath:@"_placeholderLabel.font"];
+    [_txtCode setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtCode setValue:[UIFont systemFontOfSize:16.f] forKeyPath:@"_placeholderLabel.font"];
+    [_txtPassword setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtPassword setValue:[UIFont systemFontOfSize:16.f] forKeyPath:@"_placeholderLabel.font"];
+    [_txtCfPassword setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtCfPassword setValue:[UIFont systemFontOfSize:16.f] forKeyPath:@"_placeholderLabel.font"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -73,38 +83,30 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)argCheckClicked:(id)sender {
+    _btnArg.selected = !_btnArg.selected;
+}
+
+- (IBAction)argShowClicked:(id)sender {
+    //$$$$$$$$$$$$
+}
+
 - (IBAction)getCodeClicked:(id)sender {
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
-    NSLog(@"param:%@",parameters);
-    
-    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [[NSUserDefaults standardUserDefaults]objectForKey:UD_TempAccessToken]] forHTTPHeaderField:@"Authorization"];
-    [[AFAppDotNetAPIClient sharedClient] POST:@"v1/Sms/GetSms" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
-        
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/Sms/GetSms" andParameters:parameters success:^(id _Nullable responseObject) {
         [ApplicationDelegate HUD].hidden = YES;
         
-        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
-            _btnGetCode.enabled         = NO;
-            reactiveSec              = 60;
-            getCodeReactiveTimer  = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkGetCodeReactive) userInfo:nil repeats:YES];
-        }
-        else{
-            [self presentViewController:[GlobalVariables addAlertBy:@"动态密码发送失败"] animated:YES completion:nil];
-        }
+        _btnGetCode.enabled         = NO;
+        reactiveSec              = 60;
+        getCodeReactiveTimer     = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkGetCodeReactive) userInfo:nil repeats:YES];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } failure:^(id _Nonnull errorDic) {
         [ApplicationDelegate HUD].hidden = YES;
-        
-        NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-        NSString* errorStr = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-        NSLog(@"error:%@ , body:%@,head:%@",errorStr,task.currentRequest.HTTPBody,task.currentRequest.allHTTPHeaderFields);
-        [self presentViewController:[GlobalVariables addAlertBy:errorStr] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
     }];
 }
 
@@ -131,44 +133,51 @@
         [self presentViewController:[GlobalVariables addAlertBy:@"2次密码输入不相同!"] animated:YES completion:nil];
         return;
     }
+    if (_btnArg.state == UIControlStateSelected) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"您尚未同意协议!"] animated:YES completion:nil];
+        return;
+    }
     
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Code":_txtCode.text,@"Password":_txtPassword.text,@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
-    NSLog(@"param:%@",parameters);
-    
-    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [[NSUserDefaults standardUserDefaults]objectForKey:UD_TempAccessToken]] forHTTPHeaderField:@"Authorization"];
-    [[AFAppDotNetAPIClient sharedClient] POST:@"v1/User/Register" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/Register" andParameters:parameters success:^(id _Nullable responseObject) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"JSON: %@ , P:%@", responseObject,parameters);
-        
-        [ApplicationDelegate HUD].hidden = YES;
-        
-        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]] && [[responseObject objectForKey:@"Code"] integerValue] == 1000) {
-            //存储用户信息
-            [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_ReturnData] forKey:UD_UserInfo];
+        //存储用户信息
+        if ([responseObject objectForKey:API_ReturnData]) {
+            [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_ReturnData] forKey:UD_UserId];
             [[NSUserDefaults standardUserDefaults]synchronize];
         }
-        else{
-            [self presentViewController:[GlobalVariables addAlertBy:[NSString stringWithFormat:@"注册失败:%@",[responseObject objectForKey:@"Code"]]] animated:YES completion:nil];
-        }
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //重新获取新token
+        NSLog(@"重新获取新token~~~~");
+        [IceOAuthCredential getUserAccessToekn:_txtPhone.text password:_txtPassword.text success:^(id _Nullable responseObject) {
+            [ApplicationDelegate HUD].hidden = YES;
+            
+            [self.navigationController pushViewController:[[AddUserInfoStep1ViewController alloc] init] animated:YES];
+            
+        } failure:^(id  _Nonnull errorDic) {
+            [ApplicationDelegate HUD].hidden = YES;
+            [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:@"error_description"]] animated:YES completion:nil];
+        }];
+        
+    } failure:^(id _Nonnull errorDic) {
         [ApplicationDelegate HUD].hidden = YES;
-        
-        NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-        NSString* errorStr = [[NSString alloc] initWithData:errorData encoding:NSUTF8StringEncoding];
-        NSLog(@"error:%@ , body:%@,head:%@",errorStr,task.currentRequest.HTTPBody,task.currentRequest.allHTTPHeaderFields);
-        [self presentViewController:[GlobalVariables addAlertBy:errorStr] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
     }];
-
 }
 
 -(void)checkGetCodeReactive
 {
+    //-----验证输入------
+    if (!_txtPhone.text || [_txtPhone.text isEqualToString:@""]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
+        return;
+    }
+    
     reactiveSec--;
     if (reactiveSec>0) {
         [_btnGetCode setTitle:[NSString stringWithFormat:@"已发送(%d)",reactiveSec] forState:UIControlStateDisabled];
@@ -181,14 +190,34 @@
 }
 
 #pragma mark - text view
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.tag == 10) {
+        [_txtCode becomeFirstResponder];
+    }
+    else if (textField.tag == 20){
         [_txtPassword becomeFirstResponder];
+    }
+    else if (textField.tag == 30){
+        [_txtCfPassword becomeFirstResponder];
     }
     else{
         [self nextClicked:nil];
     }
     return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (textField.tag == 10) {
+    }
+    else if (textField.tag == 20){
+    }
+    else if (textField.tag == 30){
+        [self restViewY:-50];
+    }
+    else{
+        [self restViewY:-150];
+    }
 }
 
 #pragma mark - keyboard
@@ -200,7 +229,13 @@
 -(void)keyboardWillShow
 {
     tapGesture.enabled = YES;
-    [self restViewY:-50];
+    
+    if ([_txtPassword isFirstResponder]) {
+        [self restViewY:-50];
+    }
+    else if ([_txtCfPassword isFirstResponder]){
+        [self restViewY:-150];
+    }
 }
 
 -(void)keyboardWillHide

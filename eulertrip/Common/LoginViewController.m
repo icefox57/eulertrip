@@ -36,7 +36,9 @@
     _btnCode.layer.cornerRadius = 15.0f;    
     _btnLogin.layer.cornerRadius  = 25.0f;
     [_txtUserName setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtUserName setValue:[UIFont systemFontOfSize:16.f] forKeyPath:@"_placeholderLabel.font"];
     [_txtPassword setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtPassword setValue:[UIFont systemFontOfSize:16.f] forKeyPath:@"_placeholderLabel.font"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow)
@@ -78,12 +80,19 @@
 }
 
 - (IBAction)codeClicked:(id)sender {
+    //-----验证输入------
+    if (!_txtUserName.text || [_txtUserName.text isEqualToString:@""]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
+        return;
+    }
+
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Mobile":_txtUserName.text,@"Smstype":@2,API_OAuth_deviceID:[DLUDID value]};
     
     [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/Sms/GetSms" andParameters:parameters success:^(id _Nullable responseObject) {
+        [ApplicationDelegate HUD].hidden = YES;
         
         _btnCode.enabled         = NO;
         reactiveSec              = 60;
@@ -91,6 +100,7 @@
         _txtPassword.placeholder = @"请输入密码或动态密码";
         
     } failure:^(id _Nonnull errorDic) {
+        [ApplicationDelegate HUD].hidden = YES;
         [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
     }];
 }

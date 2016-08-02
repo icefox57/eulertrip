@@ -37,6 +37,9 @@
     //获取accesstoken
     
     if (![IceOAuthCredential shareCredential] || [IceOAuthCredential isTokenExpires]) {
+#if Debug_DbInterface_Status
+        NSLog(@"~~~~~~~~获取临时token~~~~~~~过期:%d",[IceOAuthCredential isTokenExpires]);
+#endif
         [IceOAuthCredential getTempAccesstoken:^(id  _Nullable responseObject) {
         } failure:^(id  _Nonnull errorDic) {
         }];

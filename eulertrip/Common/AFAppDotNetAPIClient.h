@@ -23,11 +23,12 @@
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
 #import "GlobalVariables.h"
+#import "IceOAuthCredential.h"
 
 @interface AFAppDotNetAPIClient : AFHTTPSessionManager
 + (instancetype _Nullable)sharedClient;
 
-- (NSURLSessionTask* _Nullable)performPOSTRequestToURL:(NSString* _Nullable)postURL
+- (void)performPOSTRequestToURL:(NSString* _Nullable)postURL
                                andParameters:(NSDictionary* _Nullable)parameters
                                      success:(nullable void (^)(id _Nullable responseObject))success
                                      failure:(nullable void (^)(id _Nonnull errorDic))failure;

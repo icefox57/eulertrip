@@ -9,14 +9,24 @@
 #import "SearchViewController.h"
 #import "GlobalVariables.h"
 #import <AMapLocationKit/AMapLocationKit.h>
+#import "SearchResultTableViewController.h"
+
+#import "AddUserInfoStep2ViewController.h"
+#import "AddUserInfoStep1ViewController.h"
+#import "SignupViewController.h"
 #import "LoginViewController.h"
 
-@interface SearchViewController ()<UITextFieldDelegate,AMapLocationManagerDelegate>
+@interface SearchViewController ()<AMapLocationManagerDelegate,UISearchResultsUpdating,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchControllerDelegate>
 {
     UITapGestureRecognizer *tapGesture;
+    NSArray *datasourceArray;
+    
+    UISearchController *searchVC;
+    SearchResultTableViewController *searchResultVC;
 }
 
-@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+@property (weak, nonatomic) IBOutlet UISearchBar *txtSearch;
+@property (weak, nonatomic) IBOutlet UITableView *resultTableView;
 
 @end
 
@@ -25,6 +35,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    datasourceArray = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",nil];
+    
+    searchResultVC = [[SearchResultTableViewController alloc] initWithNibName: @"SearchResultTableViewController" bundle: nil];
+    
+    searchVC = [[UISearchController alloc] initWithSearchResultsController:searchResultVC];
+    searchVC.searchResultsUpdater = self;
+    searchVC.dimsBackgroundDuringPresentation = NO;
+    searchVC.hidesNavigationBarDuringPresentation = NO;
+    searchVC.delegate = self;
+    
+    //UI
+    _txtSearch.layer.borderColor = [UIColor whiteColor].CGColor;
+    _txtSearch.layer.borderWidth = 2;
+    _txtSearch.layer.cornerRadius = 10;
+    [_txtSearch setBackgroundColor:[UIColor clearColor]];
+    [_txtSearch setBarTintColor:[UIColor clearColor]];
+
+    UITextField *searchField = [_txtSearch valueForKey:@"_searchField"];
+    searchField.textColor = [UIColor whiteColor];
+    [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    
+    
+    [_resultTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    
+    //keyborad
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -39,6 +76,7 @@
     [self.view addGestureRecognizer:tapGesture];
     tapGesture.enabled = NO;
     
+    //Location
     
     [GlobalVariables locationManager].delegate = self;
     
@@ -74,25 +112,64 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.tintColor = color_common_red;
     self.navigationController.navigationBar.hidden = YES;
     
     [super viewWillAppear:animated];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
 - (IBAction)searchClicked:(id)sender {
     [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:NO];
 //    [self performSegueWithIdentifier:@"seguePlan" sender:self];
 }
 
+
+#pragma mark - UISearchResultsUpdating
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSLog(@"!!!!:%@",searchText);
+}
+
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchController{
+    
+    NSString *searchText = searchController.searchBar.text;
+    
+    NSLog(@"!:%@",searchText);
+//    [_resultTableView reloadData];
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return datasourceArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+//    TLCity *city =  [self.data objectAtIndex:indexPath.row];
+    [cell.textLabel setText:[datasourceArray objectAtIndex:indexPath.row]];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 43.0f;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+//    TLCity *city = [self.data objectAtIndex:indexPath.row];
+//    if (_searchResultDelegate && [_searchResultDelegate respondsToSelector:@selector(searchResultControllerDidSelectCity:)]) {
+//        [_searchResultDelegate searchResultControllerDidSelectCity:city];
+//    }
+}
 
 #pragma mark - DB
 -(void)startSearchPlan{
@@ -101,15 +178,15 @@
 
 
 #pragma mark - keyboard
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-    
-    NSLog(@"textFieldShouldReturn");
-    
-    
-    
-    return YES;
-}
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+//    
+//    NSLog(@"textFieldShouldReturn");
+//    
+//    
+//    
+//    return YES;
+//}
 
 - (IBAction)closeKeyboard:(id)sender {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -208,3 +285,4 @@
 
 
 @end
+

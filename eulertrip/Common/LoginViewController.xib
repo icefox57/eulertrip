@@ -45,7 +45,7 @@
                                 <constraint firstAttribute="height" constant="30" id="HQE-8g-ekx"/>
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="edN-o5-Zv4"/>
@@ -65,12 +65,12 @@
                             </constraints>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHt-12-cxd">
-                            <rect key="frame" x="30" y="60" width="295" height="30"/>
+                            <rect key="frame" x="30" y="58" width="295" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="W8a-cF-RQV"/>
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="XhT-4F-8cu"/>
@@ -83,7 +83,7 @@
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_line.png" translatesAutoresizingMaskIntoConstraints="NO" id="b5V-ue-dOQ">
-                            <rect key="frame" x="0.0" y="90" width="325" height="1"/>
+                            <rect key="frame" x="0.0" y="88" width="325" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="2Pm-R8-y5s"/>
@@ -105,7 +105,7 @@
                         <constraint firstItem="H9I-HO-evf" firstAttribute="top" secondItem="lcP-2k-Z8G" secondAttribute="top" id="PZ7-Il-OfL"/>
                         <constraint firstAttribute="height" constant="100" id="T9K-nn-Sy1"/>
                         <constraint firstItem="b5V-ue-dOQ" firstAttribute="top" secondItem="GHt-12-cxd" secondAttribute="bottom" id="Zy7-Aa-NCA"/>
-                        <constraint firstItem="GHt-12-cxd" firstAttribute="top" secondItem="sTL-W6-bAL" secondAttribute="bottom" constant="24" id="aDt-mf-url"/>
+                        <constraint firstItem="GHt-12-cxd" firstAttribute="top" secondItem="sTL-W6-bAL" secondAttribute="bottom" constant="22" id="aDt-mf-url"/>
                         <constraint firstAttribute="trailing" secondItem="b5V-ue-dOQ" secondAttribute="trailing" id="ecg-df-JKy"/>
                         <constraint firstAttribute="trailing" secondItem="GHt-12-cxd" secondAttribute="trailing" id="mag-DT-dCF"/>
                         <constraint firstItem="b5V-ue-dOQ" firstAttribute="leading" secondItem="lcP-2k-Z8G" secondAttribute="leading" id="rL8-cY-BRs"/>
@@ -120,8 +120,8 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="plD-5b-gaW"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                    <state key="normal" title="登入">
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="登    入">
                         <color key="titleColor" red="1" green="0.38039215686274508" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -133,7 +133,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="Ksb-lB-5Ff"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <inset key="titleEdgeInsets" minX="0.0" minY="-30" maxX="0.0" maxY="2"/>
                     <state key="normal" title="用户注册">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -171,7 +171,7 @@
                         <constraint firstAttribute="width" constant="80" id="k15-HZ-SG5"/>
                         <constraint firstAttribute="height" constant="30" id="myl-UJ-Ikg"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="忘记密码">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

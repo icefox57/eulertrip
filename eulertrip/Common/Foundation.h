@@ -6,6 +6,8 @@
 //  Copyright 2011年 apple energy . All rights reserved.
 //
 
+//Error Code
+#define SESSION_EXPIRED_CODE 401
 
 //API字段
 #define API_ReturnData @"Data"
@@ -20,8 +22,14 @@
 
 #define API_OAuth_deviceID    @"device_id"
 
-//Error Code
-#define SESSION_EXPIRED_CODE 401
+//-----------------------  UserDefaultKey ------------------------------
+#define UD_UserInfo                                       @"currentUserDic"
+#define UD_TempAccessToken                                @"temp_accesstoken"
+#define UD_UserAccessToken                                @"user_accesstoken"
+#define UD_UserCredentialDic                              @"credentialDic"
+#define UD_UserId @"user_id"
+#define US_SearchHistroyArray @"searchHistoryArray"
+
 
 typedef enum
 {
@@ -73,8 +81,8 @@ typedef enum
 
 //-----------------------  系统颜色值 ------------------------------
 
-#define Bosch_Blue100   UTColor(0,38,64,1)
-#define Bosch_Blue75    UTColor(26,69,99,1)
+#define color_tab_bg_white   UTColor(0,0,0,0.6)
+#define color_common_red    UTColor(255,97,102,1)
 #define Bosch_Blue50    UTColor(74,114,142,1)
 #define Bosch_Blue25    UTColor(143,168,185,1)
 #define Bosch_BlueLight UTColor(71,149,182,1)
@@ -88,11 +96,7 @@ typedef enum
 
 
 #define Bosch_Green UTColor(1,143,2,1)
-//-----------------------  UserDefaultKey ------------------------------
-#define UD_UserInfo                                       @"currentUserDic"
-#define UD_TempAccessToken                                @"temp_accesstoken"
-#define UD_UserAccessToken                                @"user_accesstoken"
-#define UD_UserCredentialDic                                   @"credentialDic"
+
 
 
 //-----------------------  系统字符串 ------------------------------
