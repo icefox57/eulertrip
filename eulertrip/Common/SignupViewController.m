@@ -7,9 +7,8 @@
 //
 
 #import "SignupViewController.h"
-#import "GlobalVariables.h"
-#import "AFAppDotNetAPIClient.h"
 #import "AddUserInfoStep1ViewController.h"
+
 
 @interface SignupViewController ()<UITextFieldDelegate>
 {
@@ -141,7 +140,7 @@
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{@"Code":_txtCode.text,@"Password":_txtPassword.text,@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
+    NSDictionary *parameters = @{@"Code":_txtCode.text,@"Password":[MD5Util md5:_txtPassword.text],@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
     [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/Register" andParameters:parameters success:^(id _Nullable responseObject) {
         
@@ -149,6 +148,8 @@
         if ([responseObject objectForKey:API_ReturnData]) {
             [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:API_ReturnData] forKey:UD_UserId];
             [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            [IceOAuthCredential shareCredential].userId = [responseObject objectForKey:API_ReturnData];
         }
         
         

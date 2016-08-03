@@ -10,12 +10,14 @@
 
 @interface IceOAuthCredential : NSObject
 
+@property (nonatomic, copy) NSString * _Nullable userId;
 @property (nonatomic, copy) NSString * _Nullable accessToken;
 @property (nonatomic, copy) NSString * _Nullable tokenType;
 @property (nonatomic, copy) NSString * _Nullable refreshToken;
 @property (nonatomic, copy) NSDate * _Nullable expiresDate;
 
 + (IceOAuthCredential * _Nullable)shareCredential;
+
 +(void)setNewCredential:(NSDictionary * _Nullable)dic;
 
 +(void)getTempAccesstoken:(nullable void (^)(id _Nullable responseObject))success
@@ -30,4 +32,5 @@
              failure:(nullable void (^)(id _Nonnull errorDic))failure;
 
 +(BOOL)isTokenExpires;
++(BOOL)isNeedLogin;
 @end

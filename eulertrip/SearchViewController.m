@@ -7,14 +7,9 @@
 //
 
 #import "SearchViewController.h"
-#import "GlobalVariables.h"
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "SearchResultTableViewController.h"
 
-#import "AddUserInfoStep2ViewController.h"
-#import "AddUserInfoStep1ViewController.h"
-#import "SignupViewController.h"
-#import "LoginViewController.h"
 
 @interface SearchViewController ()<AMapLocationManagerDelegate,UISearchResultsUpdating,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchControllerDelegate>
 {
@@ -120,8 +115,13 @@
 
 
 - (IBAction)searchClicked:(id)sender {
-    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:NO];
-//    [self performSegueWithIdentifier:@"seguePlan" sender:self];
+    if([self needLogin]){
+        return;
+    }
+     NSLog(@"not needLogin");
+
+//    NSMutableArray *historyArray = [NSUserDefaults standardUserDefaults]objectForKey:ud_search
+    //    [self performSegueWithIdentifier:@"seguePlan" sender:self];
 }
 
 
@@ -187,6 +187,7 @@
 //    
 //    return YES;
 //}
+
 
 - (IBAction)closeKeyboard:(id)sender {
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];

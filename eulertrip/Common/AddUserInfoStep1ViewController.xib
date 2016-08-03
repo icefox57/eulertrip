@@ -70,7 +70,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0DP-BQ-hyc">
                     <rect key="frame" x="0.0" y="192" width="375" height="40"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" tag="30" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="出生年月" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hrW-xa-oRL">
+                        <textField opaque="NO" clipsSubviews="YES" tag="30" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="出生年月" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hrW-xa-oRL">
                             <rect key="frame" x="30" y="0.0" width="315" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="M8r-Eu-chr"/>

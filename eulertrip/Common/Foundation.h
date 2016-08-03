@@ -23,12 +23,12 @@
 #define API_OAuth_deviceID    @"device_id"
 
 //-----------------------  UserDefaultKey ------------------------------
-#define UD_UserInfo                                       @"currentUserDic"
-#define UD_TempAccessToken                                @"temp_accesstoken"
-#define UD_UserAccessToken                                @"user_accesstoken"
-#define UD_UserCredentialDic                              @"credentialDic"
-#define UD_UserId @"user_id"
-#define US_SearchHistroyArray @"searchHistoryArray"
+#define UD_UserInfo                             @"currentUserDic"
+#define UD_TempAccessToken                      @"temp_accesstoken"
+#define UD_UserAccessToken                      @"user_accesstoken"
+#define UD_UserCredentialDic                    @"credentialDic"
+#define UD_UserId                               @"user_id"
+#define US_SearchHistroyArray                   @"searchHistoryArray"
 
 
 typedef enum

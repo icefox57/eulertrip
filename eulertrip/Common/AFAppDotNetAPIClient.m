@@ -67,6 +67,7 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
 #if Debug_DbInterface_Status
         NSLog(@"performPOSTRequestToURL~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
         NSLog(@"errorDic: %@", errorDic);
+        NSLog(@"accessToken: %@", [IceOAuthCredential shareCredential].accessToken);
 #endif
         
         

@@ -7,8 +7,6 @@
 //
 
 #import "AddUserInfoStep2ViewController.h"
-#import "GlobalVariables.h"
-#import "AFAppDotNetAPIClient.h"
 #import "TLCityPickerController.h"
 
 @interface AddUserInfoStep2ViewController ()<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,TLCityPickerDelegate>
@@ -79,6 +77,28 @@
 }
 
 - (IBAction)nextClicked:(id)sender {
+    //-----调用接口-------
+    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    
+    NSDictionary *parameters = @{@"District":_txtBirthLocal.text,
+                                 @"CurrentDistrict":_txtLiveLocal.text,
+                                 @"College":_txtSchool.text,
+                                 @"Speciality":_txtProf.text,
+                                 @"BloodType":_txtBloodType.text,
+                                 @"BloodType":_txtHobby.text,
+                                 @"Id":[IceOAuthCredential shareCredential].userId};
+    
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/DetailInfo" andParameters:parameters success:^(id _Nullable responseObject) {
+        
+        [ApplicationDelegate HUD].hidden = YES;
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    } failure:^(id _Nonnull errorDic) {
+        [ApplicationDelegate HUD].hidden = YES;
+        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
+    }];
+
 }
 
 - (IBAction)showBirthLocPickClicked:(id)sender {
@@ -98,6 +118,8 @@
 }
 
 - (IBAction)showBloodPickClicked:(id)sender {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+
     [UIView animateWithDuration:1 animations:^{
         _bloodPicker.alpha = 1;
     } completion:^(BOOL finished) {

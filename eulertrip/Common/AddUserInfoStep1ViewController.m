@@ -7,8 +7,6 @@
 //
 
 #import "AddUserInfoStep1ViewController.h"
-#import "GlobalVariables.h"
-#import "AFAppDotNetAPIClient.h"
 #import "AddUserInfoStep2ViewController.h"
 
 @interface AddUserInfoStep1ViewController ()<UITextFieldDelegate>
@@ -31,6 +29,7 @@
     
     _btnNext.layer.cornerRadius  = 25.0f;
     [_txtName setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtBirth setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     //runtime 修改 默认控件
     [_datePicker setValue:[UIColor whiteColor] forKeyPath:@"textColor"];
@@ -84,8 +83,31 @@
 }
 
 - (IBAction)nextClicked:(id)sender {
+    //-----验证输入------
+    if (!_txtName.text || [_txtName.text isEqualToString:@""]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"请输入昵称!"] animated:YES completion:nil];
+        return;
+    }
+    if (!_txtBirth.text || [_txtBirth.text isEqualToString:@""]) {
+        [self presentViewController:[GlobalVariables addAlertBy:@"请选择生日!"] animated:YES completion:nil];
+        return;
+    }
     
-    [self.navigationController pushViewController:[[AddUserInfoStep2ViewController alloc] init] animated:YES];
+    //-----调用接口-------
+    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    
+    NSDictionary *parameters = @{@"NickName":_txtName.text,@"Birth":_txtBirth.text,@"Sex":@1,@"Id":[IceOAuthCredential shareCredential].userId};
+    
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/BaseInfo" andParameters:parameters success:^(id _Nullable responseObject) {
+        
+        [ApplicationDelegate HUD].hidden = YES;
+        
+        [self.navigationController pushViewController:[[AddUserInfoStep2ViewController alloc] init] animated:YES];
+        
+    } failure:^(id _Nonnull errorDic) {
+        [ApplicationDelegate HUD].hidden = YES;
+        [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
+    }];
 
 }
 
@@ -104,6 +126,13 @@
     NSString *dateAndTime = [dateFormatter stringFromDate:select];
     
     _txtBirth.text = [NSString stringWithFormat:@"出生年月:%@",dateAndTime];
+    
+    
+    [UIView animateWithDuration:1 animations:^{
+        _datePicker.alpha = 0;
+    } completion:^(BOOL finished) {
+        tapGesture.enabled = NO;
+    }];
 }
 
 #pragma mark - keyboard

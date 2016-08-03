@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface AddUserInfoStep1ViewController : UIViewController
+@interface AddUserInfoStep1ViewController : BaseViewController
 
 @end

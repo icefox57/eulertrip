@@ -7,13 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LoginViewController;
+#import "BaseViewController.h"
 
-@protocol LoginViewControllerDelegate
--(void)didLoginSuccess;
-@end
-
-
-@interface LoginViewController : UIViewController
-@property (nonatomic, weak)id<LoginViewControllerDelegate> delegate;
+@interface LoginViewController:BaseViewController
 @end

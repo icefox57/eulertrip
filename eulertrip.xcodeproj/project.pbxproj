@@ -34,6 +34,7 @@
 		9A8225DA1D5087CF00CBFF0D /* TLCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225D01D5087CF00CBFF0D /* TLCityHeaderView.m */; };
 		9A8225DB1D5087CF00CBFF0D /* TLCityPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225D21D5087CF00CBFF0D /* TLCityPickerController.m */; };
 		9A8225DC1D5087CF00CBFF0D /* TLCityPickerSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225D51D5087CF00CBFF0D /* TLCityPickerSearchResultController.m */; };
+		9A8225DF1D51BEA600CBFF0D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225DE1D51BEA600CBFF0D /* BaseViewController.m */; };
 		9A8DFE151D36253E00002AE7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE141D36253E00002AE7 /* SearchViewController.m */; };
 		9A8DFE181D362E7100002AE7 /* PlanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE171D362E7100002AE7 /* PlanListViewController.m */; };
 		9A8DFE1B1D362FAF00002AE7 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE1A1D362FAF00002AE7 /* MainTabController.m */; };
@@ -126,6 +127,8 @@
 		9A8225D31D5087CF00CBFF0D /* TLCityPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCityPickerDelegate.h; sourceTree = "<group>"; };
 		9A8225D41D5087CF00CBFF0D /* TLCityPickerSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCityPickerSearchResultController.h; sourceTree = "<group>"; };
 		9A8225D51D5087CF00CBFF0D /* TLCityPickerSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCityPickerSearchResultController.m; sourceTree = "<group>"; };
+		9A8225DD1D51BEA600CBFF0D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		9A8225DE1D51BEA600CBFF0D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		9A8DFE131D36253E00002AE7 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		9A8DFE141D36253E00002AE7 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		9A8DFE161D362E7100002AE7 /* PlanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewController.h; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 		9AC16C891D47693000FE95C6 /* ToolViewControll */ = {
 			isa = PBXGroup;
 			children = (
+				9A8225DD1D51BEA600CBFF0D /* BaseViewController.h */,
+				9A8225DE1D51BEA600CBFF0D /* BaseViewController.m */,
 				9A8DFE251D375A0200002AE7 /* CalendarViewController.h */,
 				9A8DFE261D375A0200002AE7 /* CalendarViewController.m */,
 				9A8DFE271D375A0200002AE7 /* CalendarViewController.xib */,
@@ -638,6 +643,7 @@
 				9A8225DC1D5087CF00CBFF0D /* TLCityPickerSearchResultController.m in Sources */,
 				9A2D9B471D41DD1B00A2CB96 /* SSKeychainQuery.m in Sources */,
 				9A8DFEAF1D38C80F00002AE7 /* SignupViewController.m in Sources */,
+				9A8225DF1D51BEA600CBFF0D /* BaseViewController.m in Sources */,
 				9A8DFE241D372A5200002AE7 /* PlanViewController.m in Sources */,
 				9AC777651D3F5C120041CA1D /* AFAppDotNetAPIClient.m in Sources */,
 				9A5D9A591D4B467C0050F1B2 /* AddUserInfoStep2ViewController.m in Sources */,

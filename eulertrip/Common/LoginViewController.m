@@ -7,11 +7,8 @@
 //
 
 #import "LoginViewController.h"
-#import "GlobalVariables.h"
-#import "MD5Util.h"
 #import "SignupViewController.h"
-#import "AFAppDotNetAPIClient.h"
-#import "IceOAuthCredential.h"
+
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -126,8 +123,44 @@
     
     
     [IceOAuthCredential getUserAccessToekn:_txtUserName.text password:_txtPassword.text success:^(id _Nullable responseObject) {
-        [ApplicationDelegate HUD].hidden = YES;
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        NSDictionary *parameters = @{@"Mobile":_txtUserName.text};
+        
+        [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/GetUser" andParameters:parameters success:^(id _Nullable responseObject) {
+            
+            [ApplicationDelegate HUD].hidden = YES;
+            
+            if (![responseObject objectForKey:API_ReturnData]) {
+                [self presentViewController:[GlobalVariables addAlertBy:@"获取用户信息失败!"] animated:YES completion:nil];
+                return ;
+                
+            }
+            
+            NSArray *dataArray = (NSArray *)[responseObject objectForKey:API_ReturnData];
+            
+            
+            if (dataArray.count <=0) {
+                [self presentViewController:[GlobalVariables addAlertBy:@"获取用户信息失败!"] animated:YES completion:nil];
+                return;
+            }
+            
+            NSDictionary *dic = [dataArray lastObject];
+            
+            //存储用户信息    
+            [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:API_ReturnData] forKey:UD_UserId];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+            [IceOAuthCredential shareCredential].userId = [dic objectForKey:API_ReturnData];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+           
+        } failure:^(id _Nonnull errorDic) {
+            [ApplicationDelegate HUD].hidden = YES;
+            [self presentViewController:[GlobalVariables addAlertBy:[errorDic objectForKey:API_ErrorMessage]] animated:YES completion:nil];
+        }];
+
+        
+        
         
     } failure:^(id  _Nonnull errorDic) {
         [ApplicationDelegate HUD].hidden = YES;

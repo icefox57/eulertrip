@@ -34,6 +34,10 @@ static IceOAuthCredential *_instance            = nil;
         _instance.refreshToken = [dic objectForKey:API_OAuth_refreshtoken];
         _instance.tokenType = [dic objectForKey:API_OAuth_token_type];
         _instance.expiresDate = [dic objectForKey:API_OAuth_expires_date];
+        
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:UD_UserId]) {
+            _instance.userId = [[NSUserDefaults standardUserDefaults]objectForKey:UD_UserId];
+        }
 
     }
     return _instance;
@@ -41,15 +45,34 @@ static IceOAuthCredential *_instance            = nil;
 
 +(void)setNewCredential:(NSDictionary *)dic
 {
-    _instance.accessToken = [dic objectForKey:API_OAuth_accesstoken];
-    _instance.refreshToken = [dic objectForKey:API_OAuth_refreshtoken];
-    _instance.tokenType = [dic objectForKey:API_OAuth_token_type];
-    _instance.expiresDate = [dic objectForKey:API_OAuth_expires_date];
+    if ([dic objectForKey:API_OAuth_accesstoken]) {
+        _instance.accessToken = [dic objectForKey:API_OAuth_accesstoken];
+    }
+    if ([dic objectForKey:API_OAuth_refreshtoken]) {
+        _instance.refreshToken = [dic objectForKey:API_OAuth_refreshtoken];
+    }
+    if ([dic objectForKey:API_OAuth_token_type]) {
+        _instance.tokenType = [dic objectForKey:API_OAuth_token_type];
+    }
+    if ([dic objectForKey:API_OAuth_expires_date]) {
+        _instance.expiresDate = [dic objectForKey:API_OAuth_expires_date];
+    }
     
     [[NSUserDefaults standardUserDefaults]setObject:dic forKey:UD_UserCredentialDic];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
+
++(BOOL)isNeedLogin{
+    if (!_instance) {
+        return YES;
+    }
+    if (!_instance.refreshToken || [_instance.refreshToken isEqualToString:@""] ||
+        !_instance.userId || [_instance.userId isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
+}
 
 +(BOOL)isTokenExpires{
     if (!_instance) {
@@ -80,6 +103,7 @@ static IceOAuthCredential *_instance            = nil;
         }
         
         //生成字典
+        
         NSDictionary *dic = @{API_OAuth_accesstoken:[responseObject valueForKey:API_OAuth_accesstoken],
 //                              API_OAuth_refreshtoken:[responseObject valueForKey:API_OAuth_refreshtoken],
                               API_OAuth_expires_date:expireDate,
@@ -87,6 +111,20 @@ static IceOAuthCredential *_instance            = nil;
         //保存
         [[NSUserDefaults standardUserDefaults]setObject:dic forKey:UD_UserCredentialDic];
         [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        if ([dic objectForKey:API_OAuth_accesstoken]) {
+            _instance.accessToken = [dic objectForKey:API_OAuth_accesstoken];
+        }
+        if ([dic objectForKey:API_OAuth_refreshtoken]) {
+            _instance.refreshToken = [dic objectForKey:API_OAuth_refreshtoken];
+        }
+        if ([dic objectForKey:API_OAuth_token_type]) {
+            _instance.tokenType = [dic objectForKey:API_OAuth_token_type];
+        }
+        if ([dic objectForKey:API_OAuth_expires_date]) {
+            _instance.expiresDate = [dic objectForKey:API_OAuth_expires_date];
+        }
+        
         
 #if Debug_DbInterface_Status
         NSLog(@"getTempAccesstoken--------JSON: %@ , P:%@ , head:%@", responseObject,parameters,task.currentRequest.allHTTPHeaderFields);
@@ -117,6 +155,8 @@ static IceOAuthCredential *_instance            = nil;
                                  @"password":[MD5Util md5:password],
                                  API_OAuth_deviceID:[DLUDID value]};
     
+    NSLog(@"~~~~~~P:%@",parameters);
+    
     [[AFAppDotNetAPIClient sharedClient].requestSerializer setAuthorizationHeaderFieldWithUsername:clientId password:clientSecret];
     [[AFAppDotNetAPIClient sharedClient] POST:@"OAuth/Token" parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -140,6 +180,19 @@ static IceOAuthCredential *_instance            = nil;
         //保存
         [[NSUserDefaults standardUserDefaults]setObject:dic forKey:UD_UserCredentialDic];
         [[NSUserDefaults standardUserDefaults]synchronize];
+        
+        if ([dic objectForKey:API_OAuth_accesstoken]) {
+            _instance.accessToken = [dic objectForKey:API_OAuth_accesstoken];
+        }
+        if ([dic objectForKey:API_OAuth_refreshtoken]) {
+            _instance.refreshToken = [dic objectForKey:API_OAuth_refreshtoken];
+        }
+        if ([dic objectForKey:API_OAuth_token_type]) {
+            _instance.tokenType = [dic objectForKey:API_OAuth_token_type];
+        }
+        if ([dic objectForKey:API_OAuth_expires_date]) {
+            _instance.expiresDate = [dic objectForKey:API_OAuth_expires_date];
+        }
         
         success(responseObject);
         
