@@ -147,10 +147,10 @@
             NSDictionary *dic = [dataArray lastObject];
             
             //存储用户信息    
-            [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:API_ReturnData] forKey:UD_UserId];
+            [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:MD_User_Id] forKey:UD_UserId];
             [[NSUserDefaults standardUserDefaults]synchronize];
             
-            [IceOAuthCredential shareCredential].userId = [dic objectForKey:API_ReturnData];
+            [IceOAuthCredential shareCredential].userId = [dic objectForKey:MD_User_Id];
             
             [self.navigationController popViewControllerAnimated:YES];
            

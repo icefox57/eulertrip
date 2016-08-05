@@ -10,8 +10,27 @@
 #define SESSION_EXPIRED_CODE 401
 
 //API字段
+//Respone
 #define API_ReturnData @"Data"
+#define API_ReturnDataCount @"Total"
+#define API_ReturnMessage @"Msg"
+#define API_ReturnCode @"Code"
+
+//User
+#define MD_User_Id @"Id"
+#define MD_User_Birth @"Birth"
+#define MD_User_NickName @"NickName"
+#define MD_User_Sex @"Sex"
+#define MD_User_Mobile @"Mobile"
+
+//calendar
+#define MD_Calendar_Day @"Day"
+#define MD_Calendar_DayType @"Type"
+#define MD_Calendar_Memo @"Memo"
+
+//Error
 #define API_ErrorMessage @"Message"
+//OAuth
 #define API_Head @"Basic"
 
 #define API_OAuth_accesstoken @"access_token"
@@ -19,16 +38,17 @@
 #define API_OAuth_token_type @"token_type"
 #define API_OAuth_expires_in @"expires_in"
 #define API_OAuth_expires_date @"expires_date"
-
 #define API_OAuth_deviceID    @"device_id"
 
 //-----------------------  UserDefaultKey ------------------------------
 #define UD_UserInfo                             @"currentUserDic"
 #define UD_TempAccessToken                      @"temp_accesstoken"
 #define UD_UserAccessToken                      @"user_accesstoken"
+
 #define UD_UserCredentialDic                    @"credentialDic"
 #define UD_UserId                               @"user_id"
-#define US_SearchHistroyArray                   @"searchHistoryArray"
+#define UD_SearchHistroyArray                   @"searchHistoryArray"
+#define UD_CalendarDataDic                    @"calendarDataDic"
 
 
 typedef enum
@@ -83,7 +103,7 @@ typedef enum
 
 #define color_tab_bg_white   UTColor(0,0,0,0.6)
 #define color_common_red    UTColor(255,97,102,1)
-#define Bosch_Blue50    UTColor(74,114,142,1)
+#define color_vlight_gray    UTColor(0,0,0,0.2)
 #define Bosch_Blue25    UTColor(143,168,185,1)
 #define Bosch_BlueLight UTColor(71,149,182,1)
 #define Bosch_Blue      UTColor(33,96,139,1)

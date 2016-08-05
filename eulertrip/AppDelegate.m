@@ -35,15 +35,31 @@
     [AMapServices sharedServices].apiKey = AmapAppKey;
     
     //获取accesstoken
-    
     if (![IceOAuthCredential shareCredential] || [IceOAuthCredential isTokenExpires]) {
+        if(![IceOAuthCredential shareCredential].refreshToken || [[IceOAuthCredential shareCredential].refreshToken isEqualToString:@""]){
 #if Debug_DbInterface_Status
         NSLog(@"~~~~~~~~获取临时token~~~~~~~过期:%d",[IceOAuthCredential isTokenExpires]);
 #endif
-        [IceOAuthCredential getTempAccesstoken:^(id  _Nullable responseObject) {
-        } failure:^(id  _Nonnull errorDic) {
-        }];
+            [IceOAuthCredential getTempAccesstoken:^(id  _Nullable responseObject) {
+                [self getCalendarData];
+            } failure:^(id  _Nonnull errorDic) {
+            }];
+        }
+        else{
+#if Debug_DbInterface_Status
+            NSLog(@"~~~~~~~~刷新用户token~~~~~~~过期:%d",[IceOAuthCredential isTokenExpires]);
+#endif
+            [[IceOAuthCredential shareCredential] refreshToken:^(id  _Nullable responseObject) {
+                [self getCalendarData];
+            } failure:^(id  _Nonnull errorDic) {
+            }];
+        }
     }
+    else{
+        [self getCalendarData];
+    }
+    
+    
     
     // Override point for customization after application launch.
     return YES;
@@ -69,6 +85,26 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)getCalendarData{
+    //获取日历数据
+    [[AFAppDotNetAPIClient sharedClient] performGetRequestToURL:@"v1/Common/GetCalendar" andParameters:nil success:^(id _Nullable responseObject) {
+        
+        if ([[responseObject objectForKey:API_ReturnDataCount]integerValue]>0) {
+            NSArray *dataArray = (NSArray *)[responseObject objectForKey:API_ReturnData];
+            NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+            for (NSDictionary *dic in dataArray) {
+                [dataDic setObject:[dic objectForKey:MD_Calendar_Memo] forKey:[dic objectForKey:MD_Calendar_Day]];
+            }
+            
+            [[NSUserDefaults standardUserDefaults]setObject:dataDic forKey:UD_CalendarDataDic];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            
+        }
+    } failure:^(id _Nonnull errorDic) {
+    }];
+
 }
 
 #pragma mark MBProgressHUDDelegate methods

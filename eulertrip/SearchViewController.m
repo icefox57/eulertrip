@@ -11,17 +11,19 @@
 #import "SearchResultTableViewController.h"
 
 
-@interface SearchViewController ()<AMapLocationManagerDelegate,UISearchResultsUpdating,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchControllerDelegate>
+@interface SearchViewController ()<AMapLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITapGestureRecognizer *tapGesture;
     NSArray *datasourceArray;
+    NSMutableArray *searchList;
     
     UISearchController *searchVC;
     SearchResultTableViewController *searchResultVC;
 }
 
-@property (weak, nonatomic) IBOutlet UISearchBar *txtSearch;
+@property (weak, nonatomic) IBOutlet UIView *viewSearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *resultTableView;
+@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
 
 @end
 
@@ -31,26 +33,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    datasourceArray = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",nil];
-    
-    searchResultVC = [[SearchResultTableViewController alloc] initWithNibName: @"SearchResultTableViewController" bundle: nil];
-    
-    searchVC = [[UISearchController alloc] initWithSearchResultsController:searchResultVC];
-    searchVC.searchResultsUpdater = self;
-    searchVC.dimsBackgroundDuringPresentation = NO;
-    searchVC.hidesNavigationBarDuringPresentation = NO;
-    searchVC.delegate = self;
+    datasourceArray = [NSArray array];
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:UD_SearchHistroyArray]) {
+        datasourceArray = [[NSUserDefaults standardUserDefaults]objectForKey:UD_SearchHistroyArray];
+        [_resultTableView reloadData];
+    }
+
+    searchList = [NSMutableArray array];
     
     //UI
-    _txtSearch.layer.borderColor = [UIColor whiteColor].CGColor;
-    _txtSearch.layer.borderWidth = 2;
-    _txtSearch.layer.cornerRadius = 10;
-    [_txtSearch setBackgroundColor:[UIColor clearColor]];
-    [_txtSearch setBarTintColor:[UIColor clearColor]];
+    _viewSearchBar.layer.borderColor = [UIColor whiteColor].CGColor;
+    _viewSearchBar.layer.borderWidth = 2;
+    _viewSearchBar.layer.cornerRadius = 10;
+    _resultTableView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _resultTableView.layer.borderWidth = 1;
+    _resultTableView.layer.cornerRadius = 10;
 
-    UITextField *searchField = [_txtSearch valueForKey:@"_searchField"];
-    searchField.textColor = [UIColor whiteColor];
-    [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+//    UITextField *searchField = [_txtSearch valueForKey:@"_searchField"];
+//    searchField.textColor = [UIColor whiteColor];
+//    [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     
     [_resultTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
@@ -70,6 +71,8 @@
     tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard:)];
     [self.view addGestureRecognizer:tapGesture];
     tapGesture.enabled = NO;
+    
+    [_txtSearch addTarget:self action:@selector(textFieldEditChanged:) forControlEvents:UIControlEventEditingChanged];
     
     //Location
     
@@ -107,6 +110,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [_txtSearch resignFirstResponder];
+    self.tabBarController.tabBar.hidden   = NO;
     self.tabBarController.tabBar.tintColor = color_common_red;
     self.navigationController.navigationBar.hidden = YES;
     
@@ -120,24 +125,22 @@
     }
      NSLog(@"not needLogin");
 
-//    NSMutableArray *historyArray = [NSUserDefaults standardUserDefaults]objectForKey:ud_search
+    //搜索记录到本地
+    NSMutableArray *historyArray;
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:UD_SearchHistroyArray]) {
+        historyArray = [[[NSUserDefaults standardUserDefaults]objectForKey:UD_SearchHistroyArray]mutableCopy];
+    }
+    else{
+        historyArray = [[NSMutableArray alloc]init];
+    }
+    [historyArray addObject:_txtSearch.text];
+    [[NSUserDefaults standardUserDefaults]setObject:historyArray forKey:UD_SearchHistroyArray];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
     //    [self performSegueWithIdentifier:@"seguePlan" sender:self];
 }
 
 
-#pragma mark - UISearchResultsUpdating
-
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    NSLog(@"!!!!:%@",searchText);
-}
-
-- (void) updateSearchResultsForSearchController:(UISearchController *)searchController{
-    
-    NSString *searchText = searchController.searchBar.text;
-    
-    NSLog(@"!:%@",searchText);
-//    [_resultTableView reloadData];
-}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -145,26 +148,55 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return datasourceArray.count;
+    if ([_txtSearch isFirstResponder] && ![_txtSearch.text isEqualToString:@""]){
+        return searchList.count;
+    }
+    else if (datasourceArray) {
+        return datasourceArray.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
 //    TLCity *city =  [self.data objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[datasourceArray objectAtIndex:indexPath.row]];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
+    
+    if ([_txtSearch isFirstResponder] && ![_txtSearch.text isEqualToString:@""]){
+        [cell.textLabel setText:[searchList objectAtIndex:indexPath.row]];
+    }
+    else{
+        [cell.textLabel setText:[datasourceArray objectAtIndex:indexPath.row]];
+    }
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 43.0f;
+    return 39.0f;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"textLabel:%@",[tableView cellForRowAtIndexPath:indexPath].textLabel.text);
+    _txtSearch.text = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     
+//    if ([_txtSearch isFirstResponder] && ![_txtSearch.text isEqualToString:@""]){
+//        _txtSearch.text = [searchList objectAtIndex:indexPath.row];
+//    }
+//    else{
+//        _txtSearch.text = [datasourceArray objectAtIndex:indexPath.row];
+//    }
+    
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [_txtSearch resignFirstResponder];
+    [UIView animateWithDuration:1 animations:^{
+        _resultTableView.alpha = 0;
+    } completion:^(BOOL finished) {
+        tapGesture.enabled = YES;
+    }];
 //    TLCity *city = [self.data objectAtIndex:indexPath.row];
 //    if (_searchResultDelegate && [_searchResultDelegate respondsToSelector:@selector(searchResultControllerDidSelectCity:)]) {
 //        [_searchResultDelegate searchResultControllerDidSelectCity:city];
@@ -178,15 +210,45 @@
 
 
 #pragma mark - keyboard
-//-(BOOL)textFieldShouldReturn:(UITextField *)textField{
-//    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
-//    
-//    NSLog(@"textFieldShouldReturn");
-//    
-//    
-//    
-//    return YES;
-//}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (datasourceArray && [datasourceArray count]>0) {
+        [_resultTableView reloadData];
+        [UIView animateWithDuration:1 animations:^{
+            _resultTableView.alpha = 1;
+        } completion:^(BOOL finished) {
+            tapGesture.enabled = NO;
+        }];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [UIView animateWithDuration:1 animations:^{
+        _resultTableView.alpha = 0;
+    } completion:^(BOOL finished) {
+        tapGesture.enabled = YES;
+    }];
+}
+
+- (void)textFieldEditChanged:(UITextField *)textField
+{
+    NSLog(@"textField text : %@", [textField text]);
+    
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", [textField text]];
+    if (searchList) {
+        [searchList removeAllObjects];
+    }
+    //过滤数据
+    searchList= [NSMutableArray arrayWithArray:[datasourceArray filteredArrayUsingPredicate:preicate]];
+    //刷新表格
+    [_resultTableView reloadData];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
+    NSLog(@"textFieldShouldReturn");
+    return YES;
+}
 
 
 - (IBAction)closeKeyboard:(id)sender {
@@ -197,19 +259,30 @@
 {
     tapGesture.enabled = YES;
     
-    CGRect keyboardBounds;
-    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
-    
-    if ((_txtSearch.frame.origin.y+_txtSearch.frame.size.height+20)>keyboardBounds.origin.y){
-        int offsetY = keyboardBounds.origin.y - (_txtSearch.frame.origin.y+_txtSearch.frame.size.height+20);
-        [self restViewY:offsetY];
-    }
+    [self restViewY:-250];
+    //自动计算高度
+//    CGRect keyboardBounds;
+//    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+//    
+//    if ((_viewSearchBar.frame.origin.y+_viewSearchBar.frame.size.height+20)>keyboardBounds.origin.y){
+//        int offsetY = keyboardBounds.origin.y - (_viewSearchBar.frame.origin.y+_viewSearchBar.frame.size.height+20);
+//        [self restViewY:offsetY];
+//    }
 }
 
 -(void)keyboardWillHide:(NSNotification *)note
 {
     tapGesture.enabled = NO;
     [self restViewY:0];
+    
+    if (![_txtSearch.text isEqualToString:@""]) {
+        NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", _txtSearch.text];
+        if (searchList) {
+            [searchList removeAllObjects];
+        }
+        //过滤数据
+        searchList= [NSMutableArray arrayWithArray:[datasourceArray filteredArrayUsingPredicate:preicate]];
+    }
 }
 
 -(void)restViewY:(int)y
@@ -221,69 +294,6 @@
         [self.view setFrame:rect];
     }];
 }
-
-//- (IBAction)closeKeyboard:(id)sender {
-//    [UIView animateWithDuration:0.5 animations:^{
-//        inputToolbar.alpha = 0;
-//    } completion:^(BOOL finished) {
-//        [inputToolbar.textView resignFirstResponder];
-//    }];
-//}
-//
-//-(void)inputButtonPressed:(NSString *)inputText
-//{
-//    [self didSendCommentWithText:inputText];
-//}
-
-//-(void) keyboardWillShow:(NSNotification *)note{
-//    // get keyboard size and loctaion
-//    CGRect keyboardBounds;
-//    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
-//    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-//    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-//
-//    // Need to translate the bounds to account for rotation.
-//    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
-//
-//    // get a rect for the textView frame
-//    CGRect containerFrame = _txtSearch.frame;
-//    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
-//    // animations settings
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:[duration doubleValue]];
-//    [UIView setAnimationCurve:[curve intValue]];
-//
-//    // set views with new info
-//    _txtSearch.frame = containerFrame;
-//
-////    tapGesture.enabled = YES;
-//    // commit animations
-//    [UIView commitAnimations];
-//}
-//
-//-(void) keyboardWillHide:(NSNotification *)note{
-//    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-//    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-//
-//    // get a rect for the textView frame
-//    CGRect containerFrame = _txtSearch.frame;
-//    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
-//
-//    // animations settings
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    [UIView setAnimationDuration:[duration doubleValue]];
-//    [UIView setAnimationCurve:[curve intValue]];
-//
-//    // set views with new info
-//    _txtSearch.frame = containerFrame;
-//
-////    tapGesture.enabled = NO;
-//    // commit animations
-//    [UIView commitAnimations];
-//}
-
 
 @end
 

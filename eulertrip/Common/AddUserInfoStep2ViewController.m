@@ -86,7 +86,7 @@
                                  @"Speciality":_txtProf.text,
                                  @"BloodType":_txtBloodType.text,
                                  @"BloodType":_txtHobby.text,
-                                 @"Id":[IceOAuthCredential shareCredential].userId};
+                                 MD_User_Id:[IceOAuthCredential shareCredential].userId};
     
     [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/DetailInfo" andParameters:parameters success:^(id _Nullable responseObject) {
         

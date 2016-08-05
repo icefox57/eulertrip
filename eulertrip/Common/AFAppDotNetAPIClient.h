@@ -33,4 +33,11 @@
                                      success:(nullable void (^)(id _Nullable responseObject))success
                                      failure:(nullable void (^)(id _Nonnull errorDic))failure;
 
+
+
+- (void)performGetRequestToURL:(NSString* _Nullable)postURL
+                  andParameters:(NSDictionary* _Nullable)parameters
+                        success:(nullable void (^)(id _Nullable responseObject))success
+                        failure:(nullable void (^)(id _Nonnull errorDic))failure;
+
 @end

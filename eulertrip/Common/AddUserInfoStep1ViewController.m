@@ -96,7 +96,7 @@
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{@"NickName":_txtName.text,@"Birth":_txtBirth.text,@"Sex":@1,@"Id":[IceOAuthCredential shareCredential].userId};
+    NSDictionary *parameters = @{MD_User_NickName:_txtName.text,MD_User_Birth:_txtBirth.text,MD_User_Sex:@1,MD_User_Id:[IceOAuthCredential shareCredential].userId};
     
     [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/BaseInfo" andParameters:parameters success:^(id _Nullable responseObject) {
         

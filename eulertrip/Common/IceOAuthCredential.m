@@ -67,6 +67,9 @@ static IceOAuthCredential *_instance            = nil;
     if (!_instance) {
         return YES;
     }
+    
+    NSLog(@"--------isNeedLogin ---refreshToken:%@,userId:%@",_instance.refreshToken,_instance.userId);
+    
     if (!_instance.refreshToken || [_instance.refreshToken isEqualToString:@""] ||
         !_instance.userId || [_instance.userId isEqualToString:@""]) {
         return YES;
@@ -240,6 +243,19 @@ static IceOAuthCredential *_instance            = nil;
         [[NSUserDefaults standardUserDefaults]setObject:dic forKey:UD_UserCredentialDic];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
+        if ([dic objectForKey:API_OAuth_accesstoken]) {
+            _instance.accessToken = [dic objectForKey:API_OAuth_accesstoken];
+        }
+        if ([dic objectForKey:API_OAuth_refreshtoken]) {
+            _instance.refreshToken = [dic objectForKey:API_OAuth_refreshtoken];
+        }
+        if ([dic objectForKey:API_OAuth_token_type]) {
+            _instance.tokenType = [dic objectForKey:API_OAuth_token_type];
+        }
+        if ([dic objectForKey:API_OAuth_expires_date]) {
+            _instance.expiresDate = [dic objectForKey:API_OAuth_expires_date];
+        }
+        
         success(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -248,7 +264,8 @@ static IceOAuthCredential *_instance            = nil;
         
 #if Debug_DbInterface_Status
         NSLog(@"refreshAccessToekn~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
-        NSLog(@"errorDic: %@", errorDic);
+        NSLog(@"||errorDic: %@", errorDic);
+        NSLog(@"||parameters: %@", parameters);
 #endif
         failure(errorDic);
     }];

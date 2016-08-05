@@ -35,6 +35,18 @@
 		9A8225DB1D5087CF00CBFF0D /* TLCityPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225D21D5087CF00CBFF0D /* TLCityPickerController.m */; };
 		9A8225DC1D5087CF00CBFF0D /* TLCityPickerSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225D51D5087CF00CBFF0D /* TLCityPickerSearchResultController.m */; };
 		9A8225DF1D51BEA600CBFF0D /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225DE1D51BEA600CBFF0D /* BaseViewController.m */; };
+		9A8225E81D52E33100CBFF0D /* common_defaulthead@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E01D52E33100CBFF0D /* common_defaulthead@2x.png */; };
+		9A8225E91D52E33100CBFF0D /* common_icon_calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E11D52E33100CBFF0D /* common_icon_calendar@2x.png */; };
+		9A8225EA1D52E33100CBFF0D /* common_icon_grayarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E21D52E33100CBFF0D /* common_icon_grayarrow@2x.png */; };
+		9A8225EB1D52E33100CBFF0D /* common_icon_graysearch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E31D52E33100CBFF0D /* common_icon_graysearch@2x.png */; };
+		9A8225EC1D52E33100CBFF0D /* common_icon_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E41D52E33100CBFF0D /* common_icon_location@2x.png */; };
+		9A8225ED1D52E33100CBFF0D /* common_icon_redarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E51D52E33100CBFF0D /* common_icon_redarrow@2x.png */; };
+		9A8225EE1D52E33100CBFF0D /* common_icon_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E61D52E33100CBFF0D /* common_icon_share@2x.png */; };
+		9A8225EF1D52E33100CBFF0D /* common_icon_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E71D52E33100CBFF0D /* common_icon_star@2x.png */; };
+		9A8225F11D52E85800CBFF0D /* common_icon_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225F01D52E85800CBFF0D /* common_icon_back@2x.png */; };
+		9A8225F31D52EF7B00CBFF0D /* planlist_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225F21D52EF7B00CBFF0D /* planlist_topbar@2x.png */; };
+		9A8225F81D53394900CBFF0D /* PlanlistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225F61D53394900CBFF0D /* PlanlistTableViewCell.m */; };
+		9A8225F91D53394900CBFF0D /* PlanlistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225F71D53394900CBFF0D /* PlanlistTableViewCell.xib */; };
 		9A8DFE151D36253E00002AE7 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE141D36253E00002AE7 /* SearchViewController.m */; };
 		9A8DFE181D362E7100002AE7 /* PlanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE171D362E7100002AE7 /* PlanListViewController.m */; };
 		9A8DFE1B1D362FAF00002AE7 /* MainTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFE1A1D362FAF00002AE7 /* MainTabController.m */; };
@@ -129,6 +141,19 @@
 		9A8225D51D5087CF00CBFF0D /* TLCityPickerSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCityPickerSearchResultController.m; sourceTree = "<group>"; };
 		9A8225DD1D51BEA600CBFF0D /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		9A8225DE1D51BEA600CBFF0D /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9A8225E01D52E33100CBFF0D /* common_defaulthead@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_defaulthead@2x.png"; sourceTree = "<group>"; };
+		9A8225E11D52E33100CBFF0D /* common_icon_calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_calendar@2x.png"; sourceTree = "<group>"; };
+		9A8225E21D52E33100CBFF0D /* common_icon_grayarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_grayarrow@2x.png"; sourceTree = "<group>"; };
+		9A8225E31D52E33100CBFF0D /* common_icon_graysearch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_graysearch@2x.png"; sourceTree = "<group>"; };
+		9A8225E41D52E33100CBFF0D /* common_icon_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_location@2x.png"; sourceTree = "<group>"; };
+		9A8225E51D52E33100CBFF0D /* common_icon_redarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_redarrow@2x.png"; sourceTree = "<group>"; };
+		9A8225E61D52E33100CBFF0D /* common_icon_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_share@2x.png"; sourceTree = "<group>"; };
+		9A8225E71D52E33100CBFF0D /* common_icon_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_star@2x.png"; sourceTree = "<group>"; };
+		9A8225F01D52E85800CBFF0D /* common_icon_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_back@2x.png"; sourceTree = "<group>"; };
+		9A8225F21D52EF7B00CBFF0D /* planlist_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planlist_topbar@2x.png"; sourceTree = "<group>"; };
+		9A8225F51D53394900CBFF0D /* PlanlistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanlistTableViewCell.h; sourceTree = "<group>"; };
+		9A8225F61D53394900CBFF0D /* PlanlistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanlistTableViewCell.m; sourceTree = "<group>"; };
+		9A8225F71D53394900CBFF0D /* PlanlistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanlistTableViewCell.xib; sourceTree = "<group>"; };
 		9A8DFE131D36253E00002AE7 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		9A8DFE141D36253E00002AE7 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		9A8DFE161D362E7100002AE7 /* PlanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewController.h; sourceTree = "<group>"; };
@@ -263,9 +288,20 @@
 			path = TLCityPicker;
 			sourceTree = "<group>";
 		};
+		9A8225F41D5338EE00CBFF0D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A8225F51D53394900CBFF0D /* PlanlistTableViewCell.h */,
+				9A8225F61D53394900CBFF0D /* PlanlistTableViewCell.m */,
+				9A8225F71D53394900CBFF0D /* PlanlistTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		9A8DFE0F1D3624D700002AE7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				9A8225F41D5338EE00CBFF0D /* Cell */,
 				9AC16C891D47693000FE95C6 /* ToolViewControll */,
 				9A8DFE131D36253E00002AE7 /* SearchViewController.h */,
 				9A8DFE141D36253E00002AE7 /* SearchViewController.m */,
@@ -378,11 +414,11 @@
 		9AE7813E1D36147600CA40A5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				9A8225C81D5087CF00CBFF0D /* TLCityPicker */,
 				9A2D9B411D41DD1B00A2CB96 /* SSKeychain */,
 				9AC777631D3F5C120041CA1D /* AFAppDotNetAPIClient.h */,
 				9AC777641D3F5C120041CA1D /* AFAppDotNetAPIClient.m */,
 				9A8DFE1C1D36448D00002AE7 /* GlobalVariables.h */,
+				9A8225C81D5087CF00CBFF0D /* TLCityPicker */,
 				9A8DFE1D1D36448D00002AE7 /* GlobalVariables.m */,
 				9A8DFE1E1D36448D00002AE7 /* Foundation.h */,
 				9A2D9B3E1D41DCB400A2CB96 /* DLUDID.h */,
@@ -398,6 +434,16 @@
 		9AE7813F1D36148900CA40A5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9A8225F21D52EF7B00CBFF0D /* planlist_topbar@2x.png */,
+				9A8225E01D52E33100CBFF0D /* common_defaulthead@2x.png */,
+				9A8225F01D52E85800CBFF0D /* common_icon_back@2x.png */,
+				9A8225E11D52E33100CBFF0D /* common_icon_calendar@2x.png */,
+				9A8225E21D52E33100CBFF0D /* common_icon_grayarrow@2x.png */,
+				9A8225E31D52E33100CBFF0D /* common_icon_graysearch@2x.png */,
+				9A8225E41D52E33100CBFF0D /* common_icon_location@2x.png */,
+				9A8225E51D52E33100CBFF0D /* common_icon_redarrow@2x.png */,
+				9A8225E61D52E33100CBFF0D /* common_icon_share@2x.png */,
+				9A8225E71D52E33100CBFF0D /* common_icon_star@2x.png */,
 				9A77D41B1D4EED0900BD8A78 /* search_bg1.jpg */,
 				9A77D4251D4EF1B200BD8A78 /* search_btn_search@2x.png */,
 				9A77D4261D4EF1B200BD8A78 /* search_txt_bg@2x.png */,
@@ -536,32 +582,43 @@
 			files = (
 				9AC777601D3F49BE0041CA1D /* login_btn_code@2x.png in Resources */,
 				9A77D41A1D4EEAE500BD8A78 /* tab_icon_user@2x.png in Resources */,
+				9A8225EF1D52E33100CBFF0D /* common_icon_star@2x.png in Resources */,
 				9A77D41C1D4EED0900BD8A78 /* search_bg1.jpg in Resources */,
+				9A8225EA1D52E33100CBFF0D /* common_icon_grayarrow@2x.png in Resources */,
 				9A77D4281D4EF1B200BD8A78 /* search_txt_bg@2x.png in Resources */,
 				9A12D1D81D4AF50200A2BCDE /* signin_checkbox2@2x.png in Resources */,
 				9A12D1BE1D476A5F00A2BCDE /* AddUserInfoStep1ViewController.xib in Resources */,
 				9A8225D71D5087CF00CBFF0D /* CityData.xml in Resources */,
 				9AE7811B1D36142C00CA40A5 /* LaunchScreen.storyboard in Resources */,
+				9A8225F91D53394900CBFF0D /* PlanlistTableViewCell.xib in Resources */,
 				9A12D1D71D4AF50200A2BCDE /* signin_checkbox1@2x.png in Resources */,
 				9A8DFE291D375A0200002AE7 /* CalendarViewController.xib in Resources */,
 				9A77D4211D4EEF3500BD8A78 /* tab_bg@2x.png in Resources */,
 				9AC16C871D47019100FE95C6 /* login_icon_lock@2x.png in Resources */,
 				9A77D4191D4EEAE500BD8A78 /* tab_icon_search@2x.png in Resources */,
+				9A8225EE1D52E33100CBFF0D /* common_icon_share@2x.png in Resources */,
 				9A8225C71D50639600CBFF0D /* SearchResultTableViewController.xib in Resources */,
 				9A77D4271D4EF1B200BD8A78 /* search_btn_search@2x.png in Resources */,
+				9A8225F11D52E85800CBFF0D /* common_icon_back@2x.png in Resources */,
 				9AC7775F1D3F49BE0041CA1D /* login_bg@2x.png in Resources */,
 				9AE781181D36142C00CA40A5 /* Assets.xcassets in Resources */,
 				9AC16C841D461B4900FE95C6 /* login_btn_return@2x.png in Resources */,
+				9A8225EB1D52E33100CBFF0D /* common_icon_graysearch@2x.png in Resources */,
 				9A8225D61D5087CF00CBFF0D /* CityData.plist in Resources */,
+				9A8225EC1D52E33100CBFF0D /* common_icon_location@2x.png in Resources */,
 				9A5D9A5A1D4B467C0050F1B2 /* AddUserInfoStep2ViewController.xib in Resources */,
+				9A8225E81D52E33100CBFF0D /* common_defaulthead@2x.png in Resources */,
 				9A8DFEAB1D378BF400002AE7 /* LoginViewController.xib in Resources */,
 				9AC777621D3F49BE0041CA1D /* login_txtpass@2x.png in Resources */,
 				9A12D1C01D4897CE00A2BCDE /* login_line@2x.png in Resources */,
 				9AC16C881D47019100FE95C6 /* login_icon_phone@2x.png in Resources */,
 				9A8DFEB01D38C80F00002AE7 /* SignupViewController.xib in Resources */,
+				9A8225E91D52E33100CBFF0D /* common_icon_calendar@2x.png in Resources */,
+				9A8225ED1D52E33100CBFF0D /* common_icon_redarrow@2x.png in Resources */,
 				9AC777611D3F49BE0041CA1D /* login_btn_code2@2x.png in Resources */,
 				9A77D4181D4EEAE500BD8A78 /* tab_icon_plan@2x.png in Resources */,
 				9AE781161D36142C00CA40A5 /* Main.storyboard in Resources */,
+				9A8225F31D52EF7B00CBFF0D /* planlist_topbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +700,7 @@
 				9A8225DC1D5087CF00CBFF0D /* TLCityPickerSearchResultController.m in Sources */,
 				9A2D9B471D41DD1B00A2CB96 /* SSKeychainQuery.m in Sources */,
 				9A8DFEAF1D38C80F00002AE7 /* SignupViewController.m in Sources */,
+				9A8225F81D53394900CBFF0D /* PlanlistTableViewCell.m in Sources */,
 				9A8225DF1D51BEA600CBFF0D /* BaseViewController.m in Sources */,
 				9A8DFE241D372A5200002AE7 /* PlanViewController.m in Sources */,
 				9AC777651D3F5C120041CA1D /* AFAppDotNetAPIClient.m in Sources */,

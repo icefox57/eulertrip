@@ -8,8 +8,12 @@
 
 #import "CalendarViewController.h"
 #import "FSCalendar.h"
+#import "GlobalVariables.h"
 
 @interface CalendarViewController () <FSCalendarDataSource, FSCalendarDelegate>
+{
+    NSDictionary *dataDic;
+}
 @property (weak, nonatomic) IBOutlet FSCalendar *calendar;
 @property (weak, nonatomic) IBOutlet UIButton *previousButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
@@ -27,6 +31,12 @@
 //    self.calendar.locale = [NSLocale localeWithLocaleIdentifier:@"zh-CN"];
     self.calendar.appearance.headerDateFormat = @"yyyy-MM";
 //    self.calendar.identifier = NSCalendarIdentifierRepublicOfChina;
+    
+    NSLog(@"UD_CalendarDataDic:%@",[[NSUserDefaults standardUserDefaults]objectForKey:UD_CalendarDataDic]);
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:UD_CalendarDataDic]) {
+        dataDic = [[NSUserDefaults standardUserDefaults]objectForKey:UD_CalendarDataDic];
+    }
+    
 }
 
 
@@ -35,15 +45,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)selectedClicked:(id)sender {
     [self.delegate didSelectedDate];
 }
@@ -64,8 +66,21 @@
     [self.calendar setCurrentPage:nextMonth animated:YES];
 }
 
+#pragma mark - Calendar
+
 -(void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     self.selectedDate = date;
 }
+
+-(NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(nonnull NSDate *)date{
+    NSString *key = [GlobalVariables stringFromDate:date format:@"yyyy/MM/dd"];
+    NSString *sub = [dataDic objectForKey:key];
+    
+    NSLog(@"key-%@:sub-%@",key,sub);
+    
+    return sub;
+//    return dataDic[[GlobalVariables stringFromDate:date format:@"yyyy/MM/dd"]];
+}
+
 
 @end
