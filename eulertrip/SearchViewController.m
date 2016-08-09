@@ -8,17 +8,17 @@
 
 #import "SearchViewController.h"
 #import <AMapLocationKit/AMapLocationKit.h>
-#import "SearchResultTableViewController.h"
+#import <AMapSearchKit/AMapSearchKit.h>
 
 
-@interface SearchViewController ()<AMapLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface SearchViewController ()<AMapLocationManagerDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,AMapSearchDelegate>
 {
     UITapGestureRecognizer *tapGesture;
     NSArray *datasourceArray;
     NSMutableArray *searchList;
     
     UISearchController *searchVC;
-    SearchResultTableViewController *searchResultVC;
+    AMapSearchAPI *searchApi;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *viewSearchBar;
@@ -82,26 +82,34 @@
     // 带逆地理（返回坐标和地址信息）。将下面代码中的YES改成NO，则不会返回地址信息。
     [[GlobalVariables locationManager] requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         
-        if (error)
-        {
+        if (error){
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
-            if (error.code == AMapLocationErrorLocateFailed)
-            {
+            if (error.code == AMapLocationErrorLocateFailed){
                 return;
             }
         }
         
         NSLog(@"location:%@", location);
         
-        //        [GlobalVariables shareGlobalVariables].userLocation = location;
-        //        [GlobalVariables shareGlobalVariables].location     = [NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude];
+        [GlobalVariables shareGlobalVariables].userLocation = location;
+        [GlobalVariables shareGlobalVariables].location     = [NSString stringWithFormat:@"%f,%f",location.coordinate.latitude,location.coordinate.longitude];
         
-        if (regeocode)
-        {
+        if (regeocode)  {
             NSLog(@"reGeocode:%@", regeocode);
+            
+            [GlobalVariables shareGlobalVariables].userCity = regeocode.city;
+            [GlobalVariables shareGlobalVariables].userProvince = regeocode.province;
         }
     }];
+    
+    
+    //搜索提示
+    
+    //初始化检索对象
+    searchApi = [[AMapSearchAPI alloc] init];
+    searchApi.delegate = self;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -192,11 +200,7 @@
     
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [_txtSearch resignFirstResponder];
-    [UIView animateWithDuration:1 animations:^{
-        _resultTableView.alpha = 0;
-    } completion:^(BOOL finished) {
-        tapGesture.enabled = YES;
-    }];
+    [self hideSuggestTableView];
 //    TLCity *city = [self.data objectAtIndex:indexPath.row];
 //    if (_searchResultDelegate && [_searchResultDelegate respondsToSelector:@selector(searchResultControllerDidSelectCity:)]) {
 //        [_searchResultDelegate searchResultControllerDidSelectCity:city];
@@ -208,9 +212,70 @@
     
 }
 
+#pragma mark - Utility
+
+/* 输入提示 搜索.*/
+- (void)searchTipsWithKey:(NSString *)key
+{
+    if (key.length == 0)
+    {
+        return;
+    }
+    
+    AMapInputTipsSearchRequest *tips = [[AMapInputTipsSearchRequest alloc] init];
+    tips.keywords = key;
+    tips.city     = @"上海";
+    tips.cityLimit = NO;
+    
+    [searchApi AMapInputTipsSearch:tips];
+}
+
+
+-(void)showSuggestTableView{
+    [UIView animateWithDuration:1 animations:^{
+        _resultTableView.alpha = 1;
+    } completion:^(BOOL finished) {
+        tapGesture.enabled = NO;
+    }];
+}
+
+-(void)hideSuggestTableView{
+    [UIView animateWithDuration:1 animations:^{
+        _resultTableView.alpha = 0;
+    } completion:^(BOOL finished) {
+        tapGesture.enabled = YES;
+    }];
+}
+
+#pragma mark - SearchAPI
+//实现输入提示的回调函数
+-(void)onInputTipsSearchDone:(AMapInputTipsSearchRequest*)request response:(AMapInputTipsSearchResponse *)response
+{
+    if(response.tips.count == 0){
+        [self hideSuggestTableView];
+        return;
+    }
+    
+    [self showSuggestTableView];
+    
+    //通过AMapInputTipsSearchResponse对象处理搜索结果
+    if (searchList) {
+        [searchList removeAllObjects];
+    }
+    
+    for (AMapTip *p in response.tips) {
+        [searchList addObject:p.name];
+    }
+    
+    [_resultTableView reloadData];
+}
+
 
 #pragma mark - keyboard
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
+    //加载甲方数据
+    
+    /*
     if (datasourceArray && [datasourceArray count]>0) {
         [_resultTableView reloadData];
         [UIView animateWithDuration:1 animations:^{
@@ -219,6 +284,7 @@
             tapGesture.enabled = NO;
         }];
     }
+     */
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
@@ -231,16 +297,19 @@
 
 - (void)textFieldEditChanged:(UITextField *)textField
 {
-    NSLog(@"textField text : %@", [textField text]);
+//    NSLog(@"textField text : %@", [textField text]);
+//    
+//    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", [textField text]];
+//    if (searchList) {
+//        [searchList removeAllObjects];
+//    }
+//    //过滤数据
+//    searchList= [NSMutableArray arrayWithArray:[datasourceArray filteredArrayUsingPredicate:preicate]];
+//    //刷新表格
+//    [_resultTableView reloadData];
     
-    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", [textField text]];
-    if (searchList) {
-        [searchList removeAllObjects];
-    }
-    //过滤数据
-    searchList= [NSMutableArray arrayWithArray:[datasourceArray filteredArrayUsingPredicate:preicate]];
-    //刷新表格
-    [_resultTableView reloadData];
+    
+    [self searchTipsWithKey:[textField text]];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

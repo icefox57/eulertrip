@@ -60,7 +60,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden                   = YES;
     self.navigationController.navigationBar.hidden        = YES;
-//    self.navigationController.navigationBar.topItem.title = LoginTitleString;
     [super viewWillAppear:animated];
 }
 
@@ -79,16 +78,16 @@
 - (IBAction)codeClicked:(id)sender {
     //-----验证输入------
     if (!_txtUserName.text || [_txtUserName.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertMoblie] animated:YES completion:nil];
         return;
     }
 
     //-----调用接口-------
-    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Mobile":_txtUserName.text,@"Smstype":@2,API_OAuth_deviceID:[DLUDID value]};
     
-    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/Sms/GetSms" andParameters:parameters success:^(id _Nullable responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_GetSms andParameters:parameters success:^(id _Nullable responseObject) {
         [ApplicationDelegate HUD].hidden = YES;
         
         _btnCode.enabled         = NO;
@@ -106,12 +105,12 @@
     
     //-----验证输入------
     if (!_txtUserName.text || [_txtUserName.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertMoblie] animated:YES completion:nil];
         return;
     }
     
     if (!_txtPassword.text || [_txtPassword.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入密码!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertPassword] animated:YES completion:nil];
         return;
     }
     
@@ -119,19 +118,19 @@
     [_txtPassword resignFirstResponder];
     
     //-----调用接口-------
-    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
     
     [IceOAuthCredential getUserAccessToekn:_txtUserName.text password:_txtPassword.text success:^(id _Nullable responseObject) {
         
         NSDictionary *parameters = @{@"Mobile":_txtUserName.text};
         
-        [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/GetUser" andParameters:parameters success:^(id _Nullable responseObject) {
+        [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_GetUser andParameters:parameters success:^(id _Nullable responseObject) {
             
             [ApplicationDelegate HUD].hidden = YES;
             
             if (![responseObject objectForKey:API_ReturnData]) {
-                [self presentViewController:[GlobalVariables addAlertBy:@"获取用户信息失败!"] animated:YES completion:nil];
+                [self presentViewController:[GlobalVariables addAlertBy:StringErrorGetUserInfo] animated:YES completion:nil];
                 return ;
                 
             }
@@ -140,7 +139,7 @@
             
             
             if (dataArray.count <=0) {
-                [self presentViewController:[GlobalVariables addAlertBy:@"获取用户信息失败!"] animated:YES completion:nil];
+                [self presentViewController:[GlobalVariables addAlertBy:StringErrorGetUserInfo] animated:YES completion:nil];
                 return;
             }
             

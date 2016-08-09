@@ -32,7 +32,6 @@
     self.calendar.appearance.headerDateFormat = @"yyyy-MM";
 //    self.calendar.identifier = NSCalendarIdentifierRepublicOfChina;
     
-    NSLog(@"UD_CalendarDataDic:%@",[[NSUserDefaults standardUserDefaults]objectForKey:UD_CalendarDataDic]);
     if ([[NSUserDefaults standardUserDefaults]objectForKey:UD_CalendarDataDic]) {
         dataDic = [[NSUserDefaults standardUserDefaults]objectForKey:UD_CalendarDataDic];
     }
@@ -73,13 +72,7 @@
 }
 
 -(NSString *)calendar:(FSCalendar *)calendar subtitleForDate:(nonnull NSDate *)date{
-    NSString *key = [GlobalVariables stringFromDate:date format:@"yyyy/MM/dd"];
-    NSString *sub = [dataDic objectForKey:key];
-    
-    NSLog(@"key-%@:sub-%@",key,sub);
-    
-    return sub;
-//    return dataDic[[GlobalVariables stringFromDate:date format:@"yyyy/MM/dd"]];
+    return dataDic[[GlobalVariables stringFromDate:date format:@"yyyy-MM-dd"]];
 }
 
 

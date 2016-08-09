@@ -7,7 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddUserInfoStep1ViewController">
             <connections>
+                <outlet property="btnMM" destination="28j-OU-ag1" id="YDt-0T-g7G"/>
+                <outlet property="btnMan" destination="JgC-ju-R2V" id="4El-RD-ja8"/>
                 <outlet property="btnNext" destination="ukc-bD-zgi" id="LB6-aU-6tf"/>
+                <outlet property="btnNormal" destination="nZA-KE-X6I" id="MHI-ze-7p7"/>
+                <outlet property="btnWW" destination="oFF-Yf-Y9t" id="9BH-zf-BXE"/>
+                <outlet property="btnWoman" destination="wv6-Xr-1Ah" id="HgJ-JE-PPm"/>
                 <outlet property="datePicker" destination="VEm-m8-aCf" id="8KD-vQ-POq"/>
                 <outlet property="txtBirth" destination="hrW-xa-oRL" id="N7d-hR-Uv8"/>
                 <outlet property="txtName" destination="rvz-vO-nFc" id="AjO-L1-Z6V"/>
@@ -152,15 +157,104 @@
                         <action selector="dateSelected:" destination="-1" eventType="valueChanged" id="l1o-Ky-Gu7"/>
                     </connections>
                 </datePicker>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrA-fB-EUT">
+                    <rect key="frame" x="0.0" y="252" width="375" height="40"/>
+                    <subviews>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-ju-R2V">
+                            <rect key="frame" x="43" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="5yj-Ev-NqG"/>
+                                <constraint firstAttribute="height" constant="40" id="mWc-GC-hcR"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="9"/>
+                            <state key="normal" image="signin_icon_man.png"/>
+                            <state key="selected" image="signin_icon_man_h.png"/>
+                            <connections>
+                                <action selector="sexSelected:" destination="-1" eventType="touchUpInside" id="ULI-7v-Dya"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28j-OU-ag1">
+                            <rect key="frame" x="167" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="HZx-ch-Sw0"/>
+                                <constraint firstAttribute="width" constant="40" id="yEl-5V-MPL"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="9"/>
+                            <state key="normal" image="signin_icon_mm.png"/>
+                            <state key="selected" image="signin_icon_mm_h.png"/>
+                            <connections>
+                                <action selector="sexSelected:" destination="-1" eventType="touchUpInside" id="TBy-36-7IA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFF-Yf-Y9t">
+                            <rect key="frame" x="232" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Jmx-bn-xJf"/>
+                                <constraint firstAttribute="width" constant="40" id="sua-5G-Q8y"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="9"/>
+                            <state key="normal" image="sigin_icon_ww.png"/>
+                            <state key="selected" image="sigin_icon_ww_h.png"/>
+                            <connections>
+                                <action selector="sexSelected:" destination="-1" eventType="touchUpInside" id="Fvy-We-kml"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZA-KE-X6I">
+                            <rect key="frame" x="297" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Hq8-kR-Oow"/>
+                                <constraint firstAttribute="height" constant="40" id="eZ6-ew-FLY"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="9"/>
+                            <state key="normal" image="sigin_icon_neutral.png"/>
+                            <state key="selected" image="sigin_icon_neutral_h.png"/>
+                            <connections>
+                                <action selector="sexSelected:" destination="-1" eventType="touchUpInside" id="5jo-sU-eHs"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wv6-Xr-1Ah">
+                            <rect key="frame" x="105" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="X2g-Qz-pe4"/>
+                                <constraint firstAttribute="width" constant="40" id="r14-p9-Q8L"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="9"/>
+                            <state key="normal" image="signin_icon_woman.png"/>
+                            <state key="selected" image="signin_icon_woman_h.png"/>
+                            <connections>
+                                <action selector="sexSelected:" destination="-1" eventType="touchUpInside" id="w87-KQ-DsZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="28j-OU-ag1" firstAttribute="leading" secondItem="wv6-Xr-1Ah" secondAttribute="trailing" constant="22" id="5xo-Eg-wtj"/>
+                        <constraint firstItem="oFF-Yf-Y9t" firstAttribute="leading" secondItem="28j-OU-ag1" secondAttribute="trailing" constant="25" id="IU1-Gh-AHh"/>
+                        <constraint firstItem="28j-OU-ag1" firstAttribute="top" secondItem="OrA-fB-EUT" secondAttribute="top" id="Mnc-n7-dey"/>
+                        <constraint firstItem="wv6-Xr-1Ah" firstAttribute="leading" secondItem="JgC-ju-R2V" secondAttribute="trailing" constant="22" id="NVi-NO-ejW"/>
+                        <constraint firstItem="nZA-KE-X6I" firstAttribute="top" secondItem="OrA-fB-EUT" secondAttribute="top" id="XXZ-pX-aFg"/>
+                        <constraint firstItem="JgC-ju-R2V" firstAttribute="top" secondItem="OrA-fB-EUT" secondAttribute="top" id="bm0-MP-2SA"/>
+                        <constraint firstItem="wv6-Xr-1Ah" firstAttribute="top" secondItem="OrA-fB-EUT" secondAttribute="top" id="djq-Ca-HXs"/>
+                        <constraint firstItem="28j-OU-ag1" firstAttribute="centerX" secondItem="OrA-fB-EUT" secondAttribute="centerX" id="n8w-1T-thG"/>
+                        <constraint firstItem="nZA-KE-X6I" firstAttribute="leading" secondItem="oFF-Yf-Y9t" secondAttribute="trailing" constant="25" id="sMA-bA-b6j"/>
+                        <constraint firstItem="oFF-Yf-Y9t" firstAttribute="top" secondItem="OrA-fB-EUT" secondAttribute="top" id="v4G-0B-bSU"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="vyx-ro-Aiq"/>
+                        <constraint firstAttribute="height" constant="40" id="xez-xq-w8s"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ukc-bD-zgi" firstAttribute="top" secondItem="OrA-fB-EUT" secondAttribute="bottom" constant="80" id="2e6-AH-YgU"/>
                 <constraint firstItem="iNy-L6-R7t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8fR-c2-PM8"/>
                 <constraint firstItem="4IJ-hS-DhO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="AXI-aF-uuA"/>
+                <constraint firstAttribute="trailing" secondItem="OrA-fB-EUT" secondAttribute="trailing" id="Apv-kK-QQF"/>
                 <constraint firstItem="hCo-tP-Wuw" firstAttribute="top" secondItem="4IJ-hS-DhO" secondAttribute="bottom" constant="10" id="Dgm-hR-avG"/>
                 <constraint firstAttribute="trailing" secondItem="ukc-bD-zgi" secondAttribute="trailing" constant="50" id="EiD-6C-xUy"/>
+                <constraint firstItem="OrA-fB-EUT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FkY-dT-8Pk"/>
                 <constraint firstAttribute="trailing" secondItem="iNy-L6-R7t" secondAttribute="trailing" id="HvX-tQ-KNd"/>
                 <constraint firstItem="0DP-BQ-hyc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LIc-Sa-3Ss"/>
+                <constraint firstItem="OrA-fB-EUT" firstAttribute="top" secondItem="0DP-BQ-hyc" secondAttribute="bottom" constant="20" id="LZL-An-8Xd"/>
                 <constraint firstItem="VEm-m8-aCf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OyX-fc-Joq"/>
                 <constraint firstItem="0DP-BQ-hyc" firstAttribute="top" secondItem="hCo-tP-Wuw" secondAttribute="bottom" constant="20" id="Rc3-XM-or0"/>
                 <constraint firstAttribute="trailing" secondItem="hCo-tP-Wuw" secondAttribute="trailing" id="Rss-XB-iz2"/>
@@ -169,7 +263,6 @@
                 <constraint firstItem="iNy-L6-R7t" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YFt-JP-3qb"/>
                 <constraint firstItem="hCo-tP-Wuw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cJF-os-kWm"/>
                 <constraint firstAttribute="trailing" secondItem="0DP-BQ-hyc" secondAttribute="trailing" id="e4v-e6-hsM"/>
-                <constraint firstItem="ukc-bD-zgi" firstAttribute="top" secondItem="0DP-BQ-hyc" secondAttribute="bottom" constant="140" id="g25-AQ-izv"/>
                 <constraint firstItem="oW6-pL-lfn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nF0-wb-oZZ"/>
                 <constraint firstAttribute="bottom" secondItem="VEm-m8-aCf" secondAttribute="bottom" id="oh3-1C-mNy"/>
                 <constraint firstAttribute="trailing" secondItem="VEm-m8-aCf" secondAttribute="trailing" id="pNf-1j-seq"/>
@@ -183,5 +276,15 @@
     </objects>
     <resources>
         <image name="login_bg.png" width="375" height="667"/>
+        <image name="sigin_icon_neutral.png" width="28" height="20"/>
+        <image name="sigin_icon_neutral_h.png" width="28" height="20"/>
+        <image name="sigin_icon_ww.png" width="27" height="20"/>
+        <image name="sigin_icon_ww_h.png" width="27" height="20"/>
+        <image name="signin_icon_man.png" width="13" height="19"/>
+        <image name="signin_icon_man_h.png" width="13" height="19"/>
+        <image name="signin_icon_mm.png" width="27" height="19"/>
+        <image name="signin_icon_mm_h.png" width="27" height="19"/>
+        <image name="signin_icon_woman.png" width="12" height="20"/>
+        <image name="signin_icon_woman_h.png" width="12" height="20"/>
     </resources>
 </document>

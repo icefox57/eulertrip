@@ -13,11 +13,20 @@
 {
     UITapGestureRecognizer *tapGesture;
     NSArray *sexImageArray;
+    
+    NSString *sexStr;
 }
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UITextField *txtBirth;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnMan;
+@property (weak, nonatomic) IBOutlet UIButton *btnWoman;
+@property (weak, nonatomic) IBOutlet UIButton *btnMM;
+@property (weak, nonatomic) IBOutlet UIButton *btnWW;
+@property (weak, nonatomic) IBOutlet UIButton *btnNormal;
+
 
 @end
 
@@ -82,23 +91,73 @@
     [super viewWillAppear:animated];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self startAnimation];
+}
+
+-(void)startAnimation{
+    [GlobalVariables scaleView:_btnMan];
+    [GlobalVariables scaleView:_btnWoman];
+    [GlobalVariables scaleView:_btnMM];
+    [GlobalVariables scaleView:_btnWW];
+    [GlobalVariables scaleView:_btnNormal];
+}
+
+- (IBAction)sexSelected:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    
+    _btnMan.selected = NO;
+    _btnWoman.selected = NO;
+    _btnMM.selected = NO;
+    _btnWW.selected = NO;
+    _btnNormal.selected = NO;
+    
+    button.selected = YES;
+    
+    switch (button.tag) {
+        case 11:
+            sexStr = @"1";
+            break;
+        case 12:
+            sexStr = @"0";
+            break;
+        case 13:
+            sexStr = @"11";
+            break;
+        case 14:
+            sexStr = @"00";
+            break;
+        case 15:
+            sexStr = @"10";
+            break;
+        default:
+            break;
+    }
+}
+
+
+
 - (IBAction)nextClicked:(id)sender {
     //-----验证输入------
     if (!_txtName.text || [_txtName.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入昵称!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertName] animated:YES completion:nil];
         return;
     }
     if (!_txtBirth.text || [_txtBirth.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请选择生日!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertBirth] animated:YES completion:nil];
+        return;
+    }
+    if(!sexStr || [sexStr isEqualToString:@""]){
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertSex] animated:YES completion:nil];
         return;
     }
     
     //-----调用接口-------
-    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{MD_User_NickName:_txtName.text,MD_User_Birth:_txtBirth.text,MD_User_Sex:@1,MD_User_Id:[IceOAuthCredential shareCredential].userId};
+    NSDictionary *parameters = @{MD_User_NickName:_txtName.text,MD_User_Birth:_txtBirth.text,MD_User_Sex:sexStr,MD_User_Id:[IceOAuthCredential shareCredential].userId};
     
-    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/BaseInfo" andParameters:parameters success:^(id _Nullable responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_BaseInfo andParameters:parameters success:^(id _Nullable responseObject) {
         
         [ApplicationDelegate HUD].hidden = YES;
         
@@ -112,6 +171,7 @@
 }
 
 - (IBAction)showDatePicker:(id)sender {
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     [UIView animateWithDuration:1 animations:^{
         _datePicker.alpha = 1;
     } completion:^(BOOL finished) {

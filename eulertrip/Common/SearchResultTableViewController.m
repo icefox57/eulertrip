@@ -44,7 +44,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSearchResult" forIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"---%ld",indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"---%ld",(long)indexPath.row];
     // Configure the cell...
     
     return cell;

@@ -23,7 +23,7 @@
 #import "AFAppDotNetAPIClient.h"
 
 
-static NSString * const AFAppDotNetAPIBaseURLString = @"http://api.eulertrip.com/";
+static NSString * const AFAppDotNetAPIBaseURLString = AppDBHost;
 static AFAppDotNetAPIClient *_sharedClient = nil;
 
 @implementation AFAppDotNetAPIClient
@@ -65,7 +65,7 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
         
 #if Debug_DbInterface_Status
-        NSLog(@"performPOSTRequestToURL~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+        NSLog(@"performPOSTRequestToURL~~~~~~error~~~~~~Code:%ld~~~~~",(long)[error code]);
         NSLog(@"||url:%@",task.currentRequest.URL.absoluteString);
         NSLog(@"||Header:%@",task.currentRequest.allHTTPHeaderFields);
         NSLog(@"||errorDic: %@", errorDic);
@@ -125,7 +125,7 @@ static AFAppDotNetAPIClient *_sharedClient = nil;
            NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
            
 #if Debug_DbInterface_Status
-           NSLog(@"performGetRequestToURL~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+           NSLog(@"performGetRequestToURL~~~~~~error~~~~~~Code:%ld~~~~~",(long)[error code]);
            NSLog(@"||url:%@",task.currentRequest.URL.absoluteString);
            NSLog(@"||Header:%@",task.currentRequest.allHTTPHeaderFields);
            NSLog(@"||errorDic: %@", errorDic);

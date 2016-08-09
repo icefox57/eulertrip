@@ -78,17 +78,17 @@
 
 - (IBAction)nextClicked:(id)sender {
     //-----调用接口-------
-    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{@"District":_txtBirthLocal.text,
-                                 @"CurrentDistrict":_txtLiveLocal.text,
-                                 @"College":_txtSchool.text,
-                                 @"Speciality":_txtProf.text,
-                                 @"BloodType":_txtBloodType.text,
-                                 @"BloodType":_txtHobby.text,
+    NSDictionary *parameters = @{MD_User_BirthLocal:_txtBirthLocal.text,
+                                 MD_User_LiveLocal:_txtLiveLocal.text,
+                                 MD_User_School:_txtSchool.text,
+                                 MD_User_Speciality:_txtProf.text,
+                                 MD_User_BloodType:_txtBloodType.text,
+                                 MD_User_Favorites:_txtHobby.text,
                                  MD_User_Id:[IceOAuthCredential shareCredential].userId};
     
-    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/DetailInfo" andParameters:parameters success:^(id _Nullable responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_DetailInfo andParameters:parameters success:^(id _Nullable responseObject) {
         
         [ApplicationDelegate HUD].hidden = YES;
         

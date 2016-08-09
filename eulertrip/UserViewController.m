@@ -9,6 +9,8 @@
 #import "UserViewController.h"
 #import "GlobalVariables.h"
 
+#import "AddUserInfoStep1ViewController.h"
+
 @interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imgHead;
 
@@ -36,15 +38,13 @@
     
     [super viewWillAppear:animated];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+- (IBAction)testClicked:(id)sender {
+    [self.navigationController pushViewController:[[AddUserInfoStep1ViewController alloc] init] animated:NO];
 }
-*/
+
+
 - (IBAction)editUserHeadClicked:(id)sender {
     UIAlertController* sheet = [UIAlertController alertControllerWithTitle:nil
                                                                    message:@"选择图像"

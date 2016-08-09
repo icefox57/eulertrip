@@ -92,11 +92,11 @@
 
 - (IBAction)getCodeClicked:(id)sender {
     //-----调用接口-------
-    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
-    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/Sms/GetSms" andParameters:parameters success:^(id _Nullable responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_GetSms andParameters:parameters success:^(id _Nullable responseObject) {
         [ApplicationDelegate HUD].hidden = YES;
         
         _btnGetCode.enabled         = NO;
@@ -113,36 +113,36 @@
 - (IBAction)nextClicked:(id)sender {
     //-----验证输入------
     if (!_txtPhone.text || [_txtPhone.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertMoblie] animated:YES completion:nil];
         return;
     }
     if (!_txtCode.text || [_txtCode.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入验证码!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertCode] animated:YES completion:nil];
         return;
     }
     if (!_txtPassword.text || [_txtPassword.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入密码!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertPassword] animated:YES completion:nil];
         return;
     }
     if (!_txtCfPassword.text || [_txtCfPassword.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入确认密码!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertCPassword] animated:YES completion:nil];
         return;
     }
     if (![_txtCfPassword.text isEqualToString:_txtPassword.text]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"2次密码输入不相同!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertCPWrong] animated:YES completion:nil];
         return;
     }
     if (_btnArg.state == UIControlStateSelected) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"您尚未同意协议!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertAgree] animated:YES completion:nil];
         return;
     }
     
     //-----调用接口-------
-    [ApplicationDelegate showLoadingHUD:LoadingMessage view:self.view];
+    [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
     NSDictionary *parameters = @{@"Code":_txtCode.text,@"Password":[MD5Util md5:_txtPassword.text],@"Mobile":_txtPhone.text,@"Smstype":@1,API_OAuth_deviceID:[DLUDID value]};
     
-    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:@"v1/User/Register" andParameters:parameters success:^(id _Nullable responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_Register andParameters:parameters success:^(id _Nullable responseObject) {
         
         //存储用户信息
         if ([responseObject objectForKey:API_ReturnData]) {
@@ -175,7 +175,7 @@
 {
     //-----验证输入------
     if (!_txtPhone.text || [_txtPhone.text isEqualToString:@""]) {
-        [self presentViewController:[GlobalVariables addAlertBy:@"请输入手机号!"] animated:YES completion:nil];
+        [self presentViewController:[GlobalVariables addAlertBy:StringLoginAlertMoblie] animated:YES completion:nil];
         return;
     }
     

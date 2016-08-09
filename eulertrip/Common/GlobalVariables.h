@@ -15,7 +15,8 @@
 #import "DLUDID.h"
 
 @interface GlobalVariables : NSObject
-
+@property (nonatomic,retain) NSString   *userCity;
+@property (nonatomic,retain) NSString   *userProvince;
 @property (nonatomic,retain) NSString   *location;
 @property (nonatomic,retain) NSArray    *eventArray;
 @property (nonatomic,retain) CLLocation *userLocation;
@@ -36,4 +37,12 @@
 
 //common
 + (UIImage *) createImageWithColor: (UIColor *) color;
+
+//从左至右 渐现动画
++(void)addGradientAnimation:(UIView *)view;
++(void)startGradinentAnimation:(UIView *)view duration:(NSTimeInterval)duration;
+//动画震动
++(void)shakeView:(UIView*)viewToShake;
+//放大再缩小
++(void)scaleView:(UIView*)aView;
 @end

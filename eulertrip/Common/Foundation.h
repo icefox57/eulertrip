@@ -16,18 +16,6 @@
 #define API_ReturnMessage @"Msg"
 #define API_ReturnCode @"Code"
 
-//User
-#define MD_User_Id @"Id"
-#define MD_User_Birth @"Birth"
-#define MD_User_NickName @"NickName"
-#define MD_User_Sex @"Sex"
-#define MD_User_Mobile @"Mobile"
-
-//calendar
-#define MD_Calendar_Day @"Day"
-#define MD_Calendar_DayType @"Type"
-#define MD_Calendar_Memo @"Memo"
-
 //Error
 #define API_ErrorMessage @"Message"
 //OAuth
@@ -39,6 +27,26 @@
 #define API_OAuth_expires_in @"expires_in"
 #define API_OAuth_expires_date @"expires_date"
 #define API_OAuth_deviceID    @"device_id"
+
+//User
+#define MD_User_Id @"Id"
+#define MD_User_Birth @"Birth"
+#define MD_User_NickName @"NickName"
+#define MD_User_Sex @"Sex"
+#define MD_User_Mobile @"Mobile"
+#define MD_User_BirthLocal @"District"
+#define MD_User_LiveLocal @"CurrentDistrict"
+#define MD_User_School @"College"
+#define MD_User_Speciality @"Speciality"
+#define MD_User_BloodType @"BloodType"
+#define MD_User_Favorites @"Favorites"
+
+//calendar
+#define MD_Calendar_Day @"Day"
+#define MD_Calendar_DayType @"Type"
+#define MD_Calendar_Memo @"Memo"
+
+
 
 //-----------------------  UserDefaultKey ------------------------------
 #define UD_UserInfo                             @"currentUserDic"
@@ -104,31 +112,31 @@ typedef enum
 #define color_tab_bg_white   UTColor(0,0,0,0.6)
 #define color_common_red    UTColor(255,97,102,1)
 #define color_vlight_gray    UTColor(0,0,0,0.2)
-#define Bosch_Blue25    UTColor(143,168,185,1)
-#define Bosch_BlueLight UTColor(71,149,182,1)
-#define Bosch_Blue      UTColor(33,96,139,1)
-
-#define Bosch_Red       UTColor(213,23,35,1)
-#define Bosch_RedDark   UTColor(157,50,54,1)
-#define Bosch_Gray      UTColor(98,100,100,1)
-#define Bosch_GrayLight UTColor(216,216,216,1)
-#define Bosch_Slive     UTColor(184,184,181,1)
-
-
-#define Bosch_Green UTColor(1,143,2,1)
-
 
 
 //-----------------------  系统字符串 ------------------------------
-#define LoadingMessage      UTLocalizeString(@"连接中...")
-#define LoginTitleString    UTLocalizeString(@"登录")
-#define InputUserNameString UTLocalizeString(@"请输入用户名")
-#define InputPasswordString UTLocalizeString(@"请输入密码")
-#define UserTitleString     UTLocalizeString(@"用户信息")
+#define StringLoadingMessage      UTLocalizeString(@"连接中...")
 
+//api error
+#define StringErrorGetUserInfo     UTLocalizeString(@"获取用户信息失败!")
+
+//login sigin
+#define StringLoginAlertMoblie     UTLocalizeString(@"请输入您的手机号!")
+#define StringLoginAlertPassword     UTLocalizeString(@"请输入您的密码!")
+#define StringLoginAlertCode     UTLocalizeString(@"请输入验证码!")
+#define StringLoginAlertCPassword     UTLocalizeString(@"请输入确认密码!")
+#define StringLoginAlertCPWrong     UTLocalizeString(@"2次密码输入不相同!")
+#define StringLoginAlertAgree     UTLocalizeString(@"您尚未同意协议!")
+#define StringLoginAlertName     UTLocalizeString(@"请输入您的昵称!")
+#define StringLoginAlertBirth     UTLocalizeString(@"请选择您的生日!")
+#define StringLoginAlertSex     UTLocalizeString(@"请选择您的性别!")
 
 //-----------------Server Info------------
 #define AppDBHost @"http://api.eulertrip.com/"
+//API
+#define API_GetUser @"v1/User/GetUser"
+#define API_GetSms @"v1/Sms/GetSms"
+#define API_Register @"v1/User/Register"
+#define API_BaseInfo @"v1/User/BaseInfo"
+#define API_DetailInfo @"v1/User/DetailInfo"
 
-//Customer Value
-#define EventRadius 200.0

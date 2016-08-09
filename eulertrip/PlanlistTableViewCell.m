@@ -28,33 +28,12 @@
     _imgHead.layer.borderWidth = 2.0;
     _imgHead.layer.borderColor = color_common_red.CGColor;
     
-//    _imgPic.layer.masksToBounds = YES;
-//    _imgPic.layer.cornerRadius = 10;
-    
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_imgPic.bounds byRoundingCorners:UIRectCornerTopLeft| UIRectCornerBottomLeft cornerRadii:CGSizeMake(10, 10)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = _imgPic.bounds;
     maskLayer.path = maskPath.CGPath;
     _imgPic.layer.mask = maskLayer;
-    
 
-//    // set the radius
-//    CGFloat radius = 10.0;
-//    // set the mask frame, and increase the height by the
-//    // corner radius to hide bottom corners
-//    CGRect maskFrame = _imgPic.bounds;
-//    maskFrame.size.width += radius;
-//    // create the mask layer
-//    CALayer *maskLayer = [CALayer layer];
-//    maskLayer.cornerRadius = radius;
-//    maskLayer.backgroundColor = [UIColor blackColor].CGColor;
-//    maskLayer.frame = maskFrame;
-//    
-//    // set the mask
-//    _imgPic.layer.mask = maskLayer;
-    
-    
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -139,7 +139,7 @@ static IceOAuthCredential *_instance            = nil;
         NSData *errorData  = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
 #if Debug_DbInterface_Status
-        NSLog(@"getTempAccesstoken~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+        NSLog(@"getTempAccesstoken~~~~~~error~~~~~~Code:%ld~~~~~",(long)[error code]);
         NSLog(@"errorDic: %@", errorDic);
 #endif
         
@@ -263,7 +263,7 @@ static IceOAuthCredential *_instance            = nil;
         NSDictionary * errorDic = [NSJSONSerialization JSONObjectWithData:errorData options:NSJSONReadingAllowFragments error:nil];
         
 #if Debug_DbInterface_Status
-        NSLog(@"refreshAccessToekn~~~~~~error~~~~~~Code:%ld~~~~~",[error code]);
+        NSLog(@"refreshAccessToekn~~~~~~error~~~~~~Code:%ld~~~~~",(long)[error code]);
         NSLog(@"||errorDic: %@", errorDic);
         NSLog(@"||parameters: %@", parameters);
 #endif

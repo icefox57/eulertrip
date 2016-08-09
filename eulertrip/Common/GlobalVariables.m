@@ -112,4 +112,68 @@ static AMapLocationManager *_locationManager = nil;
     return theImage;
 }
 
+
+#pragma mark - animation handle
+
++(void)addGradientAnimation:(UIView *)view{
+    CAGradientLayer *mask = [CAGradientLayer layer];
+    mask.frame = view.bounds;
+    mask.colors = [NSArray arrayWithObjects:
+                   (__bridge id)[UIColor whiteColor].CGColor,
+                   (__bridge id)[UIColor clearColor].CGColor,
+                   nil];
+    mask.startPoint = CGPointMake(0, .5); // middel left
+    mask.endPoint = CGPointMake(1, .5); // middel right
+    view.layer.mask = mask;
+    ((CAGradientLayer *)view.layer.mask).locations = @[@0,@0];
+}
+
++(void)startGradinentAnimation:(UIView *)view duration:(NSTimeInterval)duration{
+    view.alpha = 1;
+    
+    [UIView animateWithDuration:duration animations:^{
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:duration];
+        
+        ((CAGradientLayer *)view.layer.mask).locations = @[@1,@1];
+        
+        [CATransaction commit];
+    } completion:^(BOOL finished) {
+    }];
+}
+
++(void)shakeView:(UIView*)viewToShake
+{
+    CGFloat t =4.0;
+    CGAffineTransform translateRight  =CGAffineTransformTranslate(CGAffineTransformIdentity, t,0.0);
+    CGAffineTransform translateLeft =CGAffineTransformTranslate(CGAffineTransformIdentity,-t,0.0);
+    
+    viewToShake.transform = translateLeft;
+    
+    [UIView animateWithDuration:0.07 delay:0.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat animations:^{
+        [UIView setAnimationRepeatCount:2.0];
+        viewToShake.transform = translateRight;
+    } completion:^(BOOL finished){
+        if(finished){
+            [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                viewToShake.transform =CGAffineTransformIdentity;
+            } completion:NULL];
+        }
+    }];
+}
+
++(void)scaleView:(UIView*)aView{
+    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.duration = 0.5;
+    
+    NSMutableArray *values = [NSMutableArray array];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+    animation.values = values;
+    [aView.layer addAnimation:animation forKey:nil];
+}
+
+
 @end

@@ -9,6 +9,7 @@
 #import "PlanViewController.h"
 #import "GlobalVariables.h"
 #import "CalendarViewController.h"
+#import "MapTableViewCell.h"
 
 @interface PlanViewController ()<UITableViewDelegate,UITableViewDataSource,CalendarViewControllerDelegate>
 @property (weak, nonatomic  ) IBOutlet UITableView            *mainTableView;
@@ -72,12 +73,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 0;
+    return 1;
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    
+    static NSString *CellIdentifier = @"mapCell";
+    MapTableViewCell *cell = (MapTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MapTableViewCell" owner:self options:nil] lastObject];
+    }
+
+    
+    return cell;
 }
 
 @end
