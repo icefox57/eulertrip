@@ -17,6 +17,8 @@
     
     UITextField *txtCurrent;
     TLCityPickerController *cityPickerVC;
+    
+    NSString *birthLCode , *liveLCode;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *txtBirthLocal;
@@ -80,8 +82,8 @@
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{MD_User_BirthLocal:_txtBirthLocal.text,
-                                 MD_User_LiveLocal:_txtLiveLocal.text,
+    NSDictionary *parameters = @{MD_User_BirthLocal:birthLCode,
+                                 MD_User_LiveLocal:liveLCode,
                                  MD_User_School:_txtSchool.text,
                                  MD_User_Speciality:_txtProf.text,
                                  MD_User_BloodType:_txtBloodType.text,
@@ -131,6 +133,13 @@
 - (void) cityPickerController:(TLCityPickerController *)cityPickerViewController didSelectCity:(TLCity *)city
 {
     txtCurrent.text = city.cityName;
+    if (txtCurrent.tag == 10) {
+        birthLCode = city.cityID;
+    }
+    else{
+        liveLCode = city.cityID;
+    }
+    
     [cityPickerViewController dismissViewControllerAnimated:YES completion:^{
         
     }];

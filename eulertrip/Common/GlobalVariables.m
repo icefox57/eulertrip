@@ -162,17 +162,43 @@ static AMapLocationManager *_locationManager = nil;
     }];
 }
 
-+(void)scaleView:(UIView*)aView{
-    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    animation.duration = 0.5;
++(void)scaleView:(UIView*)aView duration:(CGFloat)duration{
+    CGAffineTransform scaleCGA1  =CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+    CGAffineTransform scaleCGA2  =CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
     
-    NSMutableArray *values = [NSMutableArray array];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
-    animation.values = values;
-    [aView.layer addAnimation:animation forKey:nil];
+    aView.transform = scaleCGA1;
+    
+    [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        aView.transform = scaleCGA2;
+        aView.alpha = 1;
+    } completion:^(BOOL finished){
+        if(finished){
+            [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                aView.transform =CGAffineTransformIdentity;
+            } completion:^(BOOL finished){
+            }];
+        }
+    }];
+}
+
++(void)scaleView:(UIView*)aView duration:(CGFloat)duration finish:(void (^)(BOOL finished))completion{
+    CGAffineTransform scaleCGA1  =CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+    CGAffineTransform scaleCGA2  =CGAffineTransformScale(CGAffineTransformIdentity, 1.5, 1.5);
+    
+    aView.transform = scaleCGA1;
+    
+    [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        aView.transform = scaleCGA2;
+        aView.alpha = 1;
+    } completion:^(BOOL finished){
+        if(finished){
+            [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                aView.transform =CGAffineTransformIdentity;
+            } completion:^(BOOL finished){
+                completion(1);
+            }];
+        }
+    }];
 }
 
 

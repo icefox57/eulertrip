@@ -89,6 +89,12 @@
     self.tabBarController.tabBar.hidden = YES;
     self.navigationController.navigationBar.hidden = YES;
     [super viewWillAppear:animated];
+    
+    _btnMan.alpha = 0;
+    _btnWoman.alpha = 0;
+    _btnMM.alpha = 0;
+    _btnWW.alpha = 0;
+    _btnNormal.alpha = 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -96,11 +102,16 @@
 }
 
 -(void)startAnimation{
-    [GlobalVariables scaleView:_btnMan];
-    [GlobalVariables scaleView:_btnWoman];
-    [GlobalVariables scaleView:_btnMM];
-    [GlobalVariables scaleView:_btnWW];
-    [GlobalVariables scaleView:_btnNormal];
+    
+    [GlobalVariables scaleView:_btnMan duration:0.2 finish:^(BOOL finished) {
+        [GlobalVariables scaleView:_btnWoman duration:0.2 finish:^(BOOL finished) {
+            [GlobalVariables scaleView:_btnMM duration:.2 finish:^(BOOL finished) {
+                [GlobalVariables scaleView:_btnWW duration:.2 finish:^(BOOL finished) {
+                    [GlobalVariables scaleView:_btnNormal duration:.2];
+                }];
+            }];
+        }];
+    }];
 }
 
 - (IBAction)sexSelected:(id)sender {
@@ -155,7 +166,9 @@
     //-----调用接口-------
     [ApplicationDelegate showLoadingHUD:StringLoadingMessage view:self.view];
     
-    NSDictionary *parameters = @{MD_User_NickName:_txtName.text,MD_User_Birth:_txtBirth.text,MD_User_Sex:sexStr,MD_User_Id:[IceOAuthCredential shareCredential].userId};
+    NSString *dateString = [[_txtBirth.text componentsSeparatedByString:@":"] lastObject];
+    
+    NSDictionary *parameters = @{MD_User_NickName:_txtName.text,MD_User_Birth:dateString,MD_User_Sex:sexStr,MD_User_Id:[IceOAuthCredential shareCredential].userId};
     
     [[AFAppDotNetAPIClient sharedClient] performPOSTRequestToURL:API_BaseInfo andParameters:parameters success:^(id _Nullable responseObject) {
         

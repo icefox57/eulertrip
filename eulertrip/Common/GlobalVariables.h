@@ -44,5 +44,6 @@
 //动画震动
 +(void)shakeView:(UIView*)viewToShake;
 //放大再缩小
-+(void)scaleView:(UIView*)aView;
++(void)scaleView:(UIView*)aView duration:(CGFloat)duration;
++(void)scaleView:(UIView*)aView duration:(CGFloat)duration finish:(void (^)(BOOL finished))completion;
 @end
