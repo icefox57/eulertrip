@@ -88,6 +88,8 @@
 		9AE7811B1D36142C00CA40A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE781191D36142C00CA40A5 /* LaunchScreen.storyboard */; };
 		9AE781261D36142C00CA40A5 /* eulertripTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE781251D36142C00CA40A5 /* eulertripTests.m */; };
 		9AE781311D36142C00CA40A5 /* eulertripUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE781301D36142C00CA40A5 /* eulertripUITests.m */; };
+		9AFB5D581D6584FD00A3891D /* ModelTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB5D571D6584FD00A3891D /* ModelTrip.m */; };
+		9AFB5D5B1D658CBD00A3891D /* ModelUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFB5D5A1D658CBD00A3891D /* ModelUser.m */; };
 		9AFC383B1D405DDD0057DF9C /* MD5Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC383A1D405DDD0057DF9C /* MD5Util.m */; };
 		DA235B7973176746F672D8E8 /* Pods_eulertrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 887F47823559B4A0B6876E0A /* Pods_eulertrip.framework */; };
 /* End PBXBuildFile section */
@@ -228,6 +230,10 @@
 		9AE7812C1D36142C00CA40A5 /* eulertripUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eulertripUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE781301D36142C00CA40A5 /* eulertripUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eulertripUITests.m; sourceTree = "<group>"; };
 		9AE781321D36142C00CA40A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AFB5D561D6584FD00A3891D /* ModelTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelTrip.h; sourceTree = "<group>"; };
+		9AFB5D571D6584FD00A3891D /* ModelTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelTrip.m; sourceTree = "<group>"; };
+		9AFB5D591D658CBD00A3891D /* ModelUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelUser.h; sourceTree = "<group>"; };
+		9AFB5D5A1D658CBD00A3891D /* ModelUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelUser.m; sourceTree = "<group>"; };
 		9AFC383A1D405DDD0057DF9C /* MD5Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Util.m; sourceTree = "<group>"; };
 		9AFC383C1D405DE60057DF9C /* MD5Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MD5Util.h; sourceTree = "<group>"; };
 		CD123FF977C7F23D3AFCAD5A /* Pods-eulertrip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eulertrip.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eulertrip/Pods-eulertrip.debug.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +300,10 @@
 			children = (
 				9A8225FF1D587BC100CBFF0D /* AMapTipAnnotation.h */,
 				9A8226001D587BC100CBFF0D /* AMapTipAnnotation.m */,
+				9AFB5D561D6584FD00A3891D /* ModelTrip.h */,
+				9AFB5D571D6584FD00A3891D /* ModelTrip.m */,
+				9AFB5D591D658CBD00A3891D /* ModelUser.h */,
+				9AFB5D5A1D658CBD00A3891D /* ModelUser.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -748,6 +758,7 @@
 				9A8DFE1F1D36448D00002AE7 /* GlobalVariables.m in Sources */,
 				9A8DFEAA1D378BF400002AE7 /* LoginViewController.m in Sources */,
 				9AFC383B1D405DDD0057DF9C /* MD5Util.m in Sources */,
+				9AFB5D5B1D658CBD00A3891D /* ModelUser.m in Sources */,
 				9A2D9B401D41DCB400A2CB96 /* DLUDID.m in Sources */,
 				9A8225C61D50639600CBFF0D /* SearchResultTableViewController.m in Sources */,
 				9A12D1C31D48AE1700A2BCDE /* IceOAuthCredential.m in Sources */,
@@ -763,6 +774,7 @@
 				9A8225DA1D5087CF00CBFF0D /* TLCityHeaderView.m in Sources */,
 				9A8DFE1B1D362FAF00002AE7 /* MainTabController.m in Sources */,
 				9A8225D91D5087CF00CBFF0D /* TLCityGroupCell.m in Sources */,
+				9AFB5D581D6584FD00A3891D /* ModelTrip.m in Sources */,
 				9A8225DB1D5087CF00CBFF0D /* TLCityPickerController.m in Sources */,
 				9A8225D81D5087CF00CBFF0D /* TLCity.m in Sources */,
 				9AE781101D36142C00CA40A5 /* AppDelegate.m in Sources */,

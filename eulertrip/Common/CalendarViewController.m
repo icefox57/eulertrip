@@ -52,10 +52,10 @@
 
 - (IBAction)previousClicked:(id)sender
 {
-    NSDate *currentMonth = self.calendar.currentPage;
-    
-    NSDate *previousMonth = [self.calendar dateBySubstractingMonths:1 fromDate:currentMonth];
-    [self.calendar setCurrentPage:previousMonth animated:YES];
+//    NSDate *currentMonth = self.calendar.currentPage;
+//    
+//    NSDate *previousMonth = [self.calendar dateBySubstractingMonths:1 fromDate:currentMonth];
+    [self.calendar setCurrentPage:[NSDate date] animated:YES];
 }
 
 - (IBAction)nextClicked:(id)sender

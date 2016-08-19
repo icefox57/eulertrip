@@ -31,6 +31,9 @@
 + (NSString *)stringToBase64String:(NSString *)str;
 + (NSString *)stringFromDate:(NSDate *)date format:(NSString *)format;
 + (NSString *)stringFromDate:(NSDate *)date;
++ (NSDateFormatter*)responseDateFormatter;
++ (NSInteger)getDaysFrom:(NSDate *)serverDate To:(NSDate *)endDate;
+
 
 //alert
 +(UIAlertController *)addAlertBy:(NSString *)alertString;

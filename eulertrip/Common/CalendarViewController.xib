@@ -73,8 +73,8 @@
                         <constraint firstAttribute="height" constant="30" id="6ee-4M-eWu"/>
                         <constraint firstAttribute="width" constant="100" id="gSb-P1-K9r"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="&lt;"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="&lt;今天"/>
                     <connections>
                         <action selector="previousClicked:" destination="-1" eventType="touchUpInside" id="5Ym-5z-e6z"/>
                     </connections>

@@ -9,7 +9,7 @@
 #import "UserViewController.h"
 #import "GlobalVariables.h"
 
-#import "AddUserInfoStep1ViewController.h"
+#import "LoginViewController.h"
 
 @interface UserViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imgHead;
@@ -35,13 +35,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
-    
+    self.tabBarController.tabBar.hidden   = NO;
+    self.tabBarController.tabBar.tintColor = color_common_red;
     [super viewWillAppear:animated];
 }
 
 
 - (IBAction)testClicked:(id)sender {
-    [self.navigationController pushViewController:[[AddUserInfoStep1ViewController alloc] init] animated:NO];
+    [self.navigationController pushViewController:[[LoginViewController alloc] init] animated:NO];
 }
 
 

@@ -119,6 +119,7 @@ typedef enum
 
 //api error
 #define StringErrorGetUserInfo     UTLocalizeString(@"获取用户信息失败!")
+#define StringErrorGetMoreTrip     UTLocalizeString(@"获取行程信息失败!")
 
 //login sigin
 #define StringLoginAlertMoblie     UTLocalizeString(@"请输入您的手机号!")
@@ -139,4 +140,6 @@ typedef enum
 #define API_Register @"v1/User/Register"
 #define API_BaseInfo @"v1/User/BaseInfo"
 #define API_DetailInfo @"v1/User/DetailInfo"
+
+#define API_MoreTrips @"v1/Search/MoreTrips"
 
