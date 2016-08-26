@@ -66,7 +66,7 @@
     
     [self.calendarVC.view removeFromSuperview];
     
-    _lbBudget.text = [GlobalVariables stringFromDate:self.calendarVC.selectedDate format:@"yyyy-MM-dd"];
+    _lbBudget.text = [GlobalVariables stringFromDate:self.calendarVC.startDate format:@"yyyy-MM-dd"];
 }
 
 #pragma mark - TableView

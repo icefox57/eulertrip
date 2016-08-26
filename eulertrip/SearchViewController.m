@@ -43,12 +43,14 @@
     
     //UI
     _viewSearchBar.layer.borderColor = [UIColor whiteColor].CGColor;
-    _viewSearchBar.layer.borderWidth = 2;
+    _viewSearchBar.layer.borderWidth = 1;
     _viewSearchBar.layer.cornerRadius = 10;
     _resultTableView.layer.borderColor = [UIColor whiteColor].CGColor;
     _resultTableView.layer.borderWidth = 1;
     _resultTableView.layer.cornerRadius = 10;
 
+    [_txtSearch setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
+    
 //    UITextField *searchField = [_txtSearch valueForKey:@"_searchField"];
 //    searchField.textColor = [UIColor whiteColor];
 //    [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
