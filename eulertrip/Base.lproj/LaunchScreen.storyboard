@@ -14,14 +14,63 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="C41-UM-UyS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnB-l2-Pai">
+                                <rect key="frame" x="166" y="638" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="P7w-Be-nBc"/>
+                                    <constraint firstAttribute="height" constant="21" id="efg-8e-SBP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.37007211540000001" green="0.37007211540000001" blue="0.37007211540000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_180.png" translatesAutoresizingMaskIntoConstraints="NO" id="vkH-Sm-6SQ">
+                                <rect key="frame" x="142" y="120" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="1o2-2b-5Yg"/>
+                                    <constraint firstAttribute="height" constant="90" id="ujH-Bh-SWy"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欧拉旅行" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMp-w9-GNg">
+                                <rect key="frame" x="142" y="218" width="90" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="svc-P7-ELy"/>
+                                    <constraint firstAttribute="height" constant="21" id="yFU-yO-lCX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.37007211540000001" green="0.37007211540000001" blue="0.37007211540000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="C41-UM-UyS" secondAttribute="bottom" id="0sd-nU-vIq"/>
+                            <constraint firstItem="aMp-w9-GNg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2Bd-WN-DDd"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="bnB-l2-Pai" secondAttribute="bottom" constant="8" id="49h-kQ-3iO"/>
+                            <constraint firstAttribute="trailing" secondItem="C41-UM-UyS" secondAttribute="trailing" id="EFR-i7-zuK"/>
+                            <constraint firstItem="bnB-l2-Pai" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="EN8-mo-adX"/>
+                            <constraint firstItem="vkH-Sm-6SQ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="100" id="G0q-lt-xOm"/>
+                            <constraint firstItem="C41-UM-UyS" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="H8T-xS-NGv"/>
+                            <constraint firstItem="vkH-Sm-6SQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Vzb-5i-O1u"/>
+                            <constraint firstItem="C41-UM-UyS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fz4-2v-dZA"/>
+                            <constraint firstItem="aMp-w9-GNg" firstAttribute="top" secondItem="vkH-Sm-6SQ" secondAttribute="bottom" constant="8" id="io5-lu-EAr"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_180.png" width="180" height="180"/>
+        <image name="launch_bg.jpg" width="750" height="1334"/>
+    </resources>
 </document>

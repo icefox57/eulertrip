@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewSearchBar;
 @property (weak, nonatomic) IBOutlet UITableView *resultTableView;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+@property (weak, nonatomic) IBOutlet UIImageView *imgBg;
 
 @end
 
@@ -55,6 +56,10 @@
 //    searchField.textColor = [UIColor whiteColor];
 //    [searchField setValue:[UIColor whiteColor] forKeyPath:@"_placeholderLabel.textColor"];
     
+    
+    int randomIndex = RANDOM_INT(1, 3);
+    NSString *bgName = [NSString stringWithFormat:@"search_bg%d.jpg",randomIndex];
+    [_imgBg setImage:[UIImage imageNamed:bgName]];
     
     [_resultTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     

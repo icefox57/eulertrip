@@ -206,6 +206,7 @@
                     <navigationItem key="navigationItem" id="26e-1z-nNZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="imgBg" destination="e0e-5x-frp" id="o7g-Hr-dm4"/>
                         <outlet property="resultTableView" destination="TKL-3Z-kmU" id="jP1-lZ-iCc"/>
                         <outlet property="txtSearch" destination="Hjv-Db-b1N" id="8sZ-RL-9iK"/>
                         <outlet property="viewSearchBar" destination="LAg-av-xgw" id="1Ny-5Y-WQ9"/>
@@ -828,11 +829,11 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="kWl-fv-6f1"/>
-                                <exclude reference="Xi1-cZ-Sby"/>
                                 <exclude reference="DV6-ek-CAo"/>
                                 <exclude reference="IEr-zc-gRh"/>
                                 <exclude reference="iBk-4q-QAl"/>
                                 <exclude reference="jrq-Oc-jyI"/>
+                                <exclude reference="Xi1-cZ-Sby"/>
                                 <exclude reference="OSe-mz-N3k"/>
                             </mask>
                         </variation>

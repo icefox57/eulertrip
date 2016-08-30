@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) UIWindow      *window;
 @property (nonatomic,retain ) MBProgressHUD *HUD;
+@property (strong, nonatomic) UIView *launchView;
 
 -(void)showLoadingHUD:(NSString *)text view:(UIView *)view;
 @end

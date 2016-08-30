@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="334.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_bg1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="c1C-ln-mMJ">
+                    <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_bg2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="c1C-ln-mMJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="232" id="3Dz-LW-DBN"/>
@@ -206,7 +206,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="search_bg1.jpg" width="750" height="1334"/>
+        <image name="search_bg2.jpg" width="750" height="1334"/>
         <image name="tab_icon_user.png" width="19" height="22"/>
         <image name="user_button_friend1.png" width="23" height="18"/>
         <image name="user_button_friend2.png" width="23" height="18"/>

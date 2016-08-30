@@ -18,8 +18,10 @@
 
 @implementation AppDelegate
 
-
+@synthesize launchView;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
     
     //$$$$$$$$$
 //    [[NSUserDefaults standardUserDefaults]removeObjectForKey:UD_UserCredentialDic];

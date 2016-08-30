@@ -76,6 +76,10 @@
 		9AC16C841D461B4900FE95C6 /* login_btn_return@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC16C831D461B4900FE95C6 /* login_btn_return@2x.png */; };
 		9AC16C871D47019100FE95C6 /* login_icon_lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC16C851D47019100FE95C6 /* login_icon_lock@2x.png */; };
 		9AC16C881D47019100FE95C6 /* login_icon_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC16C861D47019100FE95C6 /* login_icon_phone@2x.png */; };
+		9AC54C5F1D74302400A2CF21 /* search_bg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9AC54C5D1D74302400A2CF21 /* search_bg2.jpg */; };
+		9AC54C601D74302400A2CF21 /* search_bg3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9AC54C5E1D74302400A2CF21 /* search_bg3.jpg */; };
+		9AC54C641D75276100A2CF21 /* launch_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9AC54C631D75276100A2CF21 /* launch_bg.jpg */; };
+		9AC54C661D75296400A2CF21 /* icon_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC54C651D75296400A2CF21 /* icon_180.png */; };
 		9AC7775F1D3F49BE0041CA1D /* login_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7775A1D3F49BE0041CA1D /* login_bg@2x.png */; };
 		9AC777601D3F49BE0041CA1D /* login_btn_code@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7775B1D3F49BE0041CA1D /* login_btn_code@2x.png */; };
 		9AC777611D3F49BE0041CA1D /* login_btn_code2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7775C1D3F49BE0041CA1D /* login_btn_code2@2x.png */; };
@@ -221,6 +225,10 @@
 		9AC16C831D461B4900FE95C6 /* login_btn_return@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_return@2x.png"; sourceTree = "<group>"; };
 		9AC16C851D47019100FE95C6 /* login_icon_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_icon_lock@2x.png"; sourceTree = "<group>"; };
 		9AC16C861D47019100FE95C6 /* login_icon_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_icon_phone@2x.png"; sourceTree = "<group>"; };
+		9AC54C5D1D74302400A2CF21 /* search_bg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = search_bg2.jpg; sourceTree = "<group>"; };
+		9AC54C5E1D74302400A2CF21 /* search_bg3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = search_bg3.jpg; sourceTree = "<group>"; };
+		9AC54C631D75276100A2CF21 /* launch_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launch_bg.jpg; sourceTree = "<group>"; };
+		9AC54C651D75296400A2CF21 /* icon_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_180.png; sourceTree = "<group>"; };
 		9AC7775A1D3F49BE0041CA1D /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg@2x.png"; sourceTree = "<group>"; };
 		9AC7775B1D3F49BE0041CA1D /* login_btn_code@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_code@2x.png"; sourceTree = "<group>"; };
 		9AC7775C1D3F49BE0041CA1D /* login_btn_code2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_code2@2x.png"; sourceTree = "<group>"; };
@@ -503,6 +511,8 @@
 		9AE7813F1D36148900CA40A5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9AC54C651D75296400A2CF21 /* icon_180.png */,
+				9AC54C631D75276100A2CF21 /* launch_bg.jpg */,
 				9AD9344D1D6FFA8800EE1606 /* user_button_friend1@2x.png */,
 				9AD9344E1D6FFA8800EE1606 /* user_button_friend2@2x.png */,
 				9AD9344F1D6FFA8800EE1606 /* user_button_info1@2x.png */,
@@ -523,6 +533,8 @@
 				9A8225E61D52E33100CBFF0D /* common_icon_share@2x.png */,
 				9A8225E71D52E33100CBFF0D /* common_icon_star@2x.png */,
 				9A77D41B1D4EED0900BD8A78 /* search_bg1.jpg */,
+				9AC54C5D1D74302400A2CF21 /* search_bg2.jpg */,
+				9AC54C5E1D74302400A2CF21 /* search_bg3.jpg */,
 				9A77D4251D4EF1B200BD8A78 /* search_btn_search@2x.png */,
 				9A77D4261D4EF1B200BD8A78 /* search_txt_bg@2x.png */,
 				9A77D41D1D4EEF3500BD8A78 /* tab_bg@2x.png */,
@@ -676,6 +688,8 @@
 				9A8225EF1D52E33100CBFF0D /* common_icon_star@2x.png in Resources */,
 				9A77D41C1D4EED0900BD8A78 /* search_bg1.jpg in Resources */,
 				9A8225EA1D52E33100CBFF0D /* common_icon_grayarrow@2x.png in Resources */,
+				9AC54C601D74302400A2CF21 /* search_bg3.jpg in Resources */,
+				9AC54C5F1D74302400A2CF21 /* search_bg2.jpg in Resources */,
 				9A8226111D598D2600CBFF0D /* sigin_icon_neutral_h@2x.png in Resources */,
 				9A77D4281D4EF1B200BD8A78 /* search_txt_bg@2x.png in Resources */,
 				9A12D1D81D4AF50200A2BCDE /* signin_checkbox2@2x.png in Resources */,
@@ -686,6 +700,7 @@
 				9A82260A1D598AFA00CBFF0D /* signin_icon_mm@2x.png in Resources */,
 				9A8225F91D53394900CBFF0D /* PlanlistTableViewCell.xib in Resources */,
 				9AD9344C1D6FF8B600EE1606 /* UserTopTableViewCell.xib in Resources */,
+				9AC54C641D75276100A2CF21 /* launch_bg.jpg in Resources */,
 				9A12D1D71D4AF50200A2BCDE /* signin_checkbox1@2x.png in Resources */,
 				9A8DFE291D375A0200002AE7 /* CalendarViewController.xib in Resources */,
 				9A77D4211D4EEF3500BD8A78 /* tab_bg@2x.png in Resources */,
@@ -697,6 +712,7 @@
 				9AD934571D6FFA8800EE1606 /* user_button_friend2@2x.png in Resources */,
 				9A8225C71D50639600CBFF0D /* SearchResultTableViewController.xib in Resources */,
 				9A82260B1D598AFA00CBFF0D /* signin_icon_woman@2x.png in Resources */,
+				9AC54C661D75296400A2CF21 /* icon_180.png in Resources */,
 				9A8226131D598D2600CBFF0D /* signin_icon_man_h@2x.png in Resources */,
 				9AD9345A1D6FFA8800EE1606 /* user_button_message@2x.png in Resources */,
 				9A77D4271D4EF1B200BD8A78 /* search_btn_search@2x.png in Resources */,
@@ -886,6 +902,85 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9AC54C671D75337E00A2CF21 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuandong Cheng (EP2G57R8EK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuandong Cheng (EP2G57R8EK)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		9AC54C681D75337E00A2CF21 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E25CBC9BB2CF4F7EA55363 /* Pods-eulertrip.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuandong Cheng (EP2G57R8EK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuandong Cheng (EP2G57R8EK)";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = eulertrip/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eulertrip.iosapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = AppStore;
+		};
+		9AC54C691D75337E00A2CF21 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = eulertripTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eulertripTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eulertrip.app/eulertrip";
+			};
+			name = AppStore;
+		};
+		9AC54C6A1D75337E00A2CF21 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = eulertripUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eulertripUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = eulertrip;
+			};
+			name = AppStore;
+		};
 		9AE781331D36142C00CA40A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -949,8 +1044,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuandong Cheng (EP2G57R8EK)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuandong Cheng (EP2G57R8EK)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuandong Cheng (439KC3Z3C2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuandong Cheng (439KC3Z3C2)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -975,8 +1070,8 @@
 			baseConfigurationReference = CD123FF977C7F23D3AFCAD5A /* Pods-eulertrip.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuandong Cheng (439KC3Z3C2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuandong Cheng (439KC3Z3C2)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = eulertrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -992,8 +1087,8 @@
 			baseConfigurationReference = 03E25CBC9BB2CF4F7EA55363 /* Pods-eulertrip.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuandong Cheng (439KC3Z3C2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuandong Cheng (439KC3Z3C2)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = eulertrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -1058,6 +1153,7 @@
 			buildConfigurations = (
 				9AE781331D36142C00CA40A5 /* Debug */,
 				9AE781341D36142C00CA40A5 /* Release */,
+				9AC54C671D75337E00A2CF21 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1067,6 +1163,7 @@
 			buildConfigurations = (
 				9AE781361D36142C00CA40A5 /* Debug */,
 				9AE781371D36142C00CA40A5 /* Release */,
+				9AC54C681D75337E00A2CF21 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1076,6 +1173,7 @@
 			buildConfigurations = (
 				9AE781391D36142C00CA40A5 /* Debug */,
 				9AE7813A1D36142C00CA40A5 /* Release */,
+				9AC54C691D75337E00A2CF21 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1085,6 +1183,7 @@
 			buildConfigurations = (
 				9AE7813C1D36142C00CA40A5 /* Debug */,
 				9AE7813D1D36142C00CA40A5 /* Release */,
+				9AC54C6A1D75337E00A2CF21 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
