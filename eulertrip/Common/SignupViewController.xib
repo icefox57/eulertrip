@@ -32,7 +32,7 @@
                         <constraint firstAttribute="width" constant="51" id="Hgi-0N-ny7"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="login_btn_return.png"/>
+                    <state key="normal" image="common_icon_back.png"/>
                     <connections>
                         <action selector="backClicked:" destination="-1" eventType="touchUpInside" id="Zl5-yu-jyP"/>
                     </connections>
@@ -270,8 +270,8 @@
         </view>
     </objects>
     <resources>
+        <image name="common_icon_back.png" width="13" height="22"/>
         <image name="login_bg.png" width="375" height="667"/>
-        <image name="login_btn_return.png" width="15" height="20"/>
         <image name="signin_checkbox1.png" width="11" height="11"/>
         <image name="signin_checkbox2.png" width="11" height="11"/>
     </resources>

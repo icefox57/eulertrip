@@ -231,7 +231,7 @@
     [UIView animateWithDuration:1 animations:^{
         _viewTextSearch.alpha = 1;
         _textViewTopConstraint.constant = 0;
-        _tableViewTopConstraint.constant = 50;
+        _tableViewTopConstraint.constant = 40;
         [_viewTextSearch layoutIfNeeded];
         [_tableView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -402,7 +402,8 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
         cell.textLabel.textColor = [UIColor lightGrayColor];
         cell.backgroundColor = [UIColor clearColor];
-        [cell.textLabel setText:[searchList objectAtIndex:indexPath.row]];
+        AMapTip *p = [searchList objectAtIndex:indexPath.row];
+        [cell.textLabel setText:p.name];
 
         return cell;
     }
@@ -418,7 +419,7 @@
         cell.lbFrom.text = currentTrip.departed;
         cell.lbTo.text = currentTrip.arrived;
         cell.lbStarCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)currentTrip.favorites];
-        cell.lbDays.text = [NSString stringWithFormat:@"%ld Days",[GlobalVariables getDaysFrom:currentTrip.beginDate To:currentTrip.endDate]];
+        cell.lbDays.text = [NSString stringWithFormat:@"%ld Days",(long)[GlobalVariables getDaysFrom:currentTrip.beginDate To:currentTrip.endDate]];
         
         [cell.imgPic sd_setImageWithURL:[NSURL URLWithString:@"http://ww3.sinaimg.cn/mw690/8355dac5gw1f6ip5g07u5j20m80xbjyb.jpg"]
                           placeholderImage:[UIImage imageNamed:@"login_bg"]
@@ -432,8 +433,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == 99) {
-        NSLog(@"textLabel:%@",[tableView cellForRowAtIndexPath:indexPath].textLabel.text);
-        _txtSearch.text = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+        AMapTip *p = [searchList objectAtIndex:indexPath.row];        
+        _txtSearch.text = p.district;
         
         [_txtSearch resignFirstResponder];
         [self hideSuggestTableView];
@@ -495,7 +496,7 @@
     }
     
     for (AMapTip *p in response.tips) {
-        [searchList addObject:p.name];
+        [searchList addObject:p];
     }
     
     [_resultTableView reloadData];

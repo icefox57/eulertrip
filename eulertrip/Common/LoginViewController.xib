@@ -31,7 +31,7 @@
                         <constraint firstAttribute="height" constant="60" id="vOW-4r-imo"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="login_btn_return.png"/>
+                    <state key="normal" image="common_icon_back.png"/>
                     <connections>
                         <action selector="returnClicked:" destination="-1" eventType="touchUpInside" id="n51-18-hoH"/>
                     </connections>
@@ -213,9 +213,9 @@
         </view>
     </objects>
     <resources>
+        <image name="common_icon_back.png" width="13" height="22"/>
         <image name="login_bg.png" width="375" height="667"/>
         <image name="login_btn_code2.png" width="134" height="41"/>
-        <image name="login_btn_return.png" width="15" height="20"/>
         <image name="login_icon_lock.png" width="20" height="21"/>
         <image name="login_icon_phone.png" width="14" height="26"/>
         <image name="login_line.png" width="1" height="1"/>

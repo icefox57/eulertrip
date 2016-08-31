@@ -176,7 +176,7 @@
 {
     reactiveSec--;
     if (reactiveSec>0) {
-        [_btnCode setTitle:[NSString stringWithFormat:@"%d秒后重发",reactiveSec] forState:UIControlStateDisabled];
+        [_btnCode setTitle:[NSString stringWithFormat:@"已发送%ds",reactiveSec] forState:UIControlStateDisabled];
     }
     else{
         _btnCode.enabled = YES;
