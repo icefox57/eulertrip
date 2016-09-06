@@ -44,7 +44,6 @@
 		9A8225EE1D52E33100CBFF0D /* common_icon_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E61D52E33100CBFF0D /* common_icon_share@2x.png */; };
 		9A8225EF1D52E33100CBFF0D /* common_icon_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225E71D52E33100CBFF0D /* common_icon_star@2x.png */; };
 		9A8225F11D52E85800CBFF0D /* common_icon_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225F01D52E85800CBFF0D /* common_icon_back@2x.png */; };
-		9A8225F31D52EF7B00CBFF0D /* planlist_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225F21D52EF7B00CBFF0D /* planlist_topbar@2x.png */; };
 		9A8225F81D53394900CBFF0D /* PlanlistTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225F61D53394900CBFF0D /* PlanlistTableViewCell.m */; };
 		9A8225F91D53394900CBFF0D /* PlanlistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8225F71D53394900CBFF0D /* PlanlistTableViewCell.xib */; };
 		9A8225FD1D58237100CBFF0D /* MapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8225FB1D58237100CBFF0D /* MapTableViewCell.m */; };
@@ -73,6 +72,7 @@
 		9A8DFEAB1D378BF400002AE7 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8DFEA91D378BF400002AE7 /* LoginViewController.xib */; };
 		9A8DFEAF1D38C80F00002AE7 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8DFEAD1D38C80F00002AE7 /* SignupViewController.m */; };
 		9A8DFEB01D38C80F00002AE7 /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8DFEAE1D38C80F00002AE7 /* SignupViewController.xib */; };
+		9A9D41B21D76C02F00062DC4 /* planlist_darrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A9D41B11D76C02F00062DC4 /* planlist_darrow@2x.png */; };
 		9AC16C871D47019100FE95C6 /* login_icon_lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC16C851D47019100FE95C6 /* login_icon_lock@2x.png */; };
 		9AC16C881D47019100FE95C6 /* login_icon_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC16C861D47019100FE95C6 /* login_icon_phone@2x.png */; };
 		9AC54C5F1D74302400A2CF21 /* search_bg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9AC54C5D1D74302400A2CF21 /* search_bg2.jpg */; };
@@ -179,7 +179,6 @@
 		9A8225E61D52E33100CBFF0D /* common_icon_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_share@2x.png"; sourceTree = "<group>"; };
 		9A8225E71D52E33100CBFF0D /* common_icon_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_star@2x.png"; sourceTree = "<group>"; };
 		9A8225F01D52E85800CBFF0D /* common_icon_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_icon_back@2x.png"; sourceTree = "<group>"; };
-		9A8225F21D52EF7B00CBFF0D /* planlist_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planlist_topbar@2x.png"; sourceTree = "<group>"; };
 		9A8225F51D53394900CBFF0D /* PlanlistTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanlistTableViewCell.h; sourceTree = "<group>"; };
 		9A8225F61D53394900CBFF0D /* PlanlistTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanlistTableViewCell.m; sourceTree = "<group>"; };
 		9A8225F71D53394900CBFF0D /* PlanlistTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanlistTableViewCell.xib; sourceTree = "<group>"; };
@@ -221,6 +220,7 @@
 		9A8DFEAC1D38C80F00002AE7 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		9A8DFEAD1D38C80F00002AE7 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		9A8DFEAE1D38C80F00002AE7 /* SignupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		9A9D41B11D76C02F00062DC4 /* planlist_darrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planlist_darrow@2x.png"; sourceTree = "<group>"; };
 		9AC16C851D47019100FE95C6 /* login_icon_lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_icon_lock@2x.png"; sourceTree = "<group>"; };
 		9AC16C861D47019100FE95C6 /* login_icon_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_icon_phone@2x.png"; sourceTree = "<group>"; };
 		9AC54C5D1D74302400A2CF21 /* search_bg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = search_bg2.jpg; sourceTree = "<group>"; };
@@ -520,7 +520,7 @@
 				9AD934531D6FFA8800EE1606 /* user_button_plan2@2x.png */,
 				9AD934541D6FFA8800EE1606 /* user_button_post1@2x.png */,
 				9AD934551D6FFA8800EE1606 /* user_button_post2@2x.png */,
-				9A8225F21D52EF7B00CBFF0D /* planlist_topbar@2x.png */,
+				9A9D41B11D76C02F00062DC4 /* planlist_darrow@2x.png */,
 				9A8225E01D52E33100CBFF0D /* common_defaulthead@2x.png */,
 				9A8225F01D52E85800CBFF0D /* common_icon_back@2x.png */,
 				9A8225E11D52E33100CBFF0D /* common_icon_calendar@2x.png */,
@@ -709,6 +709,7 @@
 				9AD934571D6FFA8800EE1606 /* user_button_friend2@2x.png in Resources */,
 				9A8225C71D50639600CBFF0D /* SearchResultTableViewController.xib in Resources */,
 				9A82260B1D598AFA00CBFF0D /* signin_icon_woman@2x.png in Resources */,
+				9A9D41B21D76C02F00062DC4 /* planlist_darrow@2x.png in Resources */,
 				9AC54C661D75296400A2CF21 /* icon_180.png in Resources */,
 				9A8226131D598D2600CBFF0D /* signin_icon_man_h@2x.png in Resources */,
 				9AD9345A1D6FFA8800EE1606 /* user_button_message@2x.png in Resources */,
@@ -739,7 +740,6 @@
 				9AD9345D1D6FFA8800EE1606 /* user_button_post1@2x.png in Resources */,
 				9AE781161D36142C00CA40A5 /* Main.storyboard in Resources */,
 				9A8225FE1D58237100CBFF0D /* MapTableViewCell.xib in Resources */,
-				9A8225F31D52EF7B00CBFF0D /* planlist_topbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -135,12 +135,24 @@
 
 #pragma mark - UITableViewDataSource
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == 99) {
         return 39;
     }
     else{
         return 335;
+    }
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView.tag == 99) {
+        return 39;
+    }
+    else{
+        
+        return UITableViewAutomaticDimension;
+//        return 335;
     }
 }
 

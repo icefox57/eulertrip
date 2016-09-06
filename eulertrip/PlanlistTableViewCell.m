@@ -15,24 +15,19 @@
     [super awakeFromNib];
     // Initialization code
     
-    _viewBg.layer.masksToBounds = NO;
+    _viewBg.layer.masksToBounds = YES;
     _viewBg.layer.cornerRadius = 10;
-    _viewBg.layer.shadowOffset = CGSizeMake(1, 3);
-    _viewBg.layer.shadowRadius = 1;
-    _viewBg.layer.shadowOpacity = 0.2f;
-    _viewBg.layer.borderWidth = 0.2f;
-    _viewBg.layer.borderColor = color_vlight_gray.CGColor;
-    
+        
     _imgHead.layer.masksToBounds = YES;
     _imgHead.layer.cornerRadius = _imgHead.bounds.size.width * 0.5;
     _imgHead.layer.borderWidth = .75;
     _imgHead.layer.borderColor = color_common_red.CGColor;
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_imgPic.bounds byRoundingCorners:UIRectCornerTopLeft| UIRectCornerBottomLeft cornerRadii:CGSizeMake(10, 10)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = _imgPic.bounds;
-    maskLayer.path = maskPath.CGPath;
-    _imgPic.layer.mask = maskLayer;
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_imgPic.bounds byRoundingCorners:UIRectCornerTopLeft| UIRectCornerBottomLeft cornerRadii:CGSizeMake(10, 10)];
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = _imgPic.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    _imgPic.layer.mask = maskLayer;
 
 }
 

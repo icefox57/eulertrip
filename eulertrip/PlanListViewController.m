@@ -220,6 +220,7 @@
 }
 
 #pragma mark - Animation
+#define yOffSet 10
 
 -(void)showTextSearchView{
     if (_viewCalendar.alpha>0) {
@@ -231,7 +232,7 @@
     [UIView animateWithDuration:1 animations:^{
         _viewTextSearch.alpha = 1;
         _textViewTopConstraint.constant = 0;
-        _tableViewTopConstraint.constant = 40;
+        _tableViewTopConstraint.constant = 40-yOffSet;
         [_viewTextSearch layoutIfNeeded];
         [_tableView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -243,7 +244,7 @@
     [UIView animateWithDuration:1 animations:^{
         _viewTextSearch.alpha = 0;
         _textViewTopConstraint.constant = -_viewTextSearch.frame.size.height;
-        _tableViewTopConstraint.constant = 0;
+        _tableViewTopConstraint.constant = 0-yOffSet;
         [_viewTextSearch layoutIfNeeded];
         [_tableView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -258,7 +259,7 @@
     [UIView animateWithDuration:1 animations:^{
         _viewCalendar.alpha = 1;
         _calendarViewTopConstraint.constant = 0;
-        _tableViewTopConstraint.constant = _viewCalendar.frame.size.height;
+        _tableViewTopConstraint.constant = _viewCalendar.frame.size.height-yOffSet;
         [_viewCalendar layoutIfNeeded];
         [_tableView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -270,7 +271,7 @@
     [UIView animateWithDuration:1 animations:^{
         _viewCalendar.alpha = 0;
         _calendarViewTopConstraint.constant = -_viewCalendar.frame.size.height;
-        _tableViewTopConstraint.constant = 0;
+        _tableViewTopConstraint.constant = 0-yOffSet;
         [_viewCalendar layoutIfNeeded];
         [_tableView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -376,12 +377,26 @@
 
 #pragma mark - UITableViewDataSource
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView.tag == 99) {
+        return 39;
+    }
+    else{
+        float height = ([[UIScreen mainScreen]bounds].size.width / 375) * 170;
+        
+        return height;
+    }
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == 99) {
         return 39;
     }
     else{
-        return 170;
+        return UITableViewAutomaticDimension;
+//        float height = ([[UIScreen mainScreen]bounds].size.width / 375) * 170;
+//        
+//        return height;
     }
 }
 
@@ -393,7 +408,7 @@
         return  0;
     }
     else{
-        return 2;
+        return 4;
     }
 }
 
@@ -421,11 +436,20 @@
         cell.lbStarCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)currentTrip.favorites];
         cell.lbDays.text = [NSString stringWithFormat:@"%ld Days",(long)[GlobalVariables getDaysFrom:currentTrip.beginDate To:currentTrip.endDate]];
         
-        [cell.imgPic sd_setImageWithURL:[NSURL URLWithString:@"http://ww3.sinaimg.cn/mw690/8355dac5gw1f6ip5g07u5j20m80xbjyb.jpg"]
-                          placeholderImage:[UIImage imageNamed:@"login_bg"]
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                 }];
-    //    [cell.imgPic setImage:[UIImage imageNamed:@"search_bg1"]];
+//        [cell.imgPic sd_setImageWithURL:[NSURL URLWithString:@"http://ww3.sinaimg.cn/mw690/8355dac5gw1f6ip5g07u5j20m80xbjyb.jpg"]
+//                          placeholderImage:[UIImage imageNamed:@"login_bg"]
+//                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//                                 }];
+        [cell.imgPic setImage:[UIImage imageNamed:@"search_bg1.jpg"]];
+        
+        
+        cell.layer.masksToBounds = NO;
+        cell.layer.shadowOffset = CGSizeMake(1, 3);
+        cell.layer.shadowRadius = 1;
+        cell.layer.shadowOpacity = 0.2f;
+        cell.layer.borderWidth = 0.2f;
+        cell.layer.borderColor = color_vlight_gray.CGColor;
+
         
         return cell;
     }
