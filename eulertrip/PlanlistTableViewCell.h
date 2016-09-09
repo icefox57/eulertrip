@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbDays;
 @property (weak, nonatomic) IBOutlet UILabel *lbFrom;
 @property (weak, nonatomic) IBOutlet UILabel *lbTo;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bgHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgHeight;
 
 @end

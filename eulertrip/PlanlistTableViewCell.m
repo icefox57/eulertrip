@@ -28,7 +28,10 @@
 //    maskLayer.frame = _imgPic.bounds;
 //    maskLayer.path = maskPath.CGPath;
 //    _imgPic.layer.mask = maskLayer;
-
+    
+    float height = ([[UIScreen mainScreen]bounds].size.width / 375) * 160;
+    _bgHeight.constant = height;
+    _imgHeight.constant = height;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

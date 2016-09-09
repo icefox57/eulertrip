@@ -737,16 +737,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6v-pJ-7j6">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="155" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出发时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwb-MK-Hpm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="74.5" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="1" green="0.38039216399999998" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_redarrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="ldf-Mk-vqB">
-                                                        <rect key="frame" x="74.5" y="10" width="7" height="10"/>
+                                                        <rect key="frame" x="74" y="10" width="7" height="10"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="7" id="38E-CP-c5j"/>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="K3b-m9-XZY"/>
@@ -755,7 +755,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返程时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGD-g0-q2I">
-                                                        <rect key="frame" x="81.5" y="0.0" width="68.5" height="30"/>
+                                                        <rect key="frame" x="81" y="0.0" width="74" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <color key="textColor" red="1" green="0.38039216399999998" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -769,7 +769,7 @@
                                                     <constraint firstItem="vwb-MK-Hpm" firstAttribute="leading" secondItem="k6v-pJ-7j6" secondAttribute="leading" id="LO4-FM-t1K"/>
                                                     <constraint firstAttribute="bottom" secondItem="vwb-MK-Hpm" secondAttribute="bottom" id="NK3-c7-bfY"/>
                                                     <constraint firstAttribute="trailing" secondItem="OGD-g0-q2I" secondAttribute="trailing" id="Xa4-ik-PPS"/>
-                                                    <constraint firstItem="ldf-Mk-vqB" firstAttribute="centerX" secondItem="k6v-pJ-7j6" secondAttribute="centerX" constant="3" id="ZyY-VN-IAW"/>
+                                                    <constraint firstItem="ldf-Mk-vqB" firstAttribute="centerX" secondItem="k6v-pJ-7j6" secondAttribute="centerX" id="ZyY-VN-IAW"/>
                                                     <constraint firstItem="OGD-g0-q2I" firstAttribute="leading" secondItem="ldf-Mk-vqB" secondAttribute="trailing" id="c3M-1t-kCf"/>
                                                     <constraint firstAttribute="bottom" secondItem="OGD-g0-q2I" secondAttribute="bottom" id="hos-Wr-B2V"/>
                                                     <constraint firstItem="vwb-MK-Hpm" firstAttribute="top" secondItem="k6v-pJ-7j6" secondAttribute="top" id="kgq-F3-iVd"/>
@@ -843,7 +843,7 @@
                                             <constraint firstItem="Rwl-qw-wBt" firstAttribute="top" secondItem="uwu-H1-hOl" secondAttribute="top" constant="1" id="Eys-YO-5rB"/>
                                             <constraint firstAttribute="bottom" secondItem="w8K-em-4eK" secondAttribute="bottom" id="H6l-6V-Ver"/>
                                             <constraint firstItem="k6v-pJ-7j6" firstAttribute="leading" secondItem="uwu-H1-hOl" secondAttribute="leading" id="Ihi-0A-Gnh"/>
-                                            <constraint firstItem="TXz-sI-MPI" firstAttribute="leading" secondItem="k6v-pJ-7j6" secondAttribute="trailing" constant="5" id="Jcf-mc-5pr"/>
+                                            <constraint firstItem="TXz-sI-MPI" firstAttribute="leading" secondItem="k6v-pJ-7j6" secondAttribute="trailing" id="Jcf-mc-5pr"/>
                                             <constraint firstAttribute="bottom" secondItem="k6v-pJ-7j6" secondAttribute="bottom" id="OmM-Vf-S9G"/>
                                             <constraint firstItem="w8K-em-4eK" firstAttribute="leading" secondItem="uwu-H1-hOl" secondAttribute="leading" id="RxQ-Z4-ePn"/>
                                             <constraint firstAttribute="height" constant="30" id="TbY-tP-W88"/>
