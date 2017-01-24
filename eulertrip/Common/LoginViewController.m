@@ -50,6 +50,9 @@
     tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(closeKeyboard:)];
     [self.view addGestureRecognizer:tapGesture];
     tapGesture.enabled = NO;
+    
+    
+    //test
 }
 
 - (void)didReceiveMemoryWarning {
