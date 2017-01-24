@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -28,7 +32,7 @@
                                             <constraint firstAttribute="width" constant="31" id="UQV-jk-vr3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" red="1" green="0.38039216399999998" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="0.38039216399999998" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="common_icon_star.png" translatesAutoresizingMaskIntoConstraints="NO" id="sXa-5R-V6E">
@@ -53,7 +57,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36.5" id="hK2-lo-GEX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -75,7 +79,7 @@
                                             <constraint firstAttribute="height" constant="36.5" id="UTR-UG-a27"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -89,11 +93,11 @@
                                             <constraint firstAttribute="height" constant="21" id="zs2-j2-OrX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.25490196079999999" green="0.58431372550000005" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.25490196079999999" green="0.58431372550000005" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ySu-BX-GO5" firstAttribute="centerX" secondItem="0Gs-F9-Ap0" secondAttribute="centerX" constant="5" id="0i2-2o-WzQ"/>
                                     <constraint firstItem="ySu-BX-GO5" firstAttribute="leading" secondItem="jyL-7q-hak" secondAttribute="trailing" constant="5.5" id="1ae-gK-6EE"/>
@@ -138,7 +142,7 @@
                                 </variation>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="L73-2y-v4I" firstAttribute="top" secondItem="dGN-Le-URy" secondAttribute="top" id="75H-1z-eRr"/>
                             <constraint firstAttribute="trailing" secondItem="0Gs-F9-Ap0" secondAttribute="trailing" id="B6G-dz-Jbo"/>
@@ -175,7 +179,7 @@
                         </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="dGN-Le-URy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="2xl-kS-52Q"/>
                     <constraint firstAttribute="bottom" secondItem="dGN-Le-URy" secondAttribute="bottom" constant="9.5" id="Iac-yd-ItD"/>
@@ -195,7 +199,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="bgHeight" destination="LKQ-oj-big" id="vMh-as-GW3"/>
                 <outlet property="imgHead" destination="PsL-2h-rS4" id="Um8-GL-Tls"/>
