@@ -1,0 +1,61 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - AMap2DMap (4.1.1):
+    - AMapFoundation (~> 1.1)
+  - AMapFoundation (1.1.0)
+  - AMapLocation (2.1.0):
+    - AMapFoundation (~> 1.1)
+  - AMapSearch (4.1.0):
+    - AMapFoundation (~> 1.0)
+  - FSCalendar (2.3.0)
+  - MBProgressHUD (1.0.0)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - UIView+AnimationExtensions (1.0.0)
+  - UMengAnalytics (4.0.4)
+  - UMengSocial (5.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - AMap2DMap (~> 4.1.0)
+  - AMapFoundation (~> 1.1.0)
+  - AMapLocation (~> 2.1.0)
+  - AMapSearch (~> 4.1.0)
+  - FSCalendar
+  - MBProgressHUD (~> 1.0.0)
+  - SDWebImage (~> 3.8.1)
+  - UIView+AnimationExtensions (~> 1.0.0)
+  - UMengAnalytics (~> 4.0.4)
+  - UMengSocial (~> 5.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMap2DMap: e69e7a598718bef0addeea41240646f5a045c41c
+  AMapFoundation: 15db20567e6512422a086a01b42a88b145bc2500
+  AMapLocation: 343abc9ccd971ad27e459f38b5b082eabebf8792
+  AMapSearch: cb4722480d2d4331a032d43bd1070ed0fa55dac9
+  FSCalendar: cbcca5ee332cf8d348db77ccda6b029ced42f84a
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  UIView+AnimationExtensions: f9ae95fa3064be09cf2fcaac1fb1948ee22397ec
+  UMengAnalytics: 4ed421fb3bca63b26fc13c947743cabf3831d199
+  UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
+
+PODFILE CHECKSUM: d657f524dada3c66a222389a5e4a17b75e1341e0
+
+COCOAPODS: 1.0.1

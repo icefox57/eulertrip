@@ -1,0 +1,6 @@
+framework module Pods_eulertrip {
+  umbrella header "Pods-eulertrip-umbrella.h"
+
+  export *
+  module * { export * }
+}
